@@ -1,40 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/wrappers/drawer_wrapper.dart';
 
-class Supplier {
-  final String name;
-  final String workingHours;
-
-  Supplier(this.name, this.workingHours);
-}
-
-class Product {
-  final String name;
-  final double price;
-  // final Image image;
-  final String image;
-
-  Product(this.name, this.price, this.image);
-}
-
+import 'generated/l10n.dart';
+import 'models.dart';
+import 'widgets.dart';
 
 class HomeView extends StatelessWidget {
-
-  final List<String> suppliersTypes = [
+  final List<String> supTypes = [
+    'All',
+    'Open',
     'Pizzeria',
-    'Caffe'
-    'Fast food',
+    'Caffe',
   ];
-
   final List<Supplier> suppliers = [
-    Supplier('Burger Club', '11:00-21:00'),
-    Supplier('Pizza Club', '10:00-23:00'),
-    Supplier('Sushi', '10:00-23:00'),
+    Supplier('Burger Club', '11:00', '21:00'),
+    Supplier('Pizza Club', '10:00', '23:00'),
+    Supplier('Sushi', '10:00', '23:00'),
   ];
 
   final List<String> productTypes = [
+    'All',
     'Pizza',
     'Burger',
-    'Sushi',
   ];
   final List<Product> products = [
     Product('pizza1', 2.4, 'img'),
@@ -53,139 +40,23 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      drawer: DrawerWrapper(),
       appBar: AppBar(
-        title: const Text('Delivery'),
+        title: Text(
+          S.of(context).app_bar_title,
+        ),
       ),
       body: Column(
         children: <Widget>[
           const SizedBox(height: 20),
-          _SuppliersListWidget(suppliers: suppliers),
+          TypesWidget(types: supTypes),
+          SuppliersListWidget(suppliers: suppliers),
           const SizedBox(height: 20),
-          _ProductsListWidget(products: products),
+          TypesWidget(types: productTypes),
+          ProductsListWidget(products: products),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-class _SuppliersListWidget extends StatelessWidget {
-  final List<Supplier> suppliers;
-
-  const _SuppliersListWidget({Key? key, required this.suppliers})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 190,
-      color: Colors.amberAccent,
-      width: double.infinity,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children:(
-            suppliers.map((supplier) => _SupplierWidget(supplier: supplier)).toList()
-        ),
-      ),
-    );
-  }
-}
-
-class _SupplierWidget extends StatelessWidget {
-  // final Image img;
-  final Supplier supplier;
-
-  const _SupplierWidget({
-    Key? key,
-    required this.supplier,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(5),
-      width: 130,
-      height: 170,
-      padding: const EdgeInsets.all(10),
-      color: Colors.deepOrangeAccent,
-      child: Column(
-        children: [
-          const SizedBox(
-            width: 100,
-            height: 100,
-            child: Placeholder(), // img
-          ),
-          const SizedBox(height: 10),
-          Text(supplier.name),
-          const SizedBox(height: 10),
-          Text(supplier.workingHours),
-        ],
-      ),
-    );
-  }
-}
-
-class _ProductWidget extends StatelessWidget {
-  final Product product;
-
-  const _ProductWidget({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      color: Colors.deepOrangeAccent,
-      child: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              width: 100,
-              height: 100,
-              child: Placeholder(), // img
-            ),
-            const SizedBox(height: 5),
-            Text(product.name),
-            const SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text('${product.price}'),
-                ElevatedButton(
-                  onPressed: (){},
-                  child: const Text('Add'),
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ProductsListWidget extends StatelessWidget {
-  final List<Product> products;
-
-  const _ProductsListWidget({Key? key, required this.products})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 500,
-      color: Colors.amberAccent,
-      child: GridView.count(
-        padding: const EdgeInsets.all(5),
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        crossAxisCount: 2,
-        scrollDirection: Axis.vertical,
-        children:(
-            products.map((product) => _ProductWidget(product: product,)).toList()
-        ),
-      ),
     );
   }
 }
