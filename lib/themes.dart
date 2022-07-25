@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 final kLightTheme = ThemeData.light().copyWith(
   appBarTheme: AppBarTheme(color: Colors.green),
   backgroundColor: Colors.greenAccent,
-  cardTheme: CardTheme(color: Colors.white54),
+  cardTheme: CardTheme(color: Colors.teal),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.green[800]!),

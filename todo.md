@@ -29,9 +29,12 @@ to do:
 	22.07
 	/Add supplier types
 	/Add product types
-
+    25.07
+    /Add http requests to home page
+        
 	create product view
 	create basket view
 	create login view
 
 	Add navigation to another pages
+

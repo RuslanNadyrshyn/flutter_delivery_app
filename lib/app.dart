@@ -7,7 +7,6 @@ import 'package:food_delivery/themes.dart';
 import 'generated/l10n.dart';
 
 
-
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
