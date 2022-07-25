@@ -13,7 +13,7 @@ class DrawerWrapper extends StatelessWidget {
         color: Theme.of(context).backgroundColor,
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
+          children: [
             SizedBox(
               height: 120,
               child: DrawerHeader(

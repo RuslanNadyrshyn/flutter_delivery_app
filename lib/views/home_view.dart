@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/wrappers/drawer_wrapper.dart';
 
-import 'generated/l10n.dart';
-import 'widgets/products_widgets.dart';
-import 'widgets/supplier_widgets.dart';
+import '../generated/l10n.dart';
+import '../widgets/products_widgets.dart';
+import '../widgets/supplier_widgets.dart';
 
 class HomeView extends StatelessWidget {
 
-  HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: const <Widget>[
+        children: const [
           SizedBox(height: 20),
           SuppliersListWidget(),
           SizedBox(height: 20),
