@@ -5,13 +5,16 @@ import '../models/supplier.dart';
 import 'widgets.dart';
 
 class SuppliersListWidget extends StatefulWidget {
-  const SuppliersListWidget({Key? key}) : super(key: key);
+  const SuppliersListWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SuppliersListWidget> createState() => _SuppliersListWidgetState();
 }
 
 class _SuppliersListWidgetState extends State<SuppliersListWidget> {
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SuppliersResponse>(
@@ -22,7 +25,7 @@ class _SuppliersListWidgetState extends State<SuppliersListWidget> {
 
           return Column(
             children: [
-              TypesWidget(types: ["All", "Open"] + data!.types),
+              TypesWidget(key: Key('supplier'), types: ["All", "Open"] + data!.types),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 height: 190,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/http_service.dart';
 
 class TypesWidget extends StatelessWidget {
   final List<String> types;
@@ -18,7 +19,14 @@ class TypesWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 2),
                 child: ElevatedButton(
                     onPressed: () {
-                      // fetchSuppliers();
+                      if (key == Key('supplier')) {
+                        print('getting suppliers by type $type');
+                        getSuppliersByType(type);
+                        // getProductsByParams(context, Params(0, "restaurant", "burger"));
+                      } else if (key == Key('product')) {
+                        print('getting product by type $type');
+                        // getProductsByParams(context, Params(0, "restaurant", "burger"));
+                      }
                     },
                     child: Text(type))))
             .toList()),
@@ -26,4 +34,3 @@ class TypesWidget extends StatelessWidget {
     );
   }
 }
-

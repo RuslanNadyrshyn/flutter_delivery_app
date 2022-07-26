@@ -1,3 +1,5 @@
+import 'supplier.dart';
+
 class Product {
   final int id;
   final String name;
@@ -41,6 +43,22 @@ class ProductsResponse {
             .map((dynamic e) => Product.fromJson(e))
             .toList(),
         types: (json['Types'] as List<dynamic>).map((dynamic e) => e.toString()).toList()
+    );
+  }
+}
+
+class ProductInfo {
+  final Product? product;
+  final Supplier? supplier;
+
+  ProductInfo({required this.product, required this.supplier});
+
+  factory ProductInfo.fromJson(Map<String, dynamic> json) {
+    return ProductInfo(
+        product: json['Product'] != null
+            ? Product.fromJson(json['Product']) : null,
+        supplier: json['Supplier'] != null
+          ? Supplier.fromJson(json['Supplier']) : null
     );
   }
 }

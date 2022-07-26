@@ -7,6 +7,7 @@ import '../models/product.dart';
 import 'widgets.dart';
 
 class ProductsListWidget extends StatefulWidget {
+
   const ProductsListWidget(
       {Key? key})
       : super(key: key);
@@ -26,7 +27,7 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
 
             return Column(
               children: [
-                TypesWidget(types: ["All"] + data!.types),
+                TypesWidget(key: Key('product'), types: ["All"] + data!.types),
                 Container(
                   height: 400,
                   margin: EdgeInsets.symmetric(horizontal: 5),
