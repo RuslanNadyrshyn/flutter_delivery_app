@@ -25,14 +25,15 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
           if (snapshot.hasData) {
             ProductsResponse? data = snapshot.data;
 
-            return Column(
-              children: [
-                TypesWidget(key: Key('product'), types: ["All"] + data!.types),
-                Container(
-                  height: 400,
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  color: Theme.of(context).appBarTheme.backgroundColor,
-                  child: GridView.count(
+            return Container(
+              height: 450,
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              color: Theme.of(context).appBarTheme.backgroundColor,
+              child: Column(
+                children: [
+                  TypesWidget(key: Key('product'), types: ["All"] + data!.types),
+                  Expanded(
+                    child: GridView.count(
                     padding: const EdgeInsets.all(10),
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
@@ -45,8 +46,9 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
                     ))
                         .toList()),
                   ),
-                ),
-              ],
+                  )
+                ],
+              ),
             );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
@@ -98,7 +100,9 @@ class ProductCardWidget extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: Theme.of(context).elevatedButtonTheme.style,
-                  onPressed: () {},
+                  onPressed: () {
+                    // AddToBasket();
+                  },
                   child: Text(S.of(context).add_btn),
                 )
               ],

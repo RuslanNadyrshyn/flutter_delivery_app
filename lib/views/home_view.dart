@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
           SizedBox(height: 20),
           ProductsListWidget(),
         ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
