@@ -103,7 +103,7 @@ class _BasketViewState extends State<BasketView> {
             margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: ElevatedButton(
               onPressed: () {},
-              child: Text('Make order'),
+              child: Text(S.of(context).to_order),
             ),
           ),
         ],

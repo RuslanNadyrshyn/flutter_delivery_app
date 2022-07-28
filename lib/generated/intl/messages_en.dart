@@ -26,9 +26,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "app_bar_title": MessageLookupByLibrary.simpleMessage("Delivery"),
         "basket": MessageLookupByLibrary.simpleMessage("Basket"),
+        "change_language":
+            MessageLookupByLibrary.simpleMessage("Change language"),
+        "change_theme": MessageLookupByLibrary.simpleMessage("Change theme"),
+        "dark_mode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+        "delete_profile":
+            MessageLookupByLibrary.simpleMessage("Delete profile"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "open": MessageLookupByLibrary.simpleMessage("Open"),
-        "settings": MessageLookupByLibrary.simpleMessage("Settings")
+        "profile_info": MessageLookupByLibrary.simpleMessage("Profile info"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "to_order": MessageLookupByLibrary.simpleMessage("To order")
       };
 }

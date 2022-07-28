@@ -8,14 +8,16 @@ final kLightTheme = ThemeData.light().copyWith(
       style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.green[800]!),
   )),
+  dividerColor: Colors.black,
 );
 
 final kDarkTheme = ThemeData.dark().copyWith(
   appBarTheme: AppBarTheme(color: Colors.brown),
-  backgroundColor: Colors.black12,
+  backgroundColor: Colors.brown[800],
   cardTheme: CardTheme(color: Colors.black54),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+    backgroundColor: MaterialStateProperty.all<Color>(Colors.green[900]!),
   )),
+  dividerColor: Colors.white,
 );

@@ -27,7 +27,7 @@ class App extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: Locale.fromSubtags(languageCode: 'en'),
+        locale: Locale.fromSubtags(languageCode: 'ru'),
         title: 'Delivery',
         theme: light,
         home: HomeView(),

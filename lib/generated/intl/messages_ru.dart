@@ -22,7 +22,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "add_btn": MessageLookupByLibrary.simpleMessage("В корзину"),
-        "app_bar_title": MessageLookupByLibrary.simpleMessage("Доставка")
+        "add_btn": MessageLookupByLibrary.simpleMessage("Добавить"),
+        "all": MessageLookupByLibrary.simpleMessage("Все"),
+        "app_bar_title": MessageLookupByLibrary.simpleMessage("Доставка"),
+        "basket": MessageLookupByLibrary.simpleMessage("Корзина"),
+        "change_language":
+            MessageLookupByLibrary.simpleMessage("Изменить язык"),
+        "change_theme": MessageLookupByLibrary.simpleMessage("Изменить тему"),
+        "dark_mode": MessageLookupByLibrary.simpleMessage("Тёмная тема"),
+        "delete_profile":
+            MessageLookupByLibrary.simpleMessage("Удалить профиль"),
+        "home": MessageLookupByLibrary.simpleMessage("Домой"),
+        "login": MessageLookupByLibrary.simpleMessage("Войти"),
+        "open": MessageLookupByLibrary.simpleMessage("Открыто"),
+        "profile_info": MessageLookupByLibrary.simpleMessage("О профиле"),
+        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+        "to_order": MessageLookupByLibrary.simpleMessage("К заказу")
       };
 }

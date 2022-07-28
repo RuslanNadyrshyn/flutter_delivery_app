@@ -39,7 +39,7 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
                     crossAxisSpacing: 10,
                     crossAxisCount: 2,
                     scrollDirection: Axis.vertical,
-                    childAspectRatio: 0.65,
+                    childAspectRatio: 0.6,
                     children: (data.products
                         .map((product) => ProductCardWidget(
                       product: product,
@@ -75,7 +75,7 @@ class ProductCardWidget extends StatelessWidget {
       color: Theme.of(context).cardTheme.color,
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Center(
                 child: Image.network(
@@ -94,18 +94,22 @@ class ProductCardWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Text(product.type,style: TextStyle(fontSize: 15), overflow: TextOverflow.ellipsis,),
                 Text(
                   '${product.price} \$',
                   style: TextStyle(fontSize: 25),
                 ),
-                ElevatedButton(
-                  style: Theme.of(context).elevatedButtonTheme.style,
-                  onPressed: () {
-                    // AddToBasket();
-                  },
-                  child: Text(S.of(context).add_btn),
-                )
               ],
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: Theme.of(context).elevatedButtonTheme.style,
+                onPressed: () {
+                  // AddToBasket();
+                },
+                child: Text(S.of(context).add_btn),
+              ),
             )
           ],
         ),

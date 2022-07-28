@@ -1,4 +1,17 @@
 {
+  "@@locale": "ru",
   "app_bar_title": "Доставка",
-  "add_btn": "В корзину"
+  "add_btn": "Добавить",
+  "home": "Домой",
+  "basket": "Корзина",
+  "settings": "Настройки",
+  "login": "Войти",
+  "all": "Все",
+  "open": "Открыто",
+  "to_order": "К заказу",
+  "change_theme": "Изменить тему",
+  "change_language": "Изменить язык",
+  "profile_info": "О профиле",
+  "delete_profile": "Удалить профиль",
+  "dark_mode": "Тёмная тема"
 }
