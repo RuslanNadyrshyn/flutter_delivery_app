@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:food_delivery/themes.dart';
+import 'package:provider/provider.dart';
 
 import 'generated/l10n.dart';
 import 'views/home_view.dart';
@@ -28,7 +29,8 @@ class App extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: Locale.fromSubtags(languageCode: 'en'),
+        locale: Provider.of<LocaleProvider>(context).currentLocale,
+        // Locale.fromSubtags(languageCode: 'en'),
         title: 'Delivery',
         theme: light,
         // home: HomeView(),

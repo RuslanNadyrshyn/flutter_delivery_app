@@ -2,8 +2,43 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/wrappers/drawer_wrapper.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
+
+class SettingsView extends StatelessWidget {
+  const SettingsView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      drawer: DrawerWrapper(),
+      appBar: AppBar(
+        title: Text(
+          S.of(context).settings,
+        ),
+      ),
+      body: _SettingsListWidget(settings: [
+        Setting(Icons.dark_mode_rounded, S.of(context).dark_mode,
+            switchTheme(context)),
+        Setting(Icons.language_rounded, S.of(context).change_language,
+            _SelectLanguageWidget()
+        ),
+        Setting(Icons.person_rounded, S.of(context).profile_info,
+            Icon(Icons.chevron_right)),
+        Setting(
+            Icons.delete_outline_rounded,
+            S.of(context).delete_profile,
+            SizedBox(
+              height: 1,
+              width: 1,
+            )),
+      ]),
+    );
+  }
+}
+
 
 Widget switchTheme(BuildContext context) {
   return IconButton(
@@ -24,7 +59,6 @@ Widget switchTheme(BuildContext context) {
   );
 }
 
-
 class _SelectLanguageWidget extends StatefulWidget {
   const _SelectLanguageWidget({Key? key}) : super(key: key);
 
@@ -35,7 +69,6 @@ class _SelectLanguageWidget extends StatefulWidget {
 class _SelectLanguageWidgetState extends State<_SelectLanguageWidget> {
   String dropdownValue = Intl.getCurrentLocale();
   List<Locale> locales = S.delegate.supportedLocales;
-  // List<String> loc = locales.map((Locale e) => e.toString()).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -52,45 +85,9 @@ class _SelectLanguageWidgetState extends State<_SelectLanguageWidget> {
       onChanged: (String? newValue) {
         setState(() {
           dropdownValue = newValue!;
-          Intl.defaultLocale = newValue;
+          Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale(newValue));
         });
-        print(Intl.getCurrentLocale());
-        print(S.of(context).app_bar_title);
       },
-    );
-  }
-}
-
-class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      drawer: DrawerWrapper(),
-      appBar: AppBar(
-        title: Text(
-          S.of(context).settings,
-        ),
-      ),
-      // body: ChangeThemeViewWidget(),
-      body: _SettingsListWidget(settings: [
-        Setting(Icons.dark_mode_rounded, S.of(context).dark_mode,
-            switchTheme(context)),
-        Setting(Icons.language_rounded, S.of(context).change_language,
-            _SelectLanguageWidget()
-            ),
-        Setting(Icons.person_rounded, S.of(context).profile_info,
-            Icon(Icons.chevron_right)),
-        Setting(
-            Icons.delete_outline_rounded,
-            S.of(context).delete_profile,
-            SizedBox(
-              height: 1,
-              width: 1,
-            )),
-      ]),
     );
   }
 }
@@ -150,5 +147,14 @@ class _SettingsRowWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class LocaleProvider extends ChangeNotifier {
+  Locale currentLocale = Locale('en');
+
+  void setLocale(Locale newLocale) {
+    currentLocale = newLocale;
+    notifyListeners();
   }
 }
