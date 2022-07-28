@@ -140,16 +140,6 @@ class S {
     );
   }
 
-  /// `Change theme`
-  String get change_theme {
-    return Intl.message(
-      'Change theme',
-      name: 'change_theme',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Change language`
   String get change_language {
     return Intl.message(
@@ -185,6 +175,76 @@ class S {
     return Intl.message(
       'Dark mode',
       name: 'dark_mode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account?`
+  String get sign_up_text {
+    return Intl.message(
+      'Don`t have an account?',
+      name: 'sign_up_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up`
+  String get sign_up {
+    return Intl.message(
+      'Sign up',
+      name: 'sign_up',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your input is wrong. Try again!`
+  String get inputErrorText {
+    return Intl.message(
+      'Your input is wrong. Try again!',
+      name: 'inputErrorText',
       desc: '',
       args: [],
     );

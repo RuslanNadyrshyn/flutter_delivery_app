@@ -9,9 +9,15 @@
   "all": "All",
   "open": "Open",
   "to_order": "To order",
-  "change_theme": "Change theme",
   "change_language": "Change language",
   "profile_info": "Profile info",
   "delete_profile": "Delete profile",
-  "dark_mode": "Dark mode"
+  "dark_mode": "Dark mode",
+  "email": "Email",
+  "password": "Password",
+  "sign_up_text": "Don`t have an account?",
+  "sign_up": "Sign up",
+  "name": "Name",
+  "address": "Address",
+  "inputErrorText": "Your input is wrong. Try again!"
 }

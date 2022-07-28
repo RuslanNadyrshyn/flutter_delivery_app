@@ -28,7 +28,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "basket": MessageLookupByLibrary.simpleMessage("Корзина"),
         "change_language":
             MessageLookupByLibrary.simpleMessage("Изменить язык"),
-        "change_theme": MessageLookupByLibrary.simpleMessage("Изменить тему"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Тёмная тема"),
         "delete_profile":
             MessageLookupByLibrary.simpleMessage("Удалить профиль"),

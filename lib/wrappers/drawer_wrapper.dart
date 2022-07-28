@@ -37,7 +37,7 @@ class DrawerWrapper extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context); // close the drawer
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/');
               },
             ),
             ListTile(

@@ -8,6 +8,7 @@ import 'views/home_view.dart';
 import 'views/basket_view.dart';
 import 'views/login_view.dart';
 import 'views/settings_view.dart';
+import 'views/sign_up_view.dart';
 
 
 class App extends StatelessWidget {
@@ -27,15 +28,16 @@ class App extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: Locale.fromSubtags(languageCode: 'ru'),
+        locale: Locale.fromSubtags(languageCode: 'en'),
         title: 'Delivery',
         theme: light,
-        home: HomeView(),
+        // home: HomeView(),
         routes: <String, WidgetBuilder> {
-          '/home': (BuildContext context) => HomeView(),
+          '/': (BuildContext context) => HomeView(),
           '/basket': (BuildContext context) => BasketView(),
           '/settings': (BuildContext context) => SettingsView(),
           '/login': (BuildContext context) => LoginView(),
+          '/sign_up': (BuildContext context) => SignUpView(),
         },
       ),
     );
