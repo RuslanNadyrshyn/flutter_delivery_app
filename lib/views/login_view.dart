@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../constants.dart';
 import '../generated/l10n.dart';
-
-InputDecoration inputDecoration(context) {
-  return InputDecoration(
-    contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-    isCollapsed: true,
-    enabledBorder: myInputBorder(context),
-    focusedBorder: myFocusBorder(context),
-    border: myInputBorder(context),
-  );
-}
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -45,10 +37,13 @@ class _LoginFormWidgetState extends State<_LoginFormWidget> {
   final TextEditingController _passwordTextController = TextEditingController();
 
   void _login() {
-    // final email = _emailTextController.text;
-    // final password = _passwordTextController.text;
-    //
-    // if (email.length > 4 && password.length > 4) {
+    final email = _emailTextController.text;
+    final password = _passwordTextController.text;
+
+    if (email == 'admin' && password == 'admin') {
+      Provider.of<LocaleProvider>(context, listen: false).authorize();
+      print(Provider.of<LocaleProvider>(context, listen: false).isAuthorized);
+    }
     //   // make query to backend with email and pass. If correct, get profile info
     // }
   }
@@ -86,7 +81,7 @@ class _LoginFormWidgetState extends State<_LoginFormWidget> {
           height: 10,
         ),
         ElevatedButton(
-            onPressed: () {},
+            onPressed: _login,
             child: Text(
               S.of(context).login,
               style: TextStyle(fontSize: 18),
@@ -118,22 +113,4 @@ class _SignUpButtonWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-OutlineInputBorder myInputBorder(BuildContext context) {
-  return OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
-      borderSide: BorderSide(
-        color: Theme.of(context).dividerColor,
-        width: 1,
-      ));
-}
-
-OutlineInputBorder myFocusBorder(BuildContext context) {
-  return OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
-      borderSide: BorderSide(
-        color: Theme.of(context).dividerColor,
-        width: 3,
-      ));
 }

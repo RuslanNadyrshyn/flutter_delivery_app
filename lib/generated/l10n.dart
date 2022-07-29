@@ -70,11 +70,11 @@ class S {
     );
   }
 
-  /// `Home`
-  String get home {
+  /// `Delivery`
+  String get delivery {
     return Intl.message(
-      'Home',
-      name: 'home',
+      'Delivery',
+      name: 'delivery',
       desc: '',
       args: [],
     );
@@ -125,6 +125,16 @@ class S {
     return Intl.message(
       'Open',
       name: 'open',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message(
+      'Total',
+      name: 'total',
       desc: '',
       args: [],
     );
@@ -245,6 +255,26 @@ class S {
     return Intl.message(
       'Your input is wrong. Try again!',
       name: 'inputErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
       desc: '',
       args: [],
     );

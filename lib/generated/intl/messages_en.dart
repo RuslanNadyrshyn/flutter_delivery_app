@@ -32,19 +32,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "delete_profile":
             MessageLookupByLibrary.simpleMessage("Delete profile"),
+        "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
-        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inputErrorText": MessageLookupByLibrary.simpleMessage(
             "Your input is wrong. Try again!"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "open": MessageLookupByLibrary.simpleMessage("Open"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "profile_info": MessageLookupByLibrary.simpleMessage("Profile info"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "sign_up_text":
             MessageLookupByLibrary.simpleMessage("Don`t have an account?"),
-        "to_order": MessageLookupByLibrary.simpleMessage("To order")
+        "to_order": MessageLookupByLibrary.simpleMessage("To order"),
+        "total": MessageLookupByLibrary.simpleMessage("Total")
       };
 }

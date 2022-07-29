@@ -2,12 +2,13 @@
   "@@locale": "en",
   "app_bar_title": "Delivery",
   "add_btn": "Add",
-  "home": "Home",
+  "delivery": "Delivery",
   "basket": "Basket",
   "settings": "Settings",
   "login": "Login",
   "all": "All",
   "open": "Open",
+  "total": "Total",
   "to_order": "To order",
   "change_language": "Change language",
   "profile_info": "Profile info",
@@ -19,5 +20,7 @@
   "sign_up": "Sign up",
   "name": "Name",
   "address": "Address",
-  "inputErrorText": "Your input is wrong. Try again!"
+  "inputErrorText": "Your input is wrong. Try again!",
+  "profile": "Profile",
+  "logout": "Logout"
 }

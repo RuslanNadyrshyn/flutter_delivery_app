@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_btn": MessageLookupByLibrary.simpleMessage("Добавить"),
+        "address": MessageLookupByLibrary.simpleMessage("Адрес"),
         "all": MessageLookupByLibrary.simpleMessage("Все"),
         "app_bar_title": MessageLookupByLibrary.simpleMessage("Доставка"),
         "basket": MessageLookupByLibrary.simpleMessage("Корзина"),
@@ -31,11 +32,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "dark_mode": MessageLookupByLibrary.simpleMessage("Тёмная тема"),
         "delete_profile":
             MessageLookupByLibrary.simpleMessage("Удалить профиль"),
-        "home": MessageLookupByLibrary.simpleMessage("Домой"),
+        "delivery": MessageLookupByLibrary.simpleMessage("Доставка"),
+        "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
+        "inputErrorText":
+            MessageLookupByLibrary.simpleMessage("Неверный ввод!"),
         "login": MessageLookupByLibrary.simpleMessage("Войти"),
+        "logout": MessageLookupByLibrary.simpleMessage("Выйти"),
+        "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "open": MessageLookupByLibrary.simpleMessage("Открыто"),
+        "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+        "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
         "profile_info": MessageLookupByLibrary.simpleMessage("О профиле"),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
-        "to_order": MessageLookupByLibrary.simpleMessage("К заказу")
+        "sign_up": MessageLookupByLibrary.simpleMessage("Регистрация"),
+        "sign_up_text": MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
+        "to_order": MessageLookupByLibrary.simpleMessage("К заказу"),
+        "total": MessageLookupByLibrary.simpleMessage("Всего")
       };
 }

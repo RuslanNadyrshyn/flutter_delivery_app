@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
 import '../generated/l10n.dart';
-import 'login_view.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({Key? key}) : super(key: key);
@@ -11,8 +11,9 @@ class SignUpView extends StatelessWidget {
     void _signUp() {
       Navigator.pushNamed(context, '/');
     }
+
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Center(
           child: Text(
@@ -82,24 +83,18 @@ class _FormWidgetState extends State<_FormWidget> {
       children: [
         if (errorText != null) ...[
           Text(errorText!),
-          SizedBox(height: 10,),
+          SizedBox(height: 10),
         ],
         Text(S.of(context).email, style: TextStyle(fontSize: 16)),
-        SizedBox(
-          height: 5,
-        ),
+        SizedBox(height: 5),
         TextField(
           controller: _emailTextController,
           style: TextStyle(fontSize: 20),
           decoration: inputDecoration(context),
         ),
-        SizedBox(
-          height: 15,
-        ),
+        SizedBox(height: 15),
         Text(S.of(context).password, style: TextStyle(fontSize: 16)),
-        SizedBox(
-          height: 5,
-        ),
+        SizedBox(height: 5),
         TextField(
           controller: _passwordTextController,
           style: TextStyle(fontSize: 20),
@@ -110,7 +105,7 @@ class _FormWidgetState extends State<_FormWidget> {
             focusedBorder: myFocusBorder(context),
             border: myInputBorder(context),
             suffixIcon: IconButton(
-              splashRadius: 15,
+                splashRadius: 15,
                 onPressed: _changePasswordVisibility,
                 icon: _passwordHidden
                     ? Icon(Icons.visibility_off_rounded)
@@ -118,46 +113,23 @@ class _FormWidgetState extends State<_FormWidget> {
           ),
           obscureText: _passwordHidden,
         ),
-        SizedBox(
-          height: 15,
-        ),
+        SizedBox(height: 15),
         Text(S.of(context).name, style: TextStyle(fontSize: 16)),
-        SizedBox(
-          height: 5,
-        ),
+        SizedBox(height: 5),
         TextField(
           controller: _nameTextController,
           style: TextStyle(fontSize: 20),
           decoration: inputDecoration(context),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         ElevatedButton(
-            onPressed: _signUp,
-            child: Text(
-              S.of(context).sign_up,
-              style: TextStyle(fontSize: 18),
-            )),
+          onPressed: _signUp,
+          child: Text(
+            S.of(context).sign_up,
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
       ],
     );
   }
-}
-
-OutlineInputBorder myInputBorder(BuildContext context) {
-  return OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
-      borderSide: BorderSide(
-        color: Theme.of(context).dividerColor,
-        width: 1,
-      ));
-}
-
-OutlineInputBorder myFocusBorder(BuildContext context) {
-  return OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
-      borderSide: BorderSide(
-        color: Theme.of(context).dividerColor,
-        width: 3,
-      ));
 }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 final kLightTheme = ThemeData.light().copyWith(
+
   appBarTheme: AppBarTheme(color: Colors.green),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: Colors.green,
     selectedItemColor: Colors.green[800]!,
     unselectedItemColor: Colors.white,
   ),
-  backgroundColor: Colors.greenAccent,
+  backgroundColor: Colors.green,
+  scaffoldBackgroundColor: Colors.greenAccent,
   cardTheme: CardTheme(color: Colors.teal),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -21,8 +23,9 @@ final kDarkTheme = ThemeData.dark().copyWith(
     selectedItemColor: Colors.green,
     unselectedItemColor: Colors.white70,
   ),
-  // backgroundColor: Colors.brown[800],
   cardTheme: CardTheme(color: Colors.black54),
+  backgroundColor: Colors.white30,
+  scaffoldBackgroundColor: Colors.white12,
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.green[900]!),
