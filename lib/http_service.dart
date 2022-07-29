@@ -66,6 +66,8 @@ Future<List<Supplier>> getSuppliersByType(String type) async {
   } catch (e) {
     print(e);
   }
+  for (var element in suppliers) {print(element.name);}
+
   return suppliers;
 }
 

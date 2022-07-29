@@ -9,7 +9,6 @@ class TypesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Theme.of(context).appBarTheme.backgroundColor,
       margin: EdgeInsets.symmetric(horizontal: 5),
       height: 40,
       child: ListView(

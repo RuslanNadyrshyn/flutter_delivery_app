@@ -22,23 +22,24 @@ class _SuppliersListWidgetState extends State<SuppliersListWidget> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           SuppliersResponse? data = snapshot.data;
-
-          return Column(
-            children: [
-              TypesWidget(key: Key('supplier'), types: ["All", "Open"] + data!.types),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
-                height: 190,
-                color: Theme.of(context).appBarTheme.backgroundColor,
-                width: double.infinity,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: (data.suppliers
-                      .map((supplier) => SupplierCardWidget(supplier: supplier))
-                      .toList()),
+          return Container(
+            color: Theme.of(context).appBarTheme.backgroundColor,
+            child: Column(
+              children: [
+                TypesWidget(key: Key('supplier'), types: ["All", "Open"] + data!.types),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  height: 190,
+                  width: double.infinity,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: (data.suppliers
+                        .map((supplier) => SupplierCardWidget(supplier: supplier))
+                        .toList()),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');

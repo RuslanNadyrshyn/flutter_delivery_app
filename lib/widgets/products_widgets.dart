@@ -24,30 +24,29 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             ProductsResponse? data = snapshot.data;
-
-            return Container(
-              height: 450,
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              color: Theme.of(context).appBarTheme.backgroundColor,
-              child: Column(
-                children: [
-                  TypesWidget(key: Key('product'), types: ["All"] + data!.types),
-                  Expanded(
-                    child: GridView.count(
-                    padding: const EdgeInsets.all(10),
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    crossAxisCount: 2,
-                    scrollDirection: Axis.vertical,
-                    childAspectRatio: 0.6,
-                    children: (data.products
-                        .map((product) => ProductCardWidget(
-                      product: product,
-                    ))
-                        .toList()),
-                  ),
-                  )
-                ],
+            return Expanded(
+              child: Container(
+                color: Theme.of(context).appBarTheme.backgroundColor,
+                child: Column(
+                  children: [
+                    TypesWidget(key: Key('product'), types: ["All"] + data!.types),
+                    Expanded(
+                      child: GridView.count(
+                      padding: const EdgeInsets.all(10),
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      crossAxisCount: 2,
+                      scrollDirection: Axis.vertical,
+                      childAspectRatio: 0.6,
+                      children: (data.products
+                          .map((product) => ProductCardWidget(
+                        product: product,
+                      ))
+                          .toList()),
+                    ),
+                    )
+                  ],
+                ),
               ),
             );
           } else if (snapshot.hasError) {

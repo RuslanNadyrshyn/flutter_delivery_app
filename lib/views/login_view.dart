@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/wrappers/drawer_wrapper.dart';
 
 import '../generated/l10n.dart';
 
@@ -18,103 +17,123 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _signUp() {
-      // go to sign up page
-      Navigator.pushNamed(context, '/sign_up');
-    }
-
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      drawer: DrawerWrapper(),
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            S.of(context).login,
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          _LoginFormWidget(),
+          SizedBox(
+            height: 15,
           ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20,),
-            _FormWidget(),
-            SizedBox(height: 15,),
-            Center(child: Text(S.of(context).sign_up_text, style: TextStyle(fontSize: 16),)),
-            Center(child: ElevatedButton(onPressed: _signUp, child: Text(S.of(context).sign_up, style: TextStyle(fontSize: 18)))),
-          ],
-        ),
+          _SignUpButtonWidget(),
+        ],
       ),
     );
   }
 }
 
-class _FormWidget extends StatefulWidget {
-  const _FormWidget({Key? key}) : super(key: key);
+class _LoginFormWidget extends StatefulWidget {
+  const _LoginFormWidget({Key? key}) : super(key: key);
 
   @override
-  State<_FormWidget> createState() => _FormWidgetState();
+  State<_LoginFormWidget> createState() => _LoginFormWidgetState();
 }
 
-class _FormWidgetState extends State<_FormWidget> {
-  final _emailTextController = TextEditingController();
-  final _passwordTextController = TextEditingController();
+class _LoginFormWidgetState extends State<_LoginFormWidget> {
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
 
   void _login() {
-    final email = _emailTextController.text;
-    final password = _passwordTextController.text;
-
-    if (email.length > 4 && password.length > 4) {
-      // make query to backend with email and pass. If correct, get profile info
-    }
+    // final email = _emailTextController.text;
+    // final password = _passwordTextController.text;
+    //
+    // if (email.length > 4 && password.length > 4) {
+    //   // make query to backend with email and pass. If correct, get profile info
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(S.of(context).email, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 5,),
+        SizedBox(
+          height: 5,
+        ),
         TextField(
+          cursorColor: Theme.of(context).dividerColor,
           controller: _emailTextController,
           style: TextStyle(fontSize: 20),
           decoration: inputDecoration(context),
         ),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         Text(S.of(context).password, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 5,),
+        SizedBox(
+          height: 5,
+        ),
         TextField(
+          cursorColor: Theme.of(context).dividerColor,
           controller: _passwordTextController,
           style: TextStyle(fontSize: 20),
           decoration: inputDecoration(context),
           obscureText: true,
         ),
-        SizedBox(height: 10,),
-        ElevatedButton(onPressed: () {}, child: Text(S.of(context).login, style: TextStyle(fontSize: 18),)),
+        SizedBox(
+          height: 10,
+        ),
+        ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              S.of(context).login,
+              style: TextStyle(fontSize: 18),
+            )),
       ],
     );
   }
 }
 
-OutlineInputBorder myInputBorder(BuildContext context){
+class _SignUpButtonWidget extends StatelessWidget {
+  const _SignUpButtonWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    void _signUp() {
+      Navigator.pushNamed(context, '/sign_up');
+    }
+    return Center(
+      child: Column(
+        children: [
+          Text(
+            S.of(context).sign_up_text,
+            style: TextStyle(fontSize: 16),
+          ),
+          ElevatedButton(
+              onPressed: _signUp,
+              child: Text(S.of(context).sign_up, style: TextStyle(fontSize: 18))),
+        ],
+      ),
+    );
+  }
+}
+
+OutlineInputBorder myInputBorder(BuildContext context) {
   return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       borderSide: BorderSide(
         color: Theme.of(context).dividerColor,
         width: 1,
-      )
-  );
+      ));
 }
-OutlineInputBorder myFocusBorder(BuildContext context){
+
+OutlineInputBorder myFocusBorder(BuildContext context) {
   return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       borderSide: BorderSide(
-        color: Theme.of(context).appBarTheme.backgroundColor!,
+        color: Theme.of(context).dividerColor,
         width: 3,
-      )
-  );
+      ));
 }

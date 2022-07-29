@@ -2,9 +2,11 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:food_delivery/themes.dart';
+import 'package:food_delivery/widgets/basket_widgets.dart';
 import 'package:provider/provider.dart';
 
 import 'generated/l10n.dart';
+import 'main_widget.dart';
 import 'views/home_view.dart';
 import 'views/basket_view.dart';
 import 'views/login_view.dart';
@@ -30,12 +32,11 @@ class App extends StatelessWidget {
         ],
         supportedLocales: S.delegate.supportedLocales,
         locale: Provider.of<LocaleProvider>(context).currentLocale,
-        // Locale.fromSubtags(languageCode: 'en'),
         title: 'Delivery',
         theme: light,
-        // home: HomeView(),
+        // home: MainViewWidget(),
         routes: <String, WidgetBuilder> {
-          '/': (BuildContext context) => HomeView(),
+          '/': (BuildContext context) => MainViewWidget(),
           '/basket': (BuildContext context) => BasketView(),
           '/settings': (BuildContext context) => SettingsView(),
           '/login': (BuildContext context) => LoginView(),

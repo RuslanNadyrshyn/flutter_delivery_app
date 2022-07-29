@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
 import '../models/product.dart';
@@ -15,14 +16,11 @@ class _BasketListWidgetState extends State<BasketListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-      child: Container(
-        color: Theme.of(context).appBarTheme.backgroundColor,
-        child: ListView(
-            children: (widget.products
-                .map((product) => BasketCardWidget(product: product))
-                .toList())),
-      ),
+      color: Theme.of(context).appBarTheme.backgroundColor,
+      child: ListView(
+          children: (widget.products
+              .map((product) => BasketCardWidget(product: product))
+              .toList())),
     );
   }
 }
@@ -57,6 +55,9 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    const imageHeight = 100;
+    const imageWidth = 100;
+
     return Container(
       height: 120,
       padding: const EdgeInsets.all(10),
@@ -65,16 +66,13 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
       child: Center(
         child: Row(
           children: [
-            FittedBox(
-              fit: BoxFit.contain,
-              child: FadeInImage.assetNetwork(
-                image: widget.product.image,
-                imageCacheHeight: 100,
-                imageCacheWidth: 100,
-                placeholder: 'assets/place_holder.png',
-                placeholderCacheWidth: 100,
-                placeholderCacheHeight: 100,
-              ),
+            FadeInImage.assetNetwork(
+              image: widget.product.image,
+              imageCacheHeight: imageHeight,
+              imageCacheWidth: imageWidth,
+              placeholder: 'assets/place_holder.png',
+              placeholderCacheWidth: imageHeight,
+              placeholderCacheHeight: imageWidth,
             ),
             const SizedBox(width: 5),
             Expanded(
@@ -163,5 +161,15 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
         ),
       ),
     );
+  }
+}
+
+
+class BasketListProvider extends ChangeNotifier {
+  List<Product> products = [];
+
+  void setBasketList(List<Product> prod) {
+    products = prod;
+    notifyListeners();
   }
 }

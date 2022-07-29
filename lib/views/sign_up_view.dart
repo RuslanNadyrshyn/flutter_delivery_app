@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/wrappers/drawer_wrapper.dart';
 
 import '../generated/l10n.dart';
 import 'login_view.dart';
@@ -10,13 +9,10 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _signUp() {
-      // go to sign up page
       Navigator.pushNamed(context, '/');
     }
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      drawer: DrawerWrapper(),
       appBar: AppBar(
         title: Center(
           child: Text(
@@ -161,7 +157,7 @@ OutlineInputBorder myFocusBorder(BuildContext context) {
   return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       borderSide: BorderSide(
-        color: Theme.of(context).appBarTheme.backgroundColor!,
+        color: Theme.of(context).dividerColor,
         width: 3,
       ));
 }
