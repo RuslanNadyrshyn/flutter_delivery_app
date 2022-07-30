@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 final kLightTheme = ThemeData.light().copyWith(
-
   appBarTheme: AppBarTheme(color: Colors.green),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: Colors.green,
@@ -10,7 +9,7 @@ final kLightTheme = ThemeData.light().copyWith(
   ),
   backgroundColor: Colors.green,
   scaffoldBackgroundColor: Colors.greenAccent,
-  cardTheme: CardTheme(color: Colors.teal),
+  cardTheme: CardTheme(color: Colors.greenAccent),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.green[800]!),

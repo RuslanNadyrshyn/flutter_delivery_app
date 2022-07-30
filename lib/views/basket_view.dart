@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/constants.dart';
 import 'package:food_delivery/models/product.dart';
 
 import '../generated/l10n.dart';
@@ -134,10 +135,11 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
-      padding: const EdgeInsets.all(10),
+      decoration: cardBoxDecoration(context),
+      height: 110,
+      padding: const EdgeInsets.all(5),
       margin: EdgeInsets.all(5),
-      color: Theme.of(context).cardTheme.color,
+      // color: Theme.of(context).cardTheme.color,
       child: Center(
         child: Row(
           children: [

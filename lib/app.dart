@@ -9,6 +9,7 @@ import 'generated/l10n.dart';
 import 'views/main_widget.dart';
 import 'views/basket_view.dart';
 import 'views/login_view.dart';
+import 'views/product_view.dart';
 import 'views/settings_view.dart';
 import 'views/sign_up_view.dart';
 
@@ -40,6 +41,7 @@ class App extends StatelessWidget {
           '/settings': (BuildContext context) => SettingsView(),
           '/login': (BuildContext context) => LoginView(),
           '/sign_up': (BuildContext context) => SignUpView(),
+          '/product': (BuildContext context) => ProductView(),
         },
       ),
     );
