@@ -220,6 +220,16 @@ class S {
     );
   }
 
+  /// `Already have an account?`
+  String get login_text {
+    return Intl.message(
+      'Already have an account?',
+      name: 'login_text',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign up`
   String get sign_up {
     return Intl.message(

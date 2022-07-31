@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../models/navigation.dart';
 
 class MainViewWidget extends StatefulWidget {
   const MainViewWidget({Key? key}) : super(key: key);

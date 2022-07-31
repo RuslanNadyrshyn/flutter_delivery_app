@@ -4,13 +4,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:food_delivery/themes.dart';
 import 'package:provider/provider.dart';
 
-import 'constants.dart';
 import 'generated/l10n.dart';
-import 'views/auth_view.dart';
+import 'models/provider.dart';
+import 'widgets/auth/auth_view.dart';
 import 'widgets/main_widget.dart';
-import 'views/basket_view.dart';
+import 'widgets/basket/basket_view.dart';
 import 'views/product_view.dart';
-import 'views/settings_view.dart';
+import 'widgets/settings/settings_view.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

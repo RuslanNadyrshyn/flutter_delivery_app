@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/supplier.dart';
-import 'package:http/http.dart';
 
 import '../generated/l10n.dart';
 import '../models/product.dart';
@@ -40,7 +39,7 @@ class ProductView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: ListView(
           children: [
@@ -87,8 +86,7 @@ class ProductView extends StatelessWidget {
               ],
             ),
           ],
-        )
-
+        ),
       ),
     );
   }

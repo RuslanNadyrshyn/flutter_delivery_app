@@ -1,31 +1,11 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../constants.dart';
-import '../generated/l10n.dart';
-import '../widgets/settings_widgets.dart';
 
-
-class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    List<Setting> settings = getSettings(context);
-
-    return ListView.separated(
-      itemCount: settings.length,
-      itemBuilder: (BuildContext context, int index) {
-        return SettingsItemWidget(setting: settings[index]);
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider(height: 10, thickness: 0.8, color: Theme.of(context).dividerColor);
-      },
-    );
-  }
-}
-
-
+import '../../generated/l10n.dart';
+import '../../models/provider.dart';
+import '../../models/setting.dart';
 
 class SettingsItemWidget extends StatelessWidget {
   final Setting setting;
@@ -85,3 +65,25 @@ class _SelectLanguageWidgetState extends State<SelectLanguageWidget> {
     );
   }
 }
+
+Widget switchThemeIconButton(BuildContext context) {
+  return IconButton(
+    iconSize: 40,
+    padding: EdgeInsets.zero,
+    constraints: BoxConstraints.tightFor(height: 50, width: 50),
+    onPressed: () {
+      if (AdaptiveTheme.of(context).theme ==
+          AdaptiveTheme.of(context).lightTheme) {
+        AdaptiveTheme.of(context).setDark();
+      } else {
+        AdaptiveTheme.of(context).setLight();
+      }
+    },
+    icon:
+    AdaptiveTheme.of(context).theme == AdaptiveTheme.of(context).lightTheme
+        ? Icon(Icons.toggle_off_outlined,)
+        : Icon(Icons.toggle_on_rounded),
+  );
+}
+
+

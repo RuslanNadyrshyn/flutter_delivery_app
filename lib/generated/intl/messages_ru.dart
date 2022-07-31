@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "inputErrorText":
             MessageLookupByLibrary.simpleMessage("Неверный ввод!"),
         "login": MessageLookupByLibrary.simpleMessage("Войти"),
+        "login_text": MessageLookupByLibrary.simpleMessage("Уже есть аккаунт?"),
         "logout": MessageLookupByLibrary.simpleMessage("Выйти"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "open": MessageLookupByLibrary.simpleMessage("Открыто"),

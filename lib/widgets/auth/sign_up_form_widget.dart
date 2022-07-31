@@ -62,26 +62,24 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
         SizedBox(height: 15),
         Text(S.of(context).password, style: TextStyle(fontSize: 16)),
         SizedBox(height: 5),
-        TextField(
-          cursorColor: Theme.of(context).dividerColor,
-          controller: _passwordTextController,
-          style: TextStyle(fontSize: 20),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white54,
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            isCollapsed: true,
-            enabledBorder: myInputBorder(context),
-            focusedBorder: myFocusBorder(context),
-            border: myInputBorder(context),
+        SizedBox(
+          // height: 42,
+          child: TextField(
+            textAlignVertical: TextAlignVertical.center,
+            cursorColor: Theme.of(context).dividerColor,
+            controller: _passwordTextController,
+            style: TextStyle(fontSize: 20),
+            decoration: inputDecoration(context).copyWith(
             suffixIcon: IconButton(
-                splashRadius: 15,
-                onPressed: _changePasswordVisibility,
-                icon: _passwordHidden
-                    ? Icon(Icons.visibility_off_rounded)
-                    : Icon(Icons.visibility)),
+              color: Colors.black54,
+              splashRadius: 15,
+              onPressed: _changePasswordVisibility,
+                    icon: _passwordHidden
+                        ? Icon(Icons.visibility_off_rounded)
+                        : Icon(Icons.visibility)),
+            ),
+            obscureText: _passwordHidden,
           ),
-          obscureText: _passwordHidden,
         ),
         SizedBox(height: 15),
         Text(S.of(context).name, style: TextStyle(fontSize: 16)),
@@ -95,10 +93,11 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: _signUp,
-          child: Text(
-            S.of(context).sign_up,
-            style: TextStyle(fontSize: 18),
-          ),
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all(
+                EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+              )),
+          child: Text(S.of(context).sign_up, style: TextStyle(fontSize: 18),),
         ),
       ],
     );
