@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
 import 'views/basket_view.dart';
 import 'views/home_view.dart';
-import 'views/login_view.dart';
+import 'views/auth_view.dart';
 import 'views/profile_view.dart';
 import 'views/settings_view.dart';
 
@@ -39,7 +39,7 @@ List<WidgetOptions> getWidgetOptions (BuildContext context) {
           }
       ),
     ],), ProfileView()) :
-    WidgetOptions(AppBar(title: Text(S.of(context).login),), LoginView()),
+    WidgetOptions(AppBar(title: Text(S.of(context).login),), AuthView()),
   ];
 }
 
@@ -63,6 +63,8 @@ List<BottomNavigationBarItem> getBottomNavigationItems(BuildContext context) {
 // Login_view
 InputDecoration inputDecoration(context) {
   return InputDecoration(
+    filled: true,
+    fillColor: Colors.white54,
     contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
     isCollapsed: true,
     enabledBorder: myInputBorder(context),

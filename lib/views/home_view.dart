@@ -29,10 +29,13 @@ class TypesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String selectedSupplierType = Provider.of<LocaleProvider>(context).selectedSupplierType;
-    String selectedProductType = Provider.of<LocaleProvider>(context).selectedProductType;
+    String selectedSupplierType =
+        Provider.of<LocaleProvider>(context).selectedSupplierType;
+    String selectedProductType =
+        Provider.of<LocaleProvider>(context).selectedProductType;
 
-    MaterialStateProperty<Color> selectedColor = MaterialStateProperty.all<Color>(Colors.orangeAccent);
+    MaterialStateProperty<Color> selectedColor =
+        MaterialStateProperty.all<Color>(Colors.orangeAccent);
 
     return Container(
       decoration: BoxDecoration(
@@ -57,19 +60,23 @@ class TypesWidget extends StatelessWidget {
                   onPressed: () {
                     if (key == Key('supplier')) {
                       print('getting suppliers by type $type');
-                      Provider.of<LocaleProvider>(context, listen: false).setSupplierType(type);
+                      Provider.of<LocaleProvider>(context, listen: false)
+                          .setSupplierType(type);
                       // Provider.of<LocaleProvider>(context, listen: false).setProductType('All');
                       getSuppliersByType(type);
                       // getProductsByParams(context, Params(0, "restaurant", "burger"));
                     } else if (key == Key('product')) {
                       print('getting product by type $type');
-                      Provider.of<LocaleProvider>(context, listen: false).setProductType(type);
+                      Provider.of<LocaleProvider>(context, listen: false)
+                          .setProductType(type);
                       // getProductsByParams(context, Params(0, "restaurant", "burger"));
                     }
                   },
-                  style: selectedSupplierType == type && key == Key('supplier') ||
-                    selectedProductType == type && key == Key('product') ?
-                  ButtonStyle(backgroundColor: selectedColor) : ButtonStyle(),
+                  style: selectedSupplierType == type &&
+                              key == Key('supplier') ||
+                          selectedProductType == type && key == Key('product')
+                      ? ButtonStyle(backgroundColor: selectedColor)
+                      : ButtonStyle(),
                   child: Text(type),
                 ),
               ),
@@ -237,98 +244,102 @@ class ProductCardWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      child: Stack(children: [
-        Container(
-          decoration: cardBoxDecoration(context),
-          padding: const EdgeInsets.all(5),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 130,
-                child: FadeInImage.assetNetwork(
-                  image: product.image,
-                  placeholder: 'assets/place_holder.png',
+      child: Stack(
+        children: [
+          Container(
+            decoration: cardBoxDecoration(context),
+            padding: const EdgeInsets.all(5),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 130,
+                  child: FadeInImage.assetNetwork(
+                    image: product.image,
+                    placeholder: 'assets/place_holder.png',
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      height: 36,
-                      child: Text(
-                        product.name,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                          height: 0.9,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 40,
-                      child: Text(
-                        ingredients,
-                        style: TextStyle(fontSize: 14, height: 0.9),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    SizedBox(height: 6),
-                    Row(
-                      children: [
-                        SizedBox(width: 5),
-                        Text(
-                          '${product.price} \$',
-                          style: TextStyle(fontSize: 22),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        height: 36,
+                        child: Text(
+                          product.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18,
+                            height: 0.9,
+                          ),
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            product.type,
-                            textAlign: TextAlign.end,
-                            style: TextStyle(fontSize: 12),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 40,
+                        child: Text(
+                          ingredients,
+                          style: TextStyle(fontSize: 14, height: 0.9),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(height: 6),
+                      Row(
+                        children: [
+                          SizedBox(width: 5),
+                          Text(
+                            '${product.price} \$',
+                            style: TextStyle(fontSize: 22),
                             overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        SizedBox(width: 90),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              product.type,
+                              textAlign: TextAlign.end,
+                              style: TextStyle(fontSize: 12),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          SizedBox(width: 90),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: _goToProductView,
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: _goToProductView,
+            ),
           ),
-        ),
-        Positioned(
-          height: 30,
-          width: 80,
-          right: 10,
-          bottom: 10,
-          child: ElevatedButton(
-            style: ButtonStyle(
-                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 0)),
-                textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(fontSize: 14))),
-            onPressed: () {
-              // AddToBasket();
-            },
-            child: Text(S.of(context).add_btn),
+          Positioned(
+            height: 30,
+            width: 80,
+            right: 10,
+            bottom: 10,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 0)),
+                  textStyle: MaterialStateProperty.all<TextStyle>(
+                      TextStyle(fontSize: 14))),
+              onPressed: () {
+                // AddToBasket();
+              },
+              child: Text(S.of(context).add_btn),
+            ),
           ),
-        )
-      ]),
+        ],
+      ),
     );
     // return Padding(
     //   padding: const EdgeInsets.symmetric(vertical: 8.0),

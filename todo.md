@@ -31,10 +31,12 @@ to do:
 	/Add product types
     25.07
     /Add http requests to home page
-        
-	create product view
-	create basket view
-	create login view
+	/create product view
+	/create basket view
+	/create login view
+	/Add navigation to another pages
 
-	Add navigation to another pages
+    appBar to every view
 
+
+    

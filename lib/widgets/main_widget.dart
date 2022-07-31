@@ -24,11 +24,7 @@ class _MainViewWidgetState extends State<MainViewWidget> {
     List<WidgetOptions> widgetOptions = getWidgetOptions(context);
     return Scaffold(
       appBar: widgetOptions[_selectedTab].appBar,
-      body: Container(
-        width: double.infinity,
-        padding: EdgeInsets.fromLTRB(5, 20, 5, 0),
-        child: widgetOptions[_selectedTab].widget,
-      ),
+      body: widgetOptions[_selectedTab].widget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,
         onTap: _changeSelectedTab,

@@ -18,13 +18,14 @@ final kLightTheme = ThemeData.light().copyWith(
 );
 
 final kDarkTheme = ThemeData.dark().copyWith(
+  appBarTheme: AppBarTheme(color: Colors.white12),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: Colors.green,
     unselectedItemColor: Colors.white70,
   ),
   cardTheme: CardTheme(color: Colors.black54),
   backgroundColor: Colors.white30,
-  scaffoldBackgroundColor: Colors.white12,
+  // scaffoldBackgroundColor: Colors.white12,
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.green[900]!),

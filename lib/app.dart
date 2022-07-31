@@ -6,13 +6,11 @@ import 'package:provider/provider.dart';
 
 import 'constants.dart';
 import 'generated/l10n.dart';
-import 'views/main_widget.dart';
+import 'views/auth_view.dart';
+import 'widgets/main_widget.dart';
 import 'views/basket_view.dart';
-import 'views/login_view.dart';
 import 'views/product_view.dart';
 import 'views/settings_view.dart';
-import 'views/sign_up_view.dart';
-
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -34,13 +32,11 @@ class App extends StatelessWidget {
         locale: Provider.of<LocaleProvider>(context).currentLocale,
         title: 'Delivery',
         theme: light,
-        // home: MainViewWidget(),
         routes: <String, WidgetBuilder> {
           '/': (BuildContext context) => MainViewWidget(),
           '/basket': (BuildContext context) => BasketView(),
           '/settings': (BuildContext context) => SettingsView(),
-          '/login': (BuildContext context) => LoginView(),
-          '/sign_up': (BuildContext context) => SignUpView(),
+          '/auth': (BuildContext context) => AuthView(),
           '/product': (BuildContext context) => ProductView(),
         },
       ),

@@ -1,55 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import '../generated/l10n.dart';
+import '../../constants.dart';
+import '../../generated/l10n.dart';
 
-class SignUpView extends StatelessWidget {
-  const SignUpView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    void _signUp() {
-      Navigator.pushNamed(context, '/');
-    }
-
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            S.of(context).sign_up,
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            SizedBox(
-              height: 20,
-            ),
-            _FormWidget(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _FormWidget extends StatefulWidget {
-  const _FormWidget({Key? key}) : super(key: key);
+class SignUpFormWidget extends StatefulWidget {
+  const SignUpFormWidget({Key? key}) : super(key: key);
 
   @override
-  State<_FormWidget> createState() => _FormWidgetState();
+  State<SignUpFormWidget> createState() => _SignUpFormWidgetState();
 }
 
-class _FormWidgetState extends State<_FormWidget> {
+class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _nameTextController = TextEditingController();
   bool _passwordHidden = true;
-  String? errorText = null;
+  String? errorText;
 
   void _changePasswordVisibility() {
     setState(() {
@@ -88,6 +54,7 @@ class _FormWidgetState extends State<_FormWidget> {
         Text(S.of(context).email, style: TextStyle(fontSize: 16)),
         SizedBox(height: 5),
         TextField(
+          cursorColor: Theme.of(context).dividerColor,
           controller: _emailTextController,
           style: TextStyle(fontSize: 20),
           decoration: inputDecoration(context),
@@ -96,9 +63,12 @@ class _FormWidgetState extends State<_FormWidget> {
         Text(S.of(context).password, style: TextStyle(fontSize: 16)),
         SizedBox(height: 5),
         TextField(
+          cursorColor: Theme.of(context).dividerColor,
           controller: _passwordTextController,
           style: TextStyle(fontSize: 20),
           decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white54,
             contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             isCollapsed: true,
             enabledBorder: myInputBorder(context),
@@ -117,6 +87,7 @@ class _FormWidgetState extends State<_FormWidget> {
         Text(S.of(context).name, style: TextStyle(fontSize: 16)),
         SizedBox(height: 5),
         TextField(
+          cursorColor: Theme.of(context).dividerColor,
           controller: _nameTextController,
           style: TextStyle(fontSize: 20),
           decoration: inputDecoration(context),
