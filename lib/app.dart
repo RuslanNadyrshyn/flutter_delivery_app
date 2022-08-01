@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'generated/l10n.dart';
 import 'models/provider.dart';
+import 'widgets/order/current_order_view.dart';
 import 'widgets/auth/auth_view.dart';
 import 'widgets/main_widget.dart';
 import 'widgets/basket/basket_view.dart';
@@ -38,6 +39,7 @@ class App extends StatelessWidget {
           '/settings': (BuildContext context) => SettingsView(),
           '/auth': (BuildContext context) => AuthView(),
           '/product': (BuildContext context) => ProductView(),
+          '/basket/order': (BuildContext context) => CurrentOrderView(),
         },
       ),
     );

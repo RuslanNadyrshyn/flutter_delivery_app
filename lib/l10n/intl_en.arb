@@ -23,5 +23,6 @@
   "address": "Address",
   "inputErrorText": "Your input is wrong. Try again!",
   "profile": "Profile",
-  "logout": "Logout"
+  "logout": "Logout",
+  "make_order": "Make order"
 }

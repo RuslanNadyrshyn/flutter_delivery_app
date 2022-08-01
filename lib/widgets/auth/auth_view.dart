@@ -23,9 +23,7 @@ class _AuthViewState extends State<AuthView> {
 
   @override
   Widget build(BuildContext context) {
-    print(Theme.of(context).appBarTheme.backgroundColor);
-    print(Theme.of(context).scaffoldBackgroundColor);
-    return Column(
+    return ListView(
       children: [
         Row(
           children: [
@@ -37,7 +35,7 @@ class _AuthViewState extends State<AuthView> {
                 child: Ink(
                   color: _selectedTab == 0
                       ? Theme.of(context).scaffoldBackgroundColor
-                      : Theme.of(context).appBarTheme.backgroundColor,
+                      : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
                   height: 50,
                   child: Align(
                     alignment: Alignment.center,
@@ -63,7 +61,7 @@ class _AuthViewState extends State<AuthView> {
                 child: Ink(
                   color: _selectedTab == 1
                       ? Theme.of(context).scaffoldBackgroundColor
-                      : Theme.of(context).appBarTheme.backgroundColor,
+                      : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
                   height: 50,
                   child: Align(
                     alignment: Alignment.center,
@@ -83,46 +81,46 @@ class _AuthViewState extends State<AuthView> {
             ),
           ],
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: IndexedStack(
-              index: _selectedTab,
-              children: const [
-                LoginFormWidget(),
-                SignUpFormWidget(),
-              ],
-            ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: IndexedStack(
+            index: _selectedTab,
+            children: const [
+              LoginFormWidget(),
+              SignUpFormWidget(),
+            ],
           ),
         ),
-          Center(
-            child: Column(
-              children: [
-                Text(
-                _selectedTab == 0 ? S.of(context).sign_up_text :
-                S.of(context).login_text,
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(height: 5),
-                ElevatedButton(
-                  onPressed: () {
-                    _selectedTab == 0 ? _changeSelectedTab(1) :
-                    _changeSelectedTab(0);
-                  },
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-                  )),
-                  child: Text(
-                    _selectedTab == 0 ? S.of(context).sign_up :
-                    S.of(context).login,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                SizedBox(height: 15),
-              ],
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              _selectedTab == 0
+                  ? S.of(context).sign_up_text
+                  : S.of(context).login_text,
+              style: TextStyle(fontSize: 16),
             ),
-          )
+            SizedBox(height: 5),
+            ElevatedButton(
+              onPressed: () {
+                _selectedTab == 0
+                    ? _changeSelectedTab(1)
+                    : _changeSelectedTab(0);
+              },
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+              )),
+              child: Text(
+                _selectedTab == 0
+                    ? S.of(context).sign_up
+                    : S.of(context).login,
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            SizedBox(height: 15),
+          ],
+        ),
       ],
     );
   }

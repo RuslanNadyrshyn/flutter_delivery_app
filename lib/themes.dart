@@ -9,26 +9,31 @@ final kLightTheme = ThemeData.light().copyWith(
   ),
   backgroundColor: Colors.green,
   scaffoldBackgroundColor: Colors.greenAccent,
-  cardTheme: CardTheme(color: Colors.greenAccent),
+  cardTheme: CardTheme(color: Color.fromRGBO(255,255,153, 1)),
   elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.all<Color>(Colors.green[800]!),
-  )),
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(Colors.green[800]!),
+    ),
+  ),
   dividerColor: Colors.black,
 );
 
 final kDarkTheme = ThemeData.dark().copyWith(
-  appBarTheme: AppBarTheme(color: Colors.white12),
+  appBarTheme: AppBarTheme(color: Color.fromRGBO(50, 50, 50, 1),),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Color.fromRGBO(50, 50, 50, 1),
     selectedItemColor: Colors.green,
     unselectedItemColor: Colors.white70,
   ),
-  cardTheme: CardTheme(color: Colors.black54),
-  backgroundColor: Colors.white30,
-  // scaffoldBackgroundColor: Colors.white12,
+  cardTheme: CardTheme(
+    color: Color.fromRGBO(70, 70, 70, 1),
+  ),
+  backgroundColor: Color.fromRGBO(120, 120, 120, 1),
+  scaffoldBackgroundColor: Color.fromRGBO(80, 80, 80, 1),
   elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.all<Color>(Colors.green[900]!),
-  )),
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(Colors.green[900]!),
+    ),
+  ),
   dividerColor: Colors.white,
 );

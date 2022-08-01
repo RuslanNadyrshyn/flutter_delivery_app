@@ -1,4 +1,3 @@
-import 'product.dart';
 
 class User {
   final int id;
@@ -16,27 +15,3 @@ class User {
   }
 }
 
-class Order {
-  final int id;
-  final List<Product> products;
-  final String address;
-  final int userId;
-  final String date;
-
-  Order(
-      {required this.id,
-      required this.products,
-      required this.address,
-      required this.userId,
-      required this.date});
-
-  factory Order.fromJson(Map<String, dynamic> json) {
-    return Order(
-      id: json['id'] as int,
-      products: json['products'] as List<Product>,
-      address: json['address'] as String,
-      userId: json['userId'] as int,
-      date: json['date'] as String,
-    );
-  }
-}

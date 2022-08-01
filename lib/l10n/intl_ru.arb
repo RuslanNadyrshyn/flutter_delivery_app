@@ -23,5 +23,6 @@
   "address": "Адрес",
   "inputErrorText": "Неверный ввод!",
   "profile": "Профиль",
-  "logout": "Выйти"
+  "logout": "Выйти",
+  "make_order": "Сделать заказ"
 }

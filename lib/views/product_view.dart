@@ -31,8 +31,6 @@ class ProductView extends StatelessWidget {
   final Product? product;
   const ProductView({Key? key, this.product}) : super(key: key);
 
-  static const routeName = '/product';
-
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Product;

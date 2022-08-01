@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Войти"),
         "login_text": MessageLookupByLibrary.simpleMessage("Уже есть аккаунт?"),
         "logout": MessageLookupByLibrary.simpleMessage("Выйти"),
+        "make_order": MessageLookupByLibrary.simpleMessage("Сделать заказ"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "open": MessageLookupByLibrary.simpleMessage("Открыто"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),

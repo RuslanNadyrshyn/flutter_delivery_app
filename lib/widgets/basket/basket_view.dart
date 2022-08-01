@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/product.dart';
 
-
 import '../../generated/l10n.dart';
 import 'basket_list_widget.dart';
 
@@ -43,44 +42,55 @@ class _BasketViewState extends State<BasketView> {
   }
 
   // void _removeProduct(int id) {
-  //   for (var prod in products) {
+  //   for (var prod in order) {
   //     if (prod.id == id) {
   //       setState(() {
-  //         products.remove(prod);
+  //         order.remove(prod);
   //       });
   //     }
   //   }
   // }
 
+  void _goToOrderView() {
+    Navigator.of(context).pushNamed('/basket/order');
+  }
+
   @override
   Widget build(BuildContext context) {
     _countSum();
     return Padding(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          Expanded(child: BasketListWidget(products: products)),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${S.of(context).total}: $sum',
-                  style: TextStyle(fontSize: 24),
+            Expanded(child: BasketListWidget(products: products)),
+            SizedBox(
+              height: 100,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${S.of(context).total}: $sum',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all(EdgeInsets.all(10))),
+                      onPressed: () {
+                        _goToOrderView();
+                      },
+                      child: Text(
+                        S.of(context).to_order,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.all(10))),
-                  onPressed: () {},
-                  child: Text(S.of(context).to_order, style: TextStyle(fontSize: 20),),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+          ],
       ),
     );
   }
 }
-
-
