@@ -8,6 +8,7 @@ class Product {
   final String image;
   final String type;
   final List<String> ingredients;
+  int? counter = 0;
 
   Product(
       {required this.id,
@@ -16,7 +17,9 @@ class Product {
       required this.price,
       required this.image,
       required this.type,
-      required this.ingredients});
+      required this.ingredients,
+      required this.counter,
+      });
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
@@ -26,7 +29,8 @@ class Product {
         price: json['price'] as double,
         image: json['image'] as String,
         type: json['type'] as String,
-        ingredients: (json['ingredients'] as List<dynamic>).map((dynamic e) => e.toString()).toList()
+        ingredients: (json['ingredients'] as List<dynamic>).map((dynamic e) => e.toString()).toList(),
+        counter: json['counter'] as int?,
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants.dart';
+import 'package:food_delivery/models/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
 import '../../http_service.dart';
@@ -64,12 +66,17 @@ class ProductCardWidget extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
-    String ingredients = product.ingredients.first;
-    for (var i = 1; i < product.ingredients.length; i++) {
-      ingredients += ', ${product.ingredients[i]}';
+    void _addToBasket() {
+      product.counter = 1;
+      print(product.counter);
+      Provider.of<LocaleProvider>(context, listen: false).addToBasket(product);
+      print('Added to basket');
     }
+
+    String ingredients = product.ingredients.reduce((value, element) => '$value, $element');
 
     void _goToProductView() {
       print('Go to product ${product.name} with id: ${product.id}');
@@ -127,7 +134,7 @@ class ProductCardWidget extends StatelessWidget {
                         children: [
                           SizedBox(width: 5),
                           Text(
-                            '${product.price} \$',
+                            '${product.price.toStringAsFixed(2)} \$',
                             style: TextStyle(fontSize: 22),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -166,9 +173,7 @@ class ProductCardWidget extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 0)),
                   textStyle: MaterialStateProperty.all<TextStyle>(
                       TextStyle(fontSize: 14))),
-              onPressed: () {
-                // AddToBasket();
-              },
+              onPressed: _addToBasket,
               child: Text(S.of(context).add_btn),
             ),
           ),

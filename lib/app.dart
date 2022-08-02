@@ -2,16 +2,14 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:food_delivery/themes.dart';
+import 'package:food_delivery/widgets/order/loaded_order_view.dart';
 import 'package:provider/provider.dart';
 
 import 'generated/l10n.dart';
 import 'models/provider.dart';
 import 'widgets/order/current_order_view.dart';
-import 'widgets/auth/auth_view.dart';
 import 'widgets/main_widget.dart';
-import 'widgets/basket/basket_view.dart';
 import 'views/product_view.dart';
-import 'widgets/settings/settings_view.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -35,11 +33,9 @@ class App extends StatelessWidget {
         theme: light,
         routes: <String, WidgetBuilder> {
           '/': (BuildContext context) => MainViewWidget(),
-          '/basket': (BuildContext context) => BasketView(),
-          '/settings': (BuildContext context) => SettingsView(),
-          '/auth': (BuildContext context) => AuthView(),
           '/product': (BuildContext context) => ProductView(),
-          '/basket/order': (BuildContext context) => CurrentOrderView(),
+          '/current_order': (BuildContext context) => CurrentOrderView(),
+          '/loaded_order': (BuildContext context) => LoadedOrderView(),
         },
       ),
     );

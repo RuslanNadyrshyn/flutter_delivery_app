@@ -1,30 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/widgets/order/order_list_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import '../../models/product.dart';
 
 class BasketListWidget extends StatelessWidget {
-  final List<Product> products;
-  const BasketListWidget({Key? key, required this.products}) : super(key: key);
+  const BasketListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).backgroundColor,
-      child: ListView(
-          children: (products
-              .map((product) => BasketCardWidget(product: product))
-              .toList())),
+      child: ListView.builder(
+        itemCount: Provider.of<LocaleProvider>(context).basket.length,
+        itemBuilder: (BuildContext context, int index) {
+          final product = Provider.of<LocaleProvider>(context).basket[index];
+          return BasketCardWidget(product: product, index: index);
+        },
+      ),
     );
   }
 }
 
+int getCounter (BuildContext context, int index) {
+  return Provider.of<LocaleProvider>(context, listen: false).basket[index].counter!;
+}
+
 class BasketCardWidget extends StatefulWidget {
   final Product product;
+  final int index;
+
 
   const BasketCardWidget({
     Key? key,
     required this.product,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -32,23 +44,30 @@ class BasketCardWidget extends StatefulWidget {
 }
 
 class _BasketCardWidgetState extends State<BasketCardWidget> {
-  int counter = 1;
-
-  void inc(){
-    setState(() {
-      counter++;
-    });
+  void _removeProduct() {
+    Provider.of<LocaleProvider>(context, listen: false)
+        .removeFromBasket(widget.product.id);
   }
-  void dec(){
+
+  void inc() {
+    int counter = getCounter(context, widget.index);
+    Provider.of<LocaleProvider>(context, listen: false)
+        .changeCounter(widget.index, ++counter);
+  }
+
+  void dec() {
+    int counter = getCounter(context, widget.index);
     if (counter > 1) {
-      setState(() {
-        counter--;
-      });
+      Provider.of<LocaleProvider>(context, listen: false)
+          .changeCounter(widget.index, --counter);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final counter = Provider.of<LocaleProvider>(context, listen: false)
+        .basket[widget.index]
+        .counter!;
     return Container(
       decoration: cardBoxDecoration(context),
       height: 110,
@@ -58,13 +77,10 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          FadeInImage.assetNetwork(
+          FadeInImageWidget(
             image: widget.product.image,
-            imageCacheHeight: 100,
-            imageCacheWidth: 100,
-            placeholder: 'assets/place_holder.png',
-            placeholderCacheWidth: 100,
-            placeholderCacheHeight: 100,
+            height: 100,
+            width: 100,
           ),
           const SizedBox(width: 5),
           Expanded(
@@ -83,8 +99,7 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
                     ),
                     IconButton(
                       alignment: Alignment.topRight,
-                      onPressed: () {
-                      },
+                      onPressed: _removeProduct,
                       icon: Align(
                           alignment: Alignment.topRight,
                           child: Icon(Icons.close)),
@@ -104,15 +119,15 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
                           ),
                           margin: EdgeInsets.all(10),
                           child: IconButton(
-                            constraints: BoxConstraints.tightFor(height: 30, width: 30),
+                            constraints:
+                                BoxConstraints.tightFor(height: 30, width: 30),
                             padding: EdgeInsets.zero,
-                            onPressed: () {
-                              dec();
-                            },
+                            onPressed: dec,
                             icon: Icon(Icons.remove),
                           ),
                         ),
                         Text(
+                          // '${Provider.of<LocaleProvider>(context, listen: false).basket[widget.index].counter!}',
                           '$counter',
                           style: TextStyle(
                             fontSize: 30,
@@ -125,22 +140,32 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
                           ),
                           margin: EdgeInsets.all(10),
                           child: IconButton(
-                            constraints: BoxConstraints.tightFor(height: 30, width: 30),
+                            constraints:
+                                BoxConstraints.tightFor(height: 30, width: 30),
                             padding: EdgeInsets.zero,
-                            onPressed: () {
-                              inc();
-                            },
+                            onPressed: inc,
                             icon: Icon(Icons.add),
                           ),
                         ),
                       ],
                     ),
                     Expanded(
-                      child: Text(
-                        '${widget.product.price*counter} \$',
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '${widget.product.price} \$',
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.end,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Text(
+                            '${(widget.product.price * counter).toStringAsFixed(2)} \$',
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.end,
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ],
                       ),
                     ),
                   ],

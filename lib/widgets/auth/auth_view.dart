@@ -24,6 +24,7 @@ class _AuthViewState extends State<AuthView> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       children: [
         Row(
           children: [
