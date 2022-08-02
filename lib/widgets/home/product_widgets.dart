@@ -3,7 +3,6 @@ import 'package:food_delivery/constants.dart';
 import 'package:food_delivery/models/provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../generated/l10n.dart';
 import '../../http_service.dart';
 import '../../models/product.dart';
 import 'types_widget.dart';
@@ -58,7 +57,10 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
   }
 }
 
-class ProductCardWidget extends StatelessWidget {
+
+
+class ProductCardWidget extends StatefulWidget {
+
   final Product product;
 
   const ProductCardWidget({
@@ -66,23 +68,50 @@ class ProductCardWidget extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
+  @override
+  State<ProductCardWidget> createState() => _ProductCardWidgetState();
+}
+
+class _ProductCardWidgetState extends State<ProductCardWidget> {
+  late bool isInBasket;
+
+  void checkIsInBasket () {
+    isInBasket = Provider.of<LocaleProvider>(context, listen: false)
+        .basket.any((element) => element.id == widget.product.id);
+    setState(() {});
+  }
+
+  void _addToBasket() {
+    checkIsInBasket();
+    if (isInBasket) { return;}
+    else {
+      widget.product.counter = 1;
+      print(widget.product.counter);
+      Provider.of<LocaleProvider>(context, listen: false).addToBasket(widget.product);
+      print('Added to basket');
+      setState(() {
+        isInBasket = true;
+      });
+    }
+  }
+
+  void _goToProductView() {
+    print('Go to product ${widget.product.name} with id: ${widget.product.id}');
+    Navigator.pushNamed(context, '/product', arguments: widget.product);
+  }
+
+  String getIngredientsString() {
+    return widget.product.ingredients.reduce((value, element) => '$value, $element');
+  }
+
+  @override
+  void initState() {
+    checkIsInBasket();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    void _addToBasket() {
-      product.counter = 1;
-      print(product.counter);
-      Provider.of<LocaleProvider>(context, listen: false).addToBasket(product);
-      print('Added to basket');
-    }
-
-    String ingredients = product.ingredients.reduce((value, element) => '$value, $element');
-
-    void _goToProductView() {
-      print('Go to product ${product.name} with id: ${product.id}');
-      Navigator.pushNamed(context, '/product', arguments: product);
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
@@ -96,7 +125,7 @@ class ProductCardWidget extends StatelessWidget {
                 SizedBox(
                   width: 130,
                   child: FadeInImage.assetNetwork(
-                    image: product.image,
+                    image: widget.product.image,
                     placeholder: 'assets/place_holder.png',
                   ),
                 ),
@@ -109,7 +138,7 @@ class ProductCardWidget extends StatelessWidget {
                         alignment: Alignment.center,
                         height: 36,
                         child: Text(
-                          product.name,
+                          widget.product.name,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 18,
@@ -123,7 +152,7 @@ class ProductCardWidget extends StatelessWidget {
                         alignment: Alignment.center,
                         height: 40,
                         child: Text(
-                          ingredients,
+                          getIngredientsString(),
                           style: TextStyle(fontSize: 14, height: 0.9),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -134,20 +163,20 @@ class ProductCardWidget extends StatelessWidget {
                         children: [
                           SizedBox(width: 5),
                           Text(
-                            '${product.price.toStringAsFixed(2)} \$',
+                            '${widget.product.price.toStringAsFixed(2)} \$',
                             style: TextStyle(fontSize: 22),
                             overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              product.type,
+                              widget.product.type,
                               textAlign: TextAlign.end,
                               style: TextStyle(fontSize: 12),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          SizedBox(width: 90),
+                          SizedBox(width: 60),
                         ],
                       ),
                     ],
@@ -164,7 +193,7 @@ class ProductCardWidget extends StatelessWidget {
           ),
           Positioned(
             height: 30,
-            width: 80,
+            width: 50,
             right: 10,
             bottom: 10,
             child: ElevatedButton(
@@ -173,8 +202,8 @@ class ProductCardWidget extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 0)),
                   textStyle: MaterialStateProperty.all<TextStyle>(
                       TextStyle(fontSize: 14))),
-              onPressed: _addToBasket,
-              child: Text(S.of(context).add_btn),
+              onPressed: isInBasket ? null : _addToBasket,
+              child:  Icon(Icons.shopping_basket),
             ),
           ),
         ],
