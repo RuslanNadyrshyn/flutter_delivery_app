@@ -299,6 +299,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Basket is empty`
+  String get basket_is_empty {
+    return Intl.message(
+      'Basket is empty',
+      name: 'basket_is_empty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

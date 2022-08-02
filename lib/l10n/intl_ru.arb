@@ -24,5 +24,6 @@
   "inputErrorText": "Неверный ввод!",
   "profile": "Профиль",
   "logout": "Выйти",
-  "make_order": "Сделать заказ"
+  "make_order": "Сделать заказ",
+  "basket_is_empty": "Корзина пуста"
 }

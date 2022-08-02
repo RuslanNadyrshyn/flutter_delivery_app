@@ -5,18 +5,22 @@ import 'package:provider/provider.dart';
 import '../../generated/l10n.dart';
 import 'basket_list_widget.dart';
 
-class BasketView extends StatelessWidget {
-
+class BasketView extends StatefulWidget {
   const BasketView({Key? key}) : super(key: key);
 
-  void _goToOrderView(BuildContext context) {
+  @override
+  State<BasketView> createState() => _BasketViewState();
+}
+
+class _BasketViewState extends State<BasketView> {
+  void _goToOrderView() {
     Navigator.of(context).pushNamed('/current_order');
   }
 
   @override
   Widget build(BuildContext context) {
-
-    final total = countTotal(Provider.of<LocaleProvider>(context).basket).toStringAsFixed(2);
+    final total = countTotal(Provider.of<LocaleProvider>(context).basket)
+        .toStringAsFixed(2);
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -37,7 +41,9 @@ class BasketView extends StatelessWidget {
                   ElevatedButton(
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.all(10))),
-                    onPressed: () => _goToOrderView(context),
+                    onPressed: Provider.of<LocaleProvider>(context).basket.isEmpty
+                          ? null
+                          : _goToOrderView,
                     child: Text(
                       S.of(context).to_order,
                       style: TextStyle(fontSize: 20),

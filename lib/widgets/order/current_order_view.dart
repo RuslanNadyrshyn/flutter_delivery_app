@@ -28,14 +28,16 @@ class _CurrentOrderViewState extends State<CurrentOrderView> {
         name: _nameTextController.text,
         email: '',
       ),
-      totalPrice: countTotal(Provider.of<LocaleProvider>(context, listen: false).basket),
+      totalPrice: countTotal(
+          Provider.of<LocaleProvider>(context, listen: false).basket),
       address: _addressTextController.text,
       products: Provider.of<LocaleProvider>(context, listen: false).basket,
     );
 
     if (order.user.name.isNotEmpty && order.address.isNotEmpty) {
       errorText = null;
-      print('${order.user.name}, your order has ${order.products.length} products');
+      print(
+          '${order.user.name}, your order has ${order.products.length} products');
       // make query to backend with name and address. get order id
     } else {
       errorText = S.of(context).inputErrorText;
@@ -47,7 +49,6 @@ class _CurrentOrderViewState extends State<CurrentOrderView> {
     }
     setState(() {});
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class _CurrentOrderViewState extends State<CurrentOrderView> {
           ),
           SizedBox(height: 15),
           Text(
-            '${S.of(context).total}: ${countTotal(Provider.of<LocaleProvider>(context).basket)}',
+            '${S.of(context).total}: ${countTotal(Provider.of<LocaleProvider>(context).basket).toStringAsFixed(2)}',
             style: TextStyle(fontSize: 24),
             textAlign: TextAlign.end,
           ),

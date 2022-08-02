@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/generated/l10n.dart';
 import 'package:food_delivery/models/provider.dart';
 import 'package:food_delivery/widgets/order/order_list_widget.dart';
 import 'package:provider/provider.dart';
@@ -12,8 +13,11 @@ class BasketListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       color: Theme.of(context).backgroundColor,
-      child: ListView.builder(
+      child: Provider.of<LocaleProvider>(context).basket.isEmpty ?
+      Center(child: Text(S.of(context).basket_is_empty)) :
+      ListView.builder(
         itemCount: Provider.of<LocaleProvider>(context).basket.length,
         itemBuilder: (BuildContext context, int index) {
           final product = Provider.of<LocaleProvider>(context).basket[index];
@@ -24,14 +28,9 @@ class BasketListWidget extends StatelessWidget {
   }
 }
 
-int getCounter (BuildContext context, int index) {
-  return Provider.of<LocaleProvider>(context, listen: false).basket[index].counter!;
-}
-
 class BasketCardWidget extends StatefulWidget {
   final Product product;
   final int index;
-
 
   const BasketCardWidget({
     Key? key,
@@ -44,19 +43,23 @@ class BasketCardWidget extends StatefulWidget {
 }
 
 class _BasketCardWidgetState extends State<BasketCardWidget> {
+  int getCounter () {
+    return Provider.of<LocaleProvider>(context, listen: false).basket[widget.index].counter!;
+  }
+
   void _removeProduct() {
     Provider.of<LocaleProvider>(context, listen: false)
         .removeFromBasket(widget.product.id);
   }
 
   void inc() {
-    int counter = getCounter(context, widget.index);
+    int counter = getCounter();
     Provider.of<LocaleProvider>(context, listen: false)
         .changeCounter(widget.index, ++counter);
   }
 
   void dec() {
-    int counter = getCounter(context, widget.index);
+    int counter = getCounter();
     if (counter > 1) {
       Provider.of<LocaleProvider>(context, listen: false)
           .changeCounter(widget.index, --counter);
@@ -73,7 +76,6 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
       height: 110,
       padding: const EdgeInsets.all(5),
       margin: EdgeInsets.all(5),
-      // color: Theme.of(context).cardTheme.color,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -127,7 +129,6 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
                           ),
                         ),
                         Text(
-                          // '${Provider.of<LocaleProvider>(context, listen: false).basket[widget.index].counter!}',
                           '$counter',
                           style: TextStyle(
                             fontSize: 30,

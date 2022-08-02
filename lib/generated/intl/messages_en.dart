@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "app_bar_title": MessageLookupByLibrary.simpleMessage("Delivery"),
         "basket": MessageLookupByLibrary.simpleMessage("Basket"),
+        "basket_is_empty":
+            MessageLookupByLibrary.simpleMessage("Basket is empty"),
         "change_language":
             MessageLookupByLibrary.simpleMessage("Change language"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark mode"),

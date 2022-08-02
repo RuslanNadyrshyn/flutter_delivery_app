@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Все"),
         "app_bar_title": MessageLookupByLibrary.simpleMessage("Доставка"),
         "basket": MessageLookupByLibrary.simpleMessage("Корзина"),
+        "basket_is_empty":
+            MessageLookupByLibrary.simpleMessage("Корзина пуста"),
         "change_language":
             MessageLookupByLibrary.simpleMessage("Изменить язык"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Тёмная тема"),
