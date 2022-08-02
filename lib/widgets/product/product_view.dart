@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/supplier.dart';
 
-import '../generated/l10n.dart';
-import '../models/product.dart';
+import '../../generated/l10n.dart';
+import '../../models/product.dart';
 
 class ProductPageResponse {
   Product product;
@@ -29,6 +29,7 @@ class ProductPageResponse {
 
 class ProductView extends StatelessWidget {
   final Product? product;
+
   const ProductView({Key? key, this.product}) : super(key: key);
 
   @override
@@ -43,10 +44,10 @@ class ProductView extends StatelessWidget {
           children: [
             Column(
               children: [
-                Center(
-                    child: Image.network(
-                      args.image,
-                    )),
+                FadeInImage.assetNetwork(
+                  image: args.image,
+                  placeholder: 'assets/place_holder.png',
+                ),
                 const SizedBox(height: 15),
                 Text(
                   args.name,
@@ -79,7 +80,8 @@ class ProductView extends StatelessWidget {
                 ),
                 Column(
                   children: args.ingredients
-                      .map((e) => Text(e, style: TextStyle(fontSize: 25))).toList(),
+                      .map((e) => Text(e, style: TextStyle(fontSize: 25)))
+                      .toList(),
                 ),
               ],
             ),

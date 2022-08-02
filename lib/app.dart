@@ -9,7 +9,7 @@ import 'generated/l10n.dart';
 import 'models/provider.dart';
 import 'widgets/order/current_order_view.dart';
 import 'widgets/main_widget.dart';
-import 'views/product_view.dart';
+import 'widgets/product/product_view.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

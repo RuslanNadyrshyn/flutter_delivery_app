@@ -6,7 +6,7 @@ import '../generated/l10n.dart';
 import '../widgets/auth/auth_view.dart';
 import '../widgets/basket/basket_view.dart';
 import '../widgets/home/home_view.dart';
-import '../views/profile_view.dart';
+import '../widgets/profile/profile_view.dart';
 import '../widgets/settings/settings_view.dart';
 
 class WidgetOptions {
