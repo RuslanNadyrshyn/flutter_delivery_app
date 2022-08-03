@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants.dart';
 import '../../generated/l10n.dart';
 import '../../models/provider.dart';
 
@@ -15,17 +15,26 @@ class LoginFormWidget extends StatefulWidget {
 class _LoginFormWidgetState extends State<LoginFormWidget> {
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _passwordTextController = TextEditingController();
+  String? errorText;
 
   void _login() {
     final email = _emailTextController.text;
     final password = _passwordTextController.text;
 
-    if (email == 'admin' && password == 'admin') {
-      Provider.of<LocaleProvider>(context, listen: false).authorize();
-      print(Provider.of<LocaleProvider>(context, listen: false).isAuthorized);
+    if (email.length >= 4 && password.length >= 4) {
+      errorText = null;
+      if (email == 'admin' && password == 'admin') {
+        Provider.of<LocaleProvider>(context, listen: false).authorize();
+        print(Provider.of<LocaleProvider>(context, listen: false).isAuthorized);
+      }
+      // make query to backend with email and pass. If correct, get profile info
+    } else {
+      errorText = S.of(context).inputErrorText;
+      Future.delayed(const Duration(seconds: 5), () {
+        setState(() => errorText = null);
+      });
     }
-    //   // make query to backend with email and pass. If correct, get profile info
-    // }
+    setState(() =>{});
   }
 
   @override
@@ -33,30 +42,12 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(S.of(context).email, style: TextStyle(fontSize: 16)),
-        SizedBox(
-          height: 5,
+        SizedBox(height: 20,
+          child: errorText != null ? Text(errorText!) : null,
         ),
-        TextField(
-          cursorColor: Theme.of(context).dividerColor,
-          controller: _emailTextController,
-          style: TextStyle(fontSize: 20),
-          decoration: inputDecoration(context),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Text(S.of(context).password, style: TextStyle(fontSize: 16)),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          cursorColor: Theme.of(context).dividerColor,
-          controller: _passwordTextController,
-          style: TextStyle(fontSize: 20),
-          decoration: inputDecoration(context),
-          obscureText: true,
-        ),
+        TextFieldWidget(title: S.of(context).email, controller: _emailTextController, ),
+        SizedBox(height: 15),
+        TextFieldPasswordWidget(title: S.of(context).password, controller: _passwordTextController,),
         SizedBox(
           height: 10,
         ),

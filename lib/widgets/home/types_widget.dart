@@ -16,7 +16,7 @@ class TypesWidget extends StatelessWidget {
         Provider.of<LocaleProvider>(context).selectedProductType;
 
     MaterialStateProperty<Color> selectedColor =
-        MaterialStateProperty.all<Color>(Colors.orangeAccent);
+        MaterialStateProperty.all<Color>(Colors.green);
 
     return Container(
       decoration: BoxDecoration(

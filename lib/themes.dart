@@ -7,9 +7,8 @@ final kLightTheme = ThemeData.light().copyWith(
     selectedItemColor: Colors.green[800]!,
     unselectedItemColor: Colors.white,
   ),
-  backgroundColor: Colors.green,
-  scaffoldBackgroundColor: Colors.greenAccent,
-  cardTheme: CardTheme(color: Color.fromRGBO(255,255,153, 1)),
+  backgroundColor: Colors.grey,
+  cardTheme: CardTheme(color: Colors.white),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(Colors.green[800]!),

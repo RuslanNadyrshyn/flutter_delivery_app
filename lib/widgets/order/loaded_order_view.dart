@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/generated/l10n.dart';
 import 'package:food_delivery/models/order.dart';
 import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/widgets/order/order_list_widget.dart';
+import 'package:food_delivery/widgets/total_price_widget.dart';
 
 class LoadedOrderView extends StatelessWidget {
   final OrderResponse order = OrderResponse(
@@ -63,11 +63,7 @@ class LoadedOrderView extends StatelessWidget {
             children: [
               Text(order.date),
               Expanded(
-                child: Text(
-                  '${S.of(context).total}: ${order.price}',
-                  style: TextStyle(fontSize: 24),
-                  textAlign: TextAlign.end,
-                ),
+                child: TotalPriceWidget(textAlign: TextAlign.end),
               ),
             ],
           ),

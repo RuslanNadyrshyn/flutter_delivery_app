@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'product_widgets.dart';
-import 'supplier_widgets.dart';
+import 'product_list_widget.dart';
+import 'supplier_list_widget.dart';
 
 class HomeView extends StatelessWidget {
   static const String title = '';
@@ -9,15 +9,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-      child: Column(
-        children: const [
-          SuppliersListWidget(),
-          SizedBox(height: 20),
-          ProductsListWidget(),
-        ],
-      ),
+    return Column(
+      children: const [
+        SuppliersListWidget(),
+        SizedBox(height: 15),
+        ProductsListWidget(),
+      ],
     );
   }
 }

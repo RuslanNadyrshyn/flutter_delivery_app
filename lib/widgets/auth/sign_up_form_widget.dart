@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/widgets/text_field_widget.dart';
 
-import '../../constants.dart';
 import '../../generated/l10n.dart';
 
 class SignUpFormWidget extends StatefulWidget {
@@ -14,14 +14,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _nameTextController = TextEditingController();
-  bool _passwordHidden = true;
   String? errorText;
-
-  void _changePasswordVisibility() {
-    setState(() {
-      _passwordHidden = !_passwordHidden;
-    });
-  }
 
   void _signUp() {
     final email = _emailTextController.text;
@@ -47,49 +40,14 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (errorText != null) ...[
-          Text(errorText!),
-          SizedBox(height: 10),
-        ],
-        Text(S.of(context).email, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 5),
-        TextField(
-          cursorColor: Theme.of(context).dividerColor,
-          controller: _emailTextController,
-          style: TextStyle(fontSize: 20),
-          decoration: inputDecoration(context),
+        SizedBox(height: 20,
+          child: errorText != null ? Text(errorText!) : null,
         ),
+        TextFieldWidget(controller: _emailTextController, title: S.of(context).email,),
         SizedBox(height: 15),
-        Text(S.of(context).password, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 5),
-        SizedBox(
-          // height: 42,
-          child: TextField(
-            textAlignVertical: TextAlignVertical.center,
-            cursorColor: Theme.of(context).dividerColor,
-            controller: _passwordTextController,
-            style: TextStyle(fontSize: 20),
-            decoration: inputDecoration(context).copyWith(
-            suffixIcon: IconButton(
-              color: Colors.black54,
-              splashRadius: 15,
-              onPressed: _changePasswordVisibility,
-                    icon: _passwordHidden
-                        ? Icon(Icons.visibility_off_rounded)
-                        : Icon(Icons.visibility)),
-            ),
-            obscureText: _passwordHidden,
-          ),
-        ),
+        TextFieldPasswordWidget(title: S.of(context).password, controller: _passwordTextController,),
         SizedBox(height: 15),
-        Text(S.of(context).name, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 5),
-        TextField(
-          cursorColor: Theme.of(context).dividerColor,
-          controller: _nameTextController,
-          style: TextStyle(fontSize: 20),
-          decoration: inputDecoration(context),
-        ),
+        TextFieldWidget(controller: _nameTextController, title: S.of(context).name,),
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: _signUp,

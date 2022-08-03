@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/widgets/total_price_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
@@ -19,42 +20,31 @@ class _BasketViewState extends State<BasketView> {
 
   @override
   Widget build(BuildContext context) {
-    final total = countTotal(Provider.of<LocaleProvider>(context).basket)
-        .toStringAsFixed(2);
-
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        children: [
-          Expanded(child: BasketListWidget()),
-          SizedBox(
-            height: 100,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${S.of(context).total}: $total',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.all(10))),
-                    onPressed: Provider.of<LocaleProvider>(context).basket.isEmpty
-                          ? null
-                          : _goToOrderView,
-                    child: Text(
-                      S.of(context).to_order,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ],
+    return Column(
+      children: [
+        Expanded(child: BasketListWidget()),
+        Container(
+          color: Theme.of(context).backgroundColor,
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TotalPriceWidget(textAlign: TextAlign.start),
+              ElevatedButton(
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.all(10))),
+                onPressed: Provider.of<LocaleProvider>(context).basket.isEmpty
+                      ? null
+                      : _goToOrderView,
+                child: Text(
+                  S.of(context).to_order,
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
