@@ -41,10 +41,10 @@ Future<SuppliersResponse> getSuppliersResponse() async {
   return resp;
 }
 
-Future<List<Supplier>> getSuppliersByType(String type) async {
-  if (type == "All") {
+Future<List<Supplier>> getSuppliersByType1(String type, BuildContext context) async {
+  if (type == S.of(context).all) {
     type = "";
-  } else if (type == "Open") {
+  } else if (type == S.of(context).open) {
     type = "workingHours";
   }
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/generated/l10n.dart';
+import 'package:food_delivery/models/provider.dart';
 import 'package:food_delivery/widgets/home/supplier_card.dart';
+import 'package:provider/provider.dart';
 
-import '../../http_service.dart';
-import '../../models/supplier.dart';
 import 'types_widget.dart';
 
 class SuppliersListWidget extends StatelessWidget {
@@ -12,42 +13,35 @@ class SuppliersListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    var types = [S.of(context).all, S.of(context).open];
+    types.addAll(Provider.of<LocaleProvider>(context).supTypes);
+
+    return SizedBox(
       height: 200,
-      color: Theme.of(context).backgroundColor,
-      child: FutureBuilder<SuppliersResponse>(
-        future: getSuppliersResponse(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            SuppliersResponse? data = snapshot.data;
-            return Column(
-              children: [
-                TypesWidget(
-                    key: Key('supplier'), types: ["All", "Open"] + data!.types),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  height: 155,
-                  width: double.infinity,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: data.suppliers.length,
-                    itemExtent: 130,
-                    itemBuilder: (BuildContext context, int index) {
-                      return SupplierCardWidget(supplier: data.suppliers[index]);
-                    },
-                  ),
-                ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
-          return Center(
-            child: const CircularProgressIndicator(),
-          );
-        },
+      child: ColoredBox(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: Column(
+          children: [
+            TypesWidget(key: Key('supplier'), types: types),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              height: 155,
+              width: double.infinity,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount:
+                    Provider.of<LocaleProvider>(context).suppliers.length,
+                itemExtent: 130,
+                itemBuilder: (BuildContext context, int index) {
+                  return SupplierCardWidget(
+                      supplier: Provider.of<LocaleProvider>(context)
+                          .suppliers[index]);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-

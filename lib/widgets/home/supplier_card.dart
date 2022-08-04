@@ -15,7 +15,9 @@ class SupplierCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: cardBoxDecoration(context),
+      decoration: cardBoxDecoration(context).copyWith(
+        color: Color.fromRGBO(150, 150, 150, 1),
+      ),
       height: 140,
       padding: const EdgeInsets.all(5),
       margin: const EdgeInsets.symmetric(horizontal: 3),

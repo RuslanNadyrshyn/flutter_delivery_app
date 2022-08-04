@@ -10,7 +10,7 @@ class ProductsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: ColoredBox(
         color: Theme.of(context).backgroundColor,
         child: FutureBuilder<ProductsResponse>(
           future: getProductsResponse(),
@@ -25,9 +25,7 @@ class ProductsListWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: Scrollbar(
-                      interactive: true,
                       thumbVisibility: true,
-                      thickness: 10,
                       child: ListView.builder(
                         itemCount: data.products.length,
                         itemExtent: 136,

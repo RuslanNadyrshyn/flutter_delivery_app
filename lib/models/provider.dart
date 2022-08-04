@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/http_service.dart';
 import 'package:food_delivery/models/product.dart';
+import 'package:food_delivery/models/supplier.dart';
 
 
 class LocaleProvider extends ChangeNotifier {
@@ -11,6 +13,12 @@ class LocaleProvider extends ChangeNotifier {
 
   List<Product> basket = [];
 
+  List<Supplier> suppliers = [];
+  List<String> supTypes = [];
+
+  List<Product> products = [];
+  List<String> prodTypes = [];
+
   void setLocale(Locale newLocale) {
     currentLocale = newLocale;
     notifyListeners();
@@ -21,20 +29,27 @@ class LocaleProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setSupplierType(String type) {
+  void getSuppliers() async {
+    var suppliersResponse = await getSuppliersResponse();
+    suppliers = suppliersResponse.suppliers;
+    supTypes = suppliersResponse.types;
+    notifyListeners();
+  }
+
+  getSuppliersByType(String type, BuildContext context) async {
     selectedSupplierType = type;
     notifyListeners();
-  }
-
-  void setProductType(String type) {
-    selectedProductType = type;
+    suppliers = await getSuppliersByType1(type, context);           // Edit method name
     notifyListeners();
   }
 
-  // void setSuppliers(Future<List<Supplier>> sup) {
-  //   suppliers = sup;
-  //   notifyListeners();
-  // }
+  void getProducts() async {
+    var productsResponse = await getProductsResponse();
+    products = productsResponse.products;
+    prodTypes = productsResponse.types;
+    notifyListeners();
+  }
+
 
   void addToBasket(Product product) {
     basket.add(product);

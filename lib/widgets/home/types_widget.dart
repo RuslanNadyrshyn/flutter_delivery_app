@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../http_service.dart';
 import '../../models/provider.dart';
 
 class TypesWidget extends StatelessWidget {
@@ -40,16 +39,13 @@ class TypesWidget extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     if (key == Key('supplier')) {
-                      print('getting suppliers by type $type');
                       Provider.of<LocaleProvider>(context, listen: false)
-                          .setSupplierType(type);
-                      // Provider.of<LocaleProvider>(context, listen: false).setProductType('All');
-                      getSuppliersByType(type);
+                          .getSuppliersByType(type, context);
                       // getProductsByParams(context, Params(0, "restaurant", "burger"));
                     } else if (key == Key('product')) {
                       print('getting product by type $type');
-                      Provider.of<LocaleProvider>(context, listen: false)
-                          .setProductType(type);
+                      // Provider.of<LocaleProvider>(context, listen: false)
+                      //     .setProductType(type);
                       // getProductsByParams(context, Params(0, "restaurant", "burger"));
                     }
                   },

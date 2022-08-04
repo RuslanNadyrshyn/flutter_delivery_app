@@ -54,13 +54,4 @@ class SuppliersResponse {
             .toList());
   }
 }
-//
-// class SupplierProvider extends ChangeNotifier {
-//   List<Supplier> suppliers = [];
-//
-//   void setSuppliers(List<Supplier> newSuppliers) {
-//     suppliers = newSuppliers;
-//     notifyListeners();
-//   }
-// }
 
