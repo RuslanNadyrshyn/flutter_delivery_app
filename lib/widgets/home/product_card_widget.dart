@@ -19,10 +19,11 @@ class ProductCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EffectedCardWidget(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        widget: _ProductCardRowWidget(product: product),
-        action: () => goToProductView(context, product),
-        positioned: Positioned(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      widget: _ProductCardRowWidget(product: product),
+      action: () => goToProductView(context, product),
+      positioned: [
+        Positioned(
           height: 30,
           width: 50,
           right: 10,
@@ -33,14 +34,16 @@ class ProductCardWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 0),
           ),
         ),
-      );
+      ],
+    );
   }
 }
 
 class _ProductCardRowWidget extends StatelessWidget {
   final Product product;
 
-  const _ProductCardRowWidget({Key? key, required this.product}) : super(key: key);
+  const _ProductCardRowWidget({Key? key, required this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -114,4 +117,3 @@ class _ProductCardRowWidget extends StatelessWidget {
     );
   }
 }
-

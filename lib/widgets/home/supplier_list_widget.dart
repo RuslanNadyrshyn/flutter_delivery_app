@@ -25,7 +25,7 @@ class SuppliersListWidget extends StatelessWidget {
             TypesWidget(types: types, parent: 'supplier'),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
-              height: 150,
+              height: 145,
               width: double.infinity,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,

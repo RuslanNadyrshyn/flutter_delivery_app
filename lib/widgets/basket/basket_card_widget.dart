@@ -59,8 +59,7 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
         product: widget.product,
         index: widget.index,
       ),
-      positioned: Stack(
-        children: [
+      positioned: [
           Positioned(
             top: 1,
             right: 1,
@@ -77,7 +76,6 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
             ),
           ),
         ],
-      ),
     );
   }
 }

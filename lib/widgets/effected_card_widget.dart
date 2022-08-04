@@ -5,14 +5,14 @@ class EffectedCardWidget extends StatelessWidget {
   final EdgeInsets padding;
   final Widget widget;
   final Function() action;
-  final Widget? positioned;
+  final List<Widget>? positioned;
 
   const EffectedCardWidget(
       {Key? key,
         required this.padding,
         required this.widget,
         required this.action,
-        required this.positioned})
+        this.positioned})
       : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class EffectedCardWidget extends StatelessWidget {
               onTap: action,
             ),
           ),
-          if (positioned != null) ...[positioned!],
+          if (positioned != null) ...positioned!,
         ],
       ),
     );

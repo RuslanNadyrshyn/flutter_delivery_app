@@ -24,7 +24,7 @@ class _HomeViewState extends State<HomeView> {
     return Column(
       children: const [
         SuppliersListWidget(),
-        SizedBox(height: 10),
+        // SizedBox(height: 5),
         ProductsListWidget(),
       ],
     );

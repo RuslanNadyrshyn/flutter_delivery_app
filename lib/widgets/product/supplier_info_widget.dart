@@ -81,7 +81,6 @@ class _ProductCardWidget extends StatelessWidget {
           ),
         ),
         action: () => goToProductView(context, product),
-        positioned: SizedBox(),
       );
   }
 }

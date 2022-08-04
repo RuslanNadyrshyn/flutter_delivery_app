@@ -66,11 +66,11 @@ class LocaleProvider extends ChangeNotifier {
     notifyListeners();
 
     var productsResponse = await getProductsByParams(context, params);
-
-    products = productsResponse.products;
-    prodTypes = productsResponse.types;
-
-    notifyListeners();
+    if (productsResponse.products.isNotEmpty) {
+      products = productsResponse.products;
+      prodTypes = productsResponse.types;
+      notifyListeners();
+    }
   }
 
   // Basket
