@@ -1,11 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/generated/l10n.dart';
+import 'package:food_delivery/http_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/provider.dart';
 
 class TypesWidget extends StatelessWidget {
   final List<String> types;
-  const TypesWidget({Key? key, required this.types}) : super(key: key);
+  final String parent;
+
+  const TypesWidget({Key? key, required this.types, required this.parent})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: SizedBox(
+        height: 40,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: (types
+              .map((type) => _TypeButtonWidget(
+                    type: type,
+                    parent: parent,
+                  ))
+              .toList()),
+        ),
+      ),
+    );
+  }
+}
+
+class _TypeButtonWidget extends StatelessWidget {
+  final String type;
+  final String parent;
+
+  const _TypeButtonWidget({Key? key, required this.type, required this.parent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,53 +45,44 @@ class TypesWidget extends StatelessWidget {
         Provider.of<LocaleProvider>(context).selectedSupplierType;
     String selectedProductType =
         Provider.of<LocaleProvider>(context).selectedProductType;
-
-    MaterialStateProperty<Color> selectedColor =
-        MaterialStateProperty.all<Color>(Colors.green);
+    int selectedSupplierId =
+        Provider.of<LocaleProvider>(context).selectedSupplierId;
 
     return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.4),
-            blurRadius: 5,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      height: 40,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: (types
-            .map(
-              (type) => Container(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 2),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (key == Key('supplier')) {
-                      Provider.of<LocaleProvider>(context, listen: false)
-                          .getSuppliersByType(type, context);
-                      // getProductsByParams(context, Params(0, "restaurant", "burger"));
-                    } else if (key == Key('product')) {
-                      print('getting product by type $type');
-                      // Provider.of<LocaleProvider>(context, listen: false)
-                      //     .setProductType(type);
-                      // getProductsByParams(context, Params(0, "restaurant", "burger"));
-                    }
-                  },
-                  style: selectedSupplierType == type &&
-                              key == Key('supplier') ||
-                          selectedProductType == type && key == Key('product')
-                      ? ButtonStyle(backgroundColor: selectedColor)
-                      : ButtonStyle(),
-                  child: Text(type),
-                ),
-              ),
-            )
-            .toList()),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 2),
+      child: ElevatedButton(
+        onPressed: () {
+          if (parent == 'supplier' && type != selectedSupplierType) {
+            Provider.of<LocaleProvider>(context, listen: false)
+                .getSuppliersByType(type, context);
+          } else if (parent == 'product' && type != selectedProductType) {
+            Provider.of<LocaleProvider>(context, listen: false)
+                .getProductsWithParams(context,
+                    Params(
+                      supplierId: selectedSupplierId,
+                      supplierType: selectedSupplierType,
+                      prodType: type,
+                    ));
+          }
+        },
+        style: _getTypeButtonStyle(context, type, parent),
+        child: type == '' ? Text(S.of(context).all) : Text(type),
       ),
     );
   }
+}
+
+ButtonStyle _getTypeButtonStyle(
+    BuildContext context, String type, String parent) {
+  String selectedSupplierType =
+      Provider.of<LocaleProvider>(context).selectedSupplierType;
+  String selectedProductType =
+      Provider.of<LocaleProvider>(context).selectedProductType;
+
+  final selectedColor = MaterialStateProperty.all<Color>(Colors.green);
+
+  return selectedSupplierType == type && parent == 'supplier' ||
+          selectedProductType == type && parent == 'product'
+      ? ButtonStyle(backgroundColor: selectedColor)
+      : ButtonStyle();
 }

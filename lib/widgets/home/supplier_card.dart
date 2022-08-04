@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_delivery/constants.dart';
+import 'package:food_delivery/http_service.dart';
+import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/widgets/effected_card_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/supplier.dart';
 
@@ -14,40 +18,68 @@ class SupplierCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    var supType = Provider.of<LocaleProvider>(context).selectedSupplierType;
+
+    return EffectedCardWidget(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        widget: _SupplierCardInfoWidget(supplier: supplier),
+        action: () => Provider.of<LocaleProvider>(context, listen: false)
+            .getProductsWithParams(context, Params(
+          supplierId: supplier.id,
+          supplierType: supType,
+          prodType: '',
+        )),
+        positioned: null,
+      );
+  }
+}
+
+class _SupplierCardInfoWidget extends StatelessWidget {
+  final Supplier supplier;
+  const _SupplierCardInfoWidget({Key? key, required this.supplier}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var supId = Provider.of<LocaleProvider>(context).selectedSupplierId;
+
+    return DecoratedBox(
       decoration: cardBoxDecoration(context).copyWith(
-        color: Color.fromRGBO(150, 150, 150, 1),
+        color: supplier.id == supId ? Colors.green :
+        Color.fromRGBO(150, 150, 150, 1),
       ),
-      height: 140,
-      padding: const EdgeInsets.all(5),
-      margin: const EdgeInsets.symmetric(horizontal: 3),
-      child: Column(
-        children: [
-          Image.network(
-            supplier.image,
-            height: 85,
-            errorBuilder: (context, error, stackTrace) => SvgPicture.network(
+      child: Padding(
+        padding: const EdgeInsets.all(5),
+        child: Column(
+          children: [
+            Image.network(
               supplier.image,
               height: 85,
-            ),
-          ),
-          SizedBox(
-            height: 40,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                supplier.name,
-                style: TextStyle(fontSize: 17, height: 0.9),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              errorBuilder: (context, error, stackTrace) => SvgPicture.network(
+                supplier.image,
+                height: 85,
               ),
             ),
-          ),
-          Text(
-              '${supplier.workingHours!.opening} - ${supplier.workingHours!.closing}'),
-        ],
+            SizedBox(
+              height: 35,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  supplier.name,
+                  style: TextStyle(fontSize: 17, height: 0.9),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            Text(
+                '${supplier.workingHours!.opening} - ${supplier.workingHours!.closing}'),
+          ],
+        ),
       ),
     );
   }
 }
+
+
+

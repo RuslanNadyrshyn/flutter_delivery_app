@@ -8,7 +8,7 @@ import 'package:food_delivery/widgets/to_basket_button_widget.dart';
 
 import '../../models/product.dart';
 
-class ProductCardWidget extends StatefulWidget {
+class ProductCardWidget extends StatelessWidget {
   final Product product;
 
   const ProductCardWidget({
@@ -17,25 +17,18 @@ class ProductCardWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ProductCardWidget> createState() => _ProductCardWidgetState();
-}
-
-class _ProductCardWidgetState extends State<ProductCardWidget> {
-
-  @override
   Widget build(BuildContext context) {
-    return
-      EffectedCardWidget(
+    return EffectedCardWidget(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        widget: _ProductCardRowWidget(product: widget.product),
-        action: () => goToProductView(context, widget.product),
+        widget: _ProductCardRowWidget(product: product),
+        action: () => goToProductView(context, product),
         positioned: Positioned(
           height: 30,
           width: 50,
           right: 10,
           bottom: 10,
           child: ToBasketButtonWidget(
-            product: widget.product,
+            product: product,
             iconSize: 22,
             padding: EdgeInsets.symmetric(horizontal: 0),
           ),

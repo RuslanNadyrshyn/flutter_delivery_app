@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/generated/l10n.dart';
 
 BoxDecoration cardBoxDecoration (BuildContext context) {
   return BoxDecoration(
@@ -18,4 +19,11 @@ BoxDecoration cardBoxDecoration (BuildContext context) {
 
 String getIngredientsString(List<String> ingredients) {
   return ingredients.reduce((value, element) => '$value, $element');
+}
+
+List<String> getDefaultSupTypes(BuildContext context) {
+  return [S.of(context).all, S.of(context).open];
+}
+List<String> getDefaultProdTypes(BuildContext context) {
+  return [S.of(context).all];
 }

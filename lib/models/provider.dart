@@ -3,13 +3,13 @@ import 'package:food_delivery/http_service.dart';
 import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/models/supplier.dart';
 
-
 class LocaleProvider extends ChangeNotifier {
   Locale currentLocale = Locale('en');
   bool isAuthorized = false;
 
-  String selectedSupplierType = 'All';
-  String selectedProductType = 'All';
+  int selectedSupplierId = 0;
+  String selectedSupplierType = '';
+  String selectedProductType = '';
 
   List<Product> basket = [];
 
@@ -19,17 +19,18 @@ class LocaleProvider extends ChangeNotifier {
   List<Product> products = [];
   List<String> prodTypes = [];
 
-  void setLocale(Locale newLocale) {
+  setLocale(Locale newLocale) {
     currentLocale = newLocale;
     notifyListeners();
   }
 
-  void authorize() {
+  authorize() {
     isAuthorized = !isAuthorized;
     notifyListeners();
   }
 
-  void getSuppliers() async {
+  // Suppliers
+  getSuppliers() async {
     var suppliersResponse = await getSuppliersResponse();
     suppliers = suppliersResponse.suppliers;
     supTypes = suppliersResponse.types;
@@ -37,32 +38,53 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   getSuppliersByType(String type, BuildContext context) async {
-    selectedSupplierType = type;
-    notifyListeners();
-    suppliers = await getSuppliersByType1(type, context);           // Edit method name
+    getProductsWithParams(context, Params(
+        supplierId: 0,
+        supplierType: type,
+        prodType: ''));
+
+    suppliers = await fetchSuppliersByType(type, context);
     notifyListeners();
   }
 
-  void getProducts() async {
+  // Products
+  getProducts() async {
     var productsResponse = await getProductsResponse();
     products = productsResponse.products;
     prodTypes = productsResponse.types;
     notifyListeners();
   }
 
+  getProductsWithParams(BuildContext context, Params params) async {
+    // print('supplierId: ${params.supplierId}');
+    // print('supType: ${params.supplierType}');
+    // print('prodType: ${params.prodType}');
 
-  void addToBasket(Product product) {
+    selectedSupplierId = params.supplierId;
+    selectedSupplierType = params.supplierType;
+    selectedProductType = params.prodType;
+    notifyListeners();
+
+    var productsResponse = await getProductsByParams(context, params);
+
+    products = productsResponse.products;
+    prodTypes = productsResponse.types;
+
+    notifyListeners();
+  }
+
+  // Basket
+  addToBasket(Product product) {
     basket.add(product);
     notifyListeners();
   }
 
-  void removeFromBasket(int id) {
+  removeFromBasket(int id) {
     basket.removeWhere((element) => element.id == id);
     notifyListeners();
   }
 
-  void changeCounter(int index, int counter) {
-    // final index = basket.indexWhere((element) => element.id == id);
+  changeCounter(int index, int counter) {
     basket[index].counter = counter;
     notifyListeners();
   }

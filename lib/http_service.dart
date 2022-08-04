@@ -21,7 +21,7 @@ class Params {
   String supplierType;
   String prodType;
 
-  Params(this.supplierId, this.supplierType, this.prodType);
+  Params({required this.supplierId, required this.supplierType, required this.prodType});
 }
 
 Future<SuppliersResponse> getSuppliersResponse() async {
@@ -41,7 +41,7 @@ Future<SuppliersResponse> getSuppliersResponse() async {
   return resp;
 }
 
-Future<List<Supplier>> getSuppliersByType1(String type, BuildContext context) async {
+Future<List<Supplier>> fetchSuppliersByType(String type, BuildContext context) async {
   if (type == S.of(context).all) {
     type = "";
   } else if (type == S.of(context).open) {
@@ -110,11 +110,12 @@ Future<ProductInfo> getProductsById(BuildContext context, int id) async {
 Future<ProductsResponse> getProductsByParams(
     BuildContext context, Params params) async {
   if (params.supplierType == S.of(context).all) {
-    params.supplierType = "";
+    params.supplierType = '';
+
   } else if (params.supplierType == S.of(context).open) {
-    params.supplierType = "workingHours";
+    params.supplierType = 'workingHours';
   }
-  if (params.prodType == S.of(context).all) params.prodType = "";
+  if (params.prodType == S.of(context).all) params.prodType = '';
 
   final str = '$getProductsByParamsUrl?'
       'sup_id=${params.supplierId}'

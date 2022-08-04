@@ -16,6 +16,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     Provider.of<LocaleProvider>(context, listen: false).getSuppliers();
+    Provider.of<LocaleProvider>(context, listen: false).getProducts();
     super.initState();
   }
   @override

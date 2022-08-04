@@ -13,7 +13,7 @@ class SuppliersListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var types = [S.of(context).all, S.of(context).open];
+    final List<String> types = ['', S.of(context).open];
     types.addAll(Provider.of<LocaleProvider>(context).supTypes);
 
     return SizedBox(
@@ -22,16 +22,16 @@ class SuppliersListWidget extends StatelessWidget {
         color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           children: [
-            TypesWidget(key: Key('supplier'), types: types),
+            TypesWidget(types: types, parent: 'supplier'),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
-              height: 155,
+              height: 150,
               width: double.infinity,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount:
                     Provider.of<LocaleProvider>(context).suppliers.length,
-                itemExtent: 130,
+                itemExtent: 115,
                 itemBuilder: (BuildContext context, int index) {
                   return SupplierCardWidget(
                       supplier: Provider.of<LocaleProvider>(context)
