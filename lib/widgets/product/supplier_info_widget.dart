@@ -16,7 +16,7 @@ class SupplierInfoWidget extends StatelessWidget {
     final supplier = Provider.of<GlobalProvider>(context).productInfo!.supplier!;
     return Container(
       color: Theme.of(context).backgroundColor,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       width: double.infinity,
       child: Column(
         children: [
@@ -30,7 +30,7 @@ class SupplierInfoWidget extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(supplier.name,
-              style: TextStyle(fontSize: 24)),
+              style: const TextStyle(fontSize: 24)),
           const SizedBox(height: 10),
           const _SupplierListWidget(),
         ],
@@ -67,11 +67,11 @@ class _ProductCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       EffectedCardWidget(
-        padding: EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         widget: Container(
           decoration: cardBoxDecoration(context),
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-          margin: EdgeInsets.all(5),
+          margin: const EdgeInsets.all(5),
           child: Column(
             children: [
               Image.network(

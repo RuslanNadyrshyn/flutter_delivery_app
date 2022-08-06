@@ -19,9 +19,9 @@ List<Setting> getSettings(BuildContext context) {
     Setting(
         Icons.dark_mode_rounded, S.of(context).dark_mode, switchThemeIconButton(context)),
     Setting(Icons.language_rounded, S.of(context).change_language,
-        SelectLanguageWidget()),
+        const SelectLanguageWidget()),
     Setting(Icons.person_rounded, S.of(context).profile_info,
-        Icon(Icons.chevron_right)),
+        const Icon(Icons.chevron_right)),
     // Setting(Icons.delete_outline_rounded, S.of(context).delete_profile,
     //     SizedBox(height: 1, width: 1)),
   ];
@@ -31,7 +31,7 @@ Widget switchThemeIconButton(BuildContext context) {
   return IconButton(
     iconSize: 40,
     padding: EdgeInsets.zero,
-    constraints: BoxConstraints.tightFor(height: 50, width: 50),
+    constraints: const BoxConstraints.tightFor(height: 50, width: 50),
     onPressed: () {
       if (AdaptiveTheme.of(context).theme ==
           AdaptiveTheme.of(context).lightTheme) {
@@ -42,8 +42,8 @@ Widget switchThemeIconButton(BuildContext context) {
     },
     icon:
     AdaptiveTheme.of(context).theme == AdaptiveTheme.of(context).lightTheme
-        ? Icon(Icons.toggle_off_outlined,)
-        : Icon(Icons.toggle_on_rounded),
+        ? const Icon(Icons.toggle_off_outlined,)
+        : const Icon(Icons.toggle_on_rounded),
   );
 }
 
@@ -62,9 +62,9 @@ class _SelectLanguageWidgetState extends State<SelectLanguageWidget> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
-      underline: SizedBox(height: 0,),
+      underline: const SizedBox(height: 0,),
       value: dropdownValue,
-      icon: Icon(Icons.keyboard_arrow_down_rounded),
+      icon: const Icon(Icons.keyboard_arrow_down_rounded),
       items: locales.map((Locale value) {
         return DropdownMenuItem(
           value: value.toString(),

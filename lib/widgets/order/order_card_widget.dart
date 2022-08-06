@@ -15,8 +15,8 @@ class OrderCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: cardBoxDecoration(context),
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

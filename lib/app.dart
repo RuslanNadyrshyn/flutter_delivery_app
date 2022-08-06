@@ -44,16 +44,16 @@ class _AppState extends State<App> {
         title: 'Delivery',
         theme: light,
         routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) => MainViewWidget(),
+          '/': (BuildContext context) => const MainViewWidget(),
           '/product': (BuildContext context) {
             final id = ModalRoute.of(context)?.settings.arguments;
             if (id is int) {
               return ProductView(productId: id);
             } else {
-              return Text('Error!!!');
+              return const Text('Error!!!');
             }
           },
-          '/current_order': (BuildContext context) => CurrentOrderView(),
+          '/current_order': (BuildContext context) => const CurrentOrderView(),
           '/loaded_order': (BuildContext context) => LoadedOrderView(),
         },
       ),

@@ -49,7 +49,7 @@ class _TypeButtonWidget extends StatelessWidget {
         Provider.of<GlobalProvider>(context).selectedSupplierId;
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 2),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
       child: ElevatedButton(
         onPressed: () {
           if (parent == 'supplier' && type != selectedSupplierType) {
@@ -84,5 +84,5 @@ ButtonStyle _getTypeButtonStyle(
   return selectedSupplierType == type && parent == 'supplier' ||
           selectedProductType == type && parent == 'product'
       ? ButtonStyle(backgroundColor: selectedColor)
-      : ButtonStyle();
+      : const ButtonStyle();
 }

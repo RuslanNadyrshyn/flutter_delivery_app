@@ -53,16 +53,16 @@ class LoadedOrderView extends StatelessWidget {
       appBar: AppBar(title: Text('Order ${order.id}'),),
       body: ListView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: [
           OrderListWidget(
             products: order.products,
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             children: [
               Text(order.date),
-              Expanded(
+              const Expanded(
                 child: TotalPriceWidget(textAlign: TextAlign.end),
               ),
             ],

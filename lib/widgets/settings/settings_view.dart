@@ -10,7 +10,7 @@ class SettingsView extends StatelessWidget {
     List<Setting> settings = getSettings(context);
 
     return ListView.separated(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       itemCount: settings.length,
       itemBuilder: (BuildContext context, int index) {
         return SettingsItemWidget(setting: settings[index]);

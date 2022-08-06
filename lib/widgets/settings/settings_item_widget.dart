@@ -10,15 +10,15 @@ class SettingsItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           Icon(setting.icon),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Expanded(
             child: Text(
               setting.text,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
           ),
           setting.action!,

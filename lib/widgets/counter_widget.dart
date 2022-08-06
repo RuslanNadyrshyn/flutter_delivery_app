@@ -14,9 +14,9 @@ class CounterWidget extends StatelessWidget {
       decoration: BoxDecoration(
         // color: Theme.of(context).backgroundColor,
         border: Border.all(color: Theme.of(context).backgroundColor),
-        borderRadius: BorderRadius.all(Radius.circular(5)),
+        borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       // color: Theme.of(context).backgroundColor,
       child: Text(
         '$counter',

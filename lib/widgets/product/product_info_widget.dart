@@ -20,7 +20,7 @@ class ProductInfoWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             Provider.of<GlobalProvider>(context).productInfo!.product!.name,
-            style: TextStyle(fontSize: 30),
+            style: const TextStyle(fontSize: 30),
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
           ),
@@ -39,7 +39,7 @@ class ProductInfoWidget extends StatelessWidget {
               ToBasketButtonWidget(
                 product: Provider.of<GlobalProvider>(context).productInfo!.product!,
                 iconSize: 40,
-                padding: EdgeInsets.symmetric(horizontal: 0),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
               ),
             ],
           ),
@@ -47,11 +47,11 @@ class ProductInfoWidget extends StatelessWidget {
         const SizedBox(height: 10),
         Container(
           color: Theme.of(context).backgroundColor,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           width: double.infinity,
           child: Column(
             children: Provider.of<GlobalProvider>(context).productInfo!.product!.ingredients
-                .map((e) => Text(e, style: TextStyle(fontSize: 25)))
+                .map((e) => Text(e, style: const TextStyle(fontSize: 25)))
                 .toList(),
           ),
         ),

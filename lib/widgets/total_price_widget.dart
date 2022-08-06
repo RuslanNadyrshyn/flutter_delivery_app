@@ -13,7 +13,7 @@ class TotalPriceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '${S.of(context).total}: ${countTotal(Provider.of<GlobalProvider>(context).basket).toStringAsFixed(2)} \$',
-      style: TextStyle(fontSize: 24),
+      style: const TextStyle(fontSize: 24),
       overflow: TextOverflow.ellipsis,
       textAlign: textAlign,
     );

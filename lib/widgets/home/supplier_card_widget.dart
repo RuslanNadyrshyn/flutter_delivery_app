@@ -52,7 +52,7 @@ class _SupplierCardInfoWidget extends StatelessWidget {
       decoration: cardBoxDecoration(context).copyWith(
         color: supplier.id == supId
             ? Colors.green
-            : Color.fromRGBO(150, 150, 150, 1)),
+            : const Color.fromRGBO(150, 150, 150, 1)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

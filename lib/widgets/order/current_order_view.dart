@@ -15,14 +15,14 @@ class CurrentOrderView extends StatelessWidget {
       appBar: AppBar(),
       body: ListView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: [
           OrderListWidget(
             products: Provider.of<GlobalProvider>(context).basket,
           ),
-          SizedBox(height: 15),
-          TotalPriceWidget(textAlign: TextAlign.end),
-          OrderFormWidget(),
+          const SizedBox(height: 15),
+          const TotalPriceWidget(textAlign: TextAlign.end),
+          const OrderFormWidget(),
         ],
       ),
     );

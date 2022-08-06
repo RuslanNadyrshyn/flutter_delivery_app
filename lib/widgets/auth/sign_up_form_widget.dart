@@ -44,18 +44,18 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
           child: errorText != null ? Text(errorText!) : null,
         ),
         TextFieldWidget(controller: _emailTextController, title: S.of(context).email,),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         TextFieldPasswordWidget(title: S.of(context).password, controller: _passwordTextController,),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         TextFieldWidget(controller: _nameTextController, title: S.of(context).name,),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: _signUp,
           style: ButtonStyle(
               padding: MaterialStateProperty.all(
-                EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
               )),
-          child: Text(S.of(context).sign_up, style: TextStyle(fontSize: 18),),
+          child: Text(S.of(context).sign_up, style: const TextStyle(fontSize: 18),),
         ),
       ],
     );

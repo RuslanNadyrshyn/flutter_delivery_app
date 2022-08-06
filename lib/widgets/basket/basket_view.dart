@@ -22,23 +22,23 @@ class _BasketViewState extends State<BasketView> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(child: BasketListWidget()),
+        const Expanded(child: BasketListWidget()),
         Container(
           color: Theme.of(context).backgroundColor,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TotalPriceWidget(textAlign: TextAlign.start),
+              const TotalPriceWidget(textAlign: TextAlign.start),
               ElevatedButton(
                 style: ButtonStyle(
-                    padding: MaterialStateProperty.all(EdgeInsets.all(10))),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(10))),
                 onPressed: Provider.of<GlobalProvider>(context).basket.isEmpty
                       ? null
                       : _goToOrderView,
                 child: Text(
                   S.of(context).to_order,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
               ),
             ],

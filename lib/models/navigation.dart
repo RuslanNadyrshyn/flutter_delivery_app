@@ -18,9 +18,9 @@ class WidgetOptions {
 
 List<WidgetOptions> getWidgetOptions (BuildContext context) {
   return [
-    WidgetOptions(AppBar(title: Text(S.of(context).delivery),), HomeView()),
-    WidgetOptions(AppBar(title: Text(S.of(context).basket),), BasketView()),
-    WidgetOptions(AppBar(title: Text(S.of(context).settings),), SettingsView()),
+    WidgetOptions(AppBar(title: Text(S.of(context).delivery),), const HomeView()),
+    WidgetOptions(AppBar(title: Text(S.of(context).basket),), const BasketView()),
+    WidgetOptions(AppBar(title: Text(S.of(context).settings),), const SettingsView()),
     Provider.of<GlobalProvider>(context, listen: false).isAuthorized ?
     WidgetOptions(AppBar(title: Text(S.of(context).profile), actions: [
       PopupMenuButton(
@@ -38,24 +38,24 @@ List<WidgetOptions> getWidgetOptions (BuildContext context) {
             }
           }
       ),
-    ],), ProfileView()) :
-    WidgetOptions(AppBar(title: Text(S.of(context).login),), AuthView()),
+    ],), const ProfileView()) :
+    WidgetOptions(AppBar(title: Text(S.of(context).login),), const AuthView()),
   ];
 }
 
 List<BottomNavigationBarItem> getBottomNavigationItems(BuildContext context) {
   return [
     BottomNavigationBarItem(
-        icon: Icon(Icons.home_rounded),
+        icon: const Icon(Icons.home_rounded),
         label: S.of(context).delivery),
     BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_basket),
+        icon: const Icon(Icons.shopping_basket),
         label: S.of(context).basket),
     BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
+        icon: const Icon(Icons.settings),
         label: S.of(context).settings),
     Provider.of<GlobalProvider>(context).isAuthorized ?
-    BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: S.of(context).profile)
-        : BottomNavigationBarItem(icon: Icon(Icons.login), label: S.of(context).login),
+    BottomNavigationBarItem(icon: const Icon(Icons.person_rounded), label: S.of(context).profile)
+        : BottomNavigationBarItem(icon: const Icon(Icons.login), label: S.of(context).login),
   ];
 }

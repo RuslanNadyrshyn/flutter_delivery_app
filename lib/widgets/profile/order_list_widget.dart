@@ -87,7 +87,7 @@ class _OrderRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(fontSize: 16);
+    TextStyle style = const TextStyle(fontSize: 16);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
       child: InkWell(
@@ -102,14 +102,14 @@ class _OrderRowWidget extends StatelessWidget {
                 '${order.id}',
                 style: style,
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                   child: Text(
                     order.address,
                     overflow: TextOverflow.ellipsis,
                     style: style,
                   )),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(
                 order.date,
                 style: style,

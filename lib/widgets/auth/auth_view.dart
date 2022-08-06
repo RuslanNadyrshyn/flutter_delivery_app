@@ -102,9 +102,9 @@ class _AuthViewState extends State<AuthView> {
               _selectedTab == 0
                   ? S.of(context).sign_up_text
                   : S.of(context).login_text,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             ElevatedButton(
               onPressed: () {
                 _selectedTab == 0
@@ -113,16 +113,16 @@ class _AuthViewState extends State<AuthView> {
               },
               style: ButtonStyle(
                   padding: MaterialStateProperty.all(
-                EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
               )),
               child: Text(
                 _selectedTab == 0
                     ? S.of(context).sign_up
                     : S.of(context).login,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
           ],
         ),
       ],

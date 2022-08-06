@@ -31,7 +31,7 @@ class ProductCardWidget extends StatelessWidget {
           child: ToBasketButtonWidget(
             product: product,
             iconSize: 22,
-            padding: EdgeInsets.symmetric(horizontal: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 0),
           ),
         ),
       ],
@@ -81,31 +81,31 @@ class _ProductCardRowWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         getIngredientsString(product.ingredients),
-                        style: TextStyle(fontSize: 14, height: 0.9),
+                        style: const TextStyle(fontSize: 14, height: 0.9),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Row(
                     children: [
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
                         '${product.price.toStringAsFixed(2)} \$',
-                        style: TextStyle(fontSize: 22),
+                        style: const TextStyle(fontSize: 22),
                         overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Expanded(
                         child: Text(
                           product.type,
                           textAlign: TextAlign.end,
-                          style: TextStyle(fontSize: 12),
+                          style: const TextStyle(fontSize: 12),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      SizedBox(width: 60),
+                      const SizedBox(width: 60),
                     ],
                   ),
                 ],

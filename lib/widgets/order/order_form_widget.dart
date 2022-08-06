@@ -63,20 +63,20 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
         ),
         if (!Provider.of<GlobalProvider>(context).isAuthorized) ...[
           TextFieldWidget(title: S.of(context).name, controller: _nameTextController,),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
         ],
         TextFieldWidget(title: S.of(context).address, controller: _addressTextController,),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Center(
           child: ElevatedButton(
             onPressed: _makeOrder,
             style: ButtonStyle(
                 padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                  const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
                 )),
             child: Text(
               S.of(context).make_order,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
           ),
         ),
