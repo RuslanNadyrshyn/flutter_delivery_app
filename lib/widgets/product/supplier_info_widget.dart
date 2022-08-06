@@ -17,7 +17,7 @@ class SupplierInfoWidget extends StatelessWidget {
         Provider.of<GlobalProvider>(context).productPageInfo!.supplier!;
     return Container(
       color: Theme.of(context).backgroundColor,
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       width: double.infinity,
       child: Column(
         children: [
@@ -44,22 +44,25 @@ class _SupplierListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 170,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: Provider.of<GlobalProvider>(context)
-                .productPageInfo
-                ?.supList
-                ?.length ??
-            0,
-        itemExtent: 135,
-        itemBuilder: (BuildContext context, int index) {
-          return _ProductCardWidget(
-              product: Provider.of<GlobalProvider>(context)
-                  .productPageInfo!
-                  .supList![index]);
-        },
+    return ColoredBox(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: SizedBox(
+        height: 170,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: Provider.of<GlobalProvider>(context)
+                  .productPageInfo
+                  ?.supList
+                  ?.length ??
+              0,
+          itemExtent: 135,
+          itemBuilder: (BuildContext context, int index) {
+            return _ProductCardWidget(
+                product: Provider.of<GlobalProvider>(context)
+                    .productPageInfo!
+                    .supList![index]);
+          },
+        ),
       ),
     );
   }

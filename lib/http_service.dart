@@ -108,31 +108,23 @@ Future<ProductInfo> getProductById(BuildContext context, int id) async {
 }
 
 Future<ProductPageInfo> fetchProductPageInfo(BuildContext context, int id) async {
-  ProductInfo resp = ProductInfo(product: null, supplier: null);
-  final str = '$getProductByIdUrl?id=$id';
-  print(str);
+  ProductInfo productInfoResp = ProductInfo(product: null, supplier: null);
+  ProductsResponse productResp = ProductsResponse(products: [], types: []);
+
   try {
-    Response res = await get(Uri.parse(str));
+    Response res = await get(Uri.parse('$getProductByIdUrl?id=$id'));
     if (res.statusCode == 200) {
       final result = jsonDecode(res.body);
-      resp = ProductInfo.fromJson(result);
+      productInfoResp = ProductInfo.fromJson(result);
     } else {
       throw "Can't get products by id response!";
     }
 
-  } catch (e) {
-    print(e);
-  }
-
-  ProductsResponse resp2 = ProductsResponse(products: [], types: []);
-  try {
-    Response res = await get(Uri.parse( '$getProductsByParamsUrl?'
-        'sup_id=${resp.supplier?.id?? 1}'
-        '&sup_type='
-        '&prod_type='));
-    if (res.statusCode == 200) {
-      final result = jsonDecode(res.body);
-      resp2 = ProductsResponse.fromJson(result);
+    Response resp = await get(Uri.parse( '$getProductsByParamsUrl?'
+        'sup_id=${productInfoResp.supplier?.id?? 1}&sup_type=&prod_type='));
+    if (resp.statusCode == 200) {
+      final result = jsonDecode(resp.body);
+      productResp = ProductsResponse.fromJson(result);
     } else {
       throw "Can't get products by parameters response!";
     }
@@ -140,13 +132,13 @@ Future<ProductPageInfo> fetchProductPageInfo(BuildContext context, int id) async
     print(e);
   }
 
-  ProductPageInfo info = ProductPageInfo(
-      product: resp.product,
-      supplier: resp.supplier,
-      supList:  resp2.products,
+  ProductPageInfo productPageInfo = ProductPageInfo(
+    product: productInfoResp.product,
+    supplier: productInfoResp.supplier,
+    supList:  productResp.products,
   );
 
-  return info;
+  return productPageInfo;
 }
 
 class ProductPageInfo {
