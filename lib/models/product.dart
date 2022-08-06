@@ -75,12 +75,12 @@ class ProductInfo {
 }
 
 void goToProductView(BuildContext context, int id) {
-    if (Provider.of<GlobalProvider>(context, listen: false)
-        .productInfo?.product!.id != id) {
+  if (Navigator.canPop(context) == false) {
+    Navigator.pushNamed(context, '/product', arguments: id);
+  }
+
+  if (Provider.of<GlobalProvider>(context, listen: false).productPageInfo?.product!.id != id) {
       Provider.of<GlobalProvider>(context, listen: false)
           .getProductPageInfo(context, id);
-    }
-    if(Navigator.canPop(context) == false) {
-      Navigator.pushNamed(context, '/product', arguments: id);
-    }
+  }
 }

@@ -12,7 +12,7 @@ class ProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Provider.of<GlobalProvider>(context).productInfo != null ?
+      body: Provider.of<GlobalProvider>(context).productPageInfo != null ?
       ListView(
         children: const [
           ProductInfoWidget(),

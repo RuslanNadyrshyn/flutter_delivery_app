@@ -21,15 +21,24 @@ class GlobalProvider extends ChangeNotifier {
   List<Product> products = [];
   List<String> prodTypes = [];
 
+  ProductPageInfo? productPageInfo;
+  // ProductPageInfo(
+  //   product: null,
+  //   supplier: null,
+  //   supList: [],
+  // );
   ProductInfo? productInfo;
   List<Product> supList = [];
 
   getProductPageInfo(BuildContext context, int id) async {
-    productInfo = null;
+    productPageInfo = null;
     notifyListeners();
 
-    final productResp = await getProductById(context, id);
-    productInfo = productResp;
+    final productPageResp = await fetchProductPageInfo(context, id);
+    productPageInfo = productPageResp;
+    print(productPageInfo?.product?.name);
+    print(productPageInfo?.supplier?.name);
+    print(productPageInfo?.supList?.first.name);
 
     notifyListeners();
   }

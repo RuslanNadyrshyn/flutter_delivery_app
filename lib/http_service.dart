@@ -107,13 +107,12 @@ Future<ProductInfo> getProductById(BuildContext context, int id) async {
   return resp;
 }
 
-Future<ProductInfo> getProductPageInfo(BuildContext context, int id) async {
+Future<ProductPageInfo> fetchProductPageInfo(BuildContext context, int id) async {
   ProductInfo resp = ProductInfo(product: null, supplier: null);
   final str = '$getProductByIdUrl?id=$id';
   print(str);
   try {
     Response res = await get(Uri.parse(str));
-
     if (res.statusCode == 200) {
       final result = jsonDecode(res.body);
       resp = ProductInfo.fromJson(result);
@@ -125,8 +124,41 @@ Future<ProductInfo> getProductPageInfo(BuildContext context, int id) async {
     print(e);
   }
 
+  ProductsResponse resp2 = ProductsResponse(products: [], types: []);
+  try {
+    Response res = await get(Uri.parse( '$getProductsByParamsUrl?'
+        'sup_id=${resp.supplier?.id?? 1}'
+        '&sup_type='
+        '&prod_type='));
+    if (res.statusCode == 200) {
+      final result = jsonDecode(res.body);
+      resp2 = ProductsResponse.fromJson(result);
+    } else {
+      throw "Can't get products by parameters response!";
+    }
+  } catch (e) {
+    print(e);
+  }
 
-  return resp;
+  ProductPageInfo info = ProductPageInfo(
+      product: resp.product,
+      supplier: resp.supplier,
+      supList:  resp2.products,
+  );
+
+  return info;
+}
+
+class ProductPageInfo {
+  Product? product;
+  Supplier? supplier;
+  List<Product>? supList;
+
+  ProductPageInfo({
+    this.product,
+    this.supplier,
+    this.supList,
+  });
 }
 
 Future<ProductsResponse> getProductsByParams(
