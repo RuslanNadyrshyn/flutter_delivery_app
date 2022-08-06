@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:food_delivery/models/provider.dart';
+import 'package:provider/provider.dart';
+
 import 'supplier.dart';
 
 class Product {
@@ -10,27 +14,29 @@ class Product {
   final List<String> ingredients;
   int? counter = 0;
 
-  Product(
-      {required this.id,
-      required this.name,
-      required this.menuId,
-      required this.price,
-      required this.image,
-      required this.type,
-      required this.ingredients,
-      required this.counter,
-      });
+  Product({
+    required this.id,
+    required this.name,
+    required this.menuId,
+    required this.price,
+    required this.image,
+    required this.type,
+    required this.ingredients,
+    required this.counter,
+  });
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-        id: json['id'] as int,
-        name: json['name'] as String,
-        menuId: json['menuId'] as int,
-        price: json['price'] as double,
-        image: json['image'] as String,
-        type: json['type'] as String,
-        ingredients: (json['ingredients'] as List<dynamic>).map((dynamic e) => e.toString()).toList(),
-        counter: json['counter'] as int?,
+      id: json['id'] as int,
+      name: json['name'] as String,
+      menuId: json['menuId'] as int,
+      price: json['price'] as double,
+      image: json['image'] as String,
+      type: json['type'] as String,
+      ingredients: (json['ingredients'] as List<dynamic>)
+          .map((dynamic e) => e.toString())
+          .toList(),
+      counter: json['counter'] as int?,
     );
   }
 }
@@ -46,8 +52,9 @@ class ProductsResponse {
         products: (json['Products'] as List<dynamic>)
             .map((dynamic e) => Product.fromJson(e))
             .toList(),
-        types: (json['Types'] as List<dynamic>).map((dynamic e) => e.toString()).toList()
-    );
+        types: (json['Types'] as List<dynamic>)
+            .map((dynamic e) => e.toString())
+            .toList());
   }
 }
 
@@ -59,10 +66,32 @@ class ProductInfo {
 
   factory ProductInfo.fromJson(Map<String, dynamic> json) {
     return ProductInfo(
-        product: json['Product'] != null
-            ? Product.fromJson(json['Product']) : null,
+        product:
+            json['Product'] != null ? Product.fromJson(json['Product']) : null,
         supplier: json['Supplier'] != null
-          ? Supplier.fromJson(json['Supplier']) : null
-    );
+            ? Supplier.fromJson(json['Supplier'])
+            : null);
   }
+}
+
+class ProductPageInfo {
+  Product? product;
+  Supplier? supplier;
+  bool isLoaded = false;
+
+  ProductPageInfo({
+    this.product,
+    this.supplier,
+  });
+}
+
+void goToProductView(BuildContext context, int id) {
+    if (Provider.of<LocaleProvider>(context, listen: false).productInfo?.product!.id !=
+        id) {
+      Provider.of<LocaleProvider>(context, listen: false)
+          .getProductPageInfo(context, id);
+    }
+
+    Navigator.pushNamed(context, '/product', arguments: id);
+
 }

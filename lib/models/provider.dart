@@ -3,6 +3,7 @@ import 'package:food_delivery/http_service.dart';
 import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/models/supplier.dart';
 
+
 class LocaleProvider extends ChangeNotifier {
   Locale currentLocale = Locale('en');
   bool isAuthorized = false;
@@ -19,6 +20,18 @@ class LocaleProvider extends ChangeNotifier {
   List<Product> products = [];
   List<String> prodTypes = [];
 
+  ProductInfo? productInfo;
+
+  getProductPageInfo(BuildContext context, int id) async {
+    productInfo = null;
+    notifyListeners();
+
+    final productResp = await getProductById(context, id);
+    productInfo = productResp;
+    notifyListeners();
+  }
+
+
   setLocale(Locale newLocale) {
     currentLocale = newLocale;
     notifyListeners();
@@ -31,7 +44,7 @@ class LocaleProvider extends ChangeNotifier {
 
   // Suppliers
   getSuppliers() async {
-    var suppliersResponse = await getSuppliersResponse();
+    final suppliersResponse = await getSuppliersResponse();
     suppliers = suppliersResponse.suppliers;
     supTypes = suppliersResponse.types;
     notifyListeners();
@@ -56,10 +69,6 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   getProductsWithParams(BuildContext context, Params params) async {
-    // print('supplierId: ${params.supplierId}');
-    // print('supType: ${params.supplierType}');
-    // print('prodType: ${params.prodType}');
-
     selectedSupplierId = params.supplierId;
     selectedSupplierType = params.supplierType;
     selectedProductType = params.prodType;

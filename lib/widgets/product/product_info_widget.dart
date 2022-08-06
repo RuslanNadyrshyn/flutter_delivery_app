@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/product.dart';
+import 'package:food_delivery/models/provider.dart';
 import 'package:food_delivery/widgets/price_text_widget.dart';
 import 'package:food_delivery/widgets/to_basket_button_widget.dart';
+import 'package:provider/provider.dart';
 
 class ProductInfoWidget extends StatelessWidget {
-  final Product product;
-
-  const ProductInfoWidget({Key? key, required this.product}) : super(key: key);
+  const ProductInfoWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         FadeInImage.assetNetwork(
-          image: product.image,
+          image: Provider.of<LocaleProvider>(context).productInfo!.product!.image,
           placeholder: 'assets/place_holder.png',
         ),
         const SizedBox(height: 15),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            product.name,
+            Provider.of<LocaleProvider>(context).productInfo!.product!.name,
             style: TextStyle(fontSize: 30),
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
@@ -32,13 +31,13 @@ class ProductInfoWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: PriceTextWidget(
-                  price: product.price,
+                  price: Provider.of<LocaleProvider>(context).productInfo!.product!.price,
                   fontSize: 30,
                   textAlign: TextAlign.start,
                 ),
               ),
               ToBasketButtonWidget(
-                product: product,
+                product: Provider.of<LocaleProvider>(context).productInfo!.product!,
                 iconSize: 40,
                 padding: EdgeInsets.symmetric(horizontal: 0),
               ),
@@ -51,7 +50,7 @@ class ProductInfoWidget extends StatelessWidget {
           padding: EdgeInsets.all(10),
           width: double.infinity,
           child: Column(
-            children: product.ingredients
+            children: Provider.of<LocaleProvider>(context).productInfo!.product!.ingredients
                 .map((e) => Text(e, style: TextStyle(fontSize: 25)))
                 .toList(),
           ),

@@ -21,7 +21,7 @@ class ProductCardWidget extends StatelessWidget {
     return EffectedCardWidget(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       widget: _ProductCardRowWidget(product: product),
-      action: () => goToProductView(context, product),
+      action: () => goToProductView(context, product.id),
       positioned: [
         Positioned(
           height: 30,

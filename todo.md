@@ -44,9 +44,13 @@ to do:
     /Кнопка корзины на странице продукта
     /переход к продукту из корзины
             из заказа
+    /add suppliers sorting by type
+    /product sort with params
+    /product sort with supplier
+    /product view:
+    /get product info(product, supplier)
     
-
-    appBar to every view
+    /by pressing on sup image pop back and sort by supplier
 
 
     

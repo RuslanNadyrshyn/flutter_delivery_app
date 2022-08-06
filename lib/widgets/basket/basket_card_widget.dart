@@ -53,7 +53,7 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
   Widget build(BuildContext context) {
     final counter = getCounter();
     return EffectedCardWidget(
-      action: () => goToProductView(context, widget.product),
+      action: () => goToProductView(context, widget.product.id),
       padding: EdgeInsets.all(5.0),
       widget: _BasketCardRowWidget(
         product: widget.product,

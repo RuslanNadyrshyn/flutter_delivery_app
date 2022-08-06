@@ -88,7 +88,7 @@ Future<ProductsResponse> getProductsResponse() async {
   return resp;
 }
 
-Future<ProductInfo> getProductsById(BuildContext context, int id) async {
+Future<ProductInfo> getProductById(BuildContext context, int id) async {
   ProductInfo resp = ProductInfo(product: null, supplier: null);
   final str = '$getProductByIdUrl?id=$id';
   print(str);

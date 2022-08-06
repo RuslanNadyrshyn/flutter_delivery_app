@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/generated/l10n.dart';
 import 'package:food_delivery/models/provider.dart';
-import 'package:food_delivery/widgets/home/supplier_card.dart';
+import 'package:food_delivery/widgets/home/supplier_card_widget.dart';
 import 'package:provider/provider.dart';
 
 import 'types_widget.dart';

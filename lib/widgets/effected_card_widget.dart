@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/product.dart';
 
 class EffectedCardWidget extends StatelessWidget {
   final EdgeInsets padding;
@@ -33,8 +32,4 @@ class EffectedCardWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-void goToProductView(BuildContext context, Product product) {
-  Navigator.pushNamed(context, '/product', arguments: product);
 }
