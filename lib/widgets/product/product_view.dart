@@ -12,7 +12,7 @@ class ProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Provider.of<LocaleProvider>(context).productInfo != null ?
+      body: Provider.of<GlobalProvider>(context).productInfo != null ?
       ListView(
         children: const [
           ProductInfoWidget(),
@@ -20,7 +20,7 @@ class ProductView extends StatelessWidget {
           SupplierInfoWidget(),
         ],
       ) :
-      Center(child: CircularProgressIndicator()),
+      const Center(child: CircularProgressIndicator())
     );
   }
 }

@@ -4,8 +4,9 @@ import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/models/supplier.dart';
 
 
-class LocaleProvider extends ChangeNotifier {
-  Locale currentLocale = Locale('en');
+
+class GlobalProvider extends ChangeNotifier {
+  Locale currentLocale = const Locale('en');
   bool isAuthorized = false;
 
   int selectedSupplierId = 0;
@@ -21,6 +22,7 @@ class LocaleProvider extends ChangeNotifier {
   List<String> prodTypes = [];
 
   ProductInfo? productInfo;
+  List<Product> supList = [];
 
   getProductPageInfo(BuildContext context, int id) async {
     productInfo = null;
@@ -28,9 +30,9 @@ class LocaleProvider extends ChangeNotifier {
 
     final productResp = await getProductById(context, id);
     productInfo = productResp;
+
     notifyListeners();
   }
-
 
   setLocale(Locale newLocale) {
     currentLocale = newLocale;

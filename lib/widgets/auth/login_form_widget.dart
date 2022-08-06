@@ -24,8 +24,8 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     if (email.length >= 4 && password.length >= 4) {
       errorText = null;
       if (email == 'admin' && password == 'admin') {
-        Provider.of<LocaleProvider>(context, listen: false).authorize();
-        print(Provider.of<LocaleProvider>(context, listen: false).isAuthorized);
+        Provider.of<GlobalProvider>(context, listen: false).authorize();
+        print(Provider.of<GlobalProvider>(context, listen: false).isAuthorized);
       }
       // make query to backend with email and pass. If correct, get profile info
     } else {
@@ -46,20 +46,20 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           child: errorText != null ? Text(errorText!) : null,
         ),
         TextFieldWidget(title: S.of(context).email, controller: _emailTextController, ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         TextFieldPasswordWidget(title: S.of(context).password, controller: _passwordTextController,),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         ElevatedButton(
             onPressed: _login,
             style: ButtonStyle(
                 padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             )),
             child: Text(
               S.of(context).login,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             )),
       ],
     );

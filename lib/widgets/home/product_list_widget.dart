@@ -15,17 +15,17 @@ class ProductsListWidget extends StatelessWidget {
           child: Column(
             children: [
               TypesWidget(
-                  types: [''] + Provider.of<LocaleProvider>(context).prodTypes,
+                  types: [''] + Provider.of<GlobalProvider>(context).prodTypes,
                   parent: 'product',
               ),
               Expanded(
                 child: Scrollbar(
                   thumbVisibility: true,
                   child: ListView.builder(
-                    itemCount: Provider.of<LocaleProvider>(context).products.length,
+                    itemCount: Provider.of<GlobalProvider>(context).products.length,
                     itemExtent: 135,
                     itemBuilder: (BuildContext context, int index) {
-                      return ProductCardWidget(product: Provider.of<LocaleProvider>(context).products[index]);
+                      return ProductCardWidget(product: Provider.of<GlobalProvider>(context).products[index]);
                     },
                   ),
                 ),

@@ -25,26 +25,26 @@ class BasketCardWidget extends StatefulWidget {
 
 class _BasketCardWidgetState extends State<BasketCardWidget> {
   int getCounter() {
-    return Provider.of<LocaleProvider>(context, listen: false)
+    return Provider.of<GlobalProvider>(context, listen: false)
         .basket[widget.index]
         .counter!;
   }
 
   void _removeProduct() {
-    Provider.of<LocaleProvider>(context, listen: false)
+    Provider.of<GlobalProvider>(context, listen: false)
         .removeFromBasket(widget.product.id);
   }
 
   void inc() {
     int counter = getCounter();
-    Provider.of<LocaleProvider>(context, listen: false)
+    Provider.of<GlobalProvider>(context, listen: false)
         .changeCounter(widget.index, ++counter);
   }
 
   void dec() {
     int counter = getCounter();
     if (counter > 1) {
-      Provider.of<LocaleProvider>(context, listen: false)
+      Provider.of<GlobalProvider>(context, listen: false)
           .changeCounter(widget.index, --counter);
     }
   }
@@ -54,7 +54,7 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
     final counter = getCounter();
     return EffectedCardWidget(
       action: () => goToProductView(context, widget.product.id),
-      padding: EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5.0),
       widget: _BasketCardRowWidget(
         product: widget.product,
         index: widget.index,
@@ -65,7 +65,7 @@ class _BasketCardWidgetState extends State<BasketCardWidget> {
             right: 1,
             child: Material(
               child: _RemoveFromBasketWidget(
-                  icon: Icon(Icons.close), size: 30, func: _removeProduct),
+                  icon: const Icon(Icons.close), size: 30, func: _removeProduct),
             ),
           ),
           Positioned(
@@ -95,7 +95,7 @@ class _BasketCardRowWidget extends StatefulWidget {
 class _BasketCardRowWidgetState extends State<_BasketCardRowWidget> {
   @override
   Widget build(BuildContext context) {
-    int counter = Provider.of<LocaleProvider>(context, listen: false)
+    int counter = Provider.of<GlobalProvider>(context, listen: false)
         .basket[widget.index].counter!;
     return DecoratedBox(
       decoration: cardBoxDecoration(context),
@@ -123,13 +123,13 @@ class _BasketCardRowWidgetState extends State<_BasketCardRowWidget> {
                           height: 1,
                         ),
                       ),
-                      SizedBox(width: 30),
+                      const SizedBox(width: 30),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(width: 100),
+                      const SizedBox(width: 100),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -172,7 +172,7 @@ class _RemoveFromBasketWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       iconSize: size,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       constraints: BoxConstraints(maxWidth: size, maxHeight: size),
       splashRadius: 15,
       onPressed: func,
@@ -185,20 +185,20 @@ Widget _counterRowWidget(
     void Function() inc, void Function() dec, int counter) {
   return Row(
     children: [
-      _counterButtonWidget(Colors.red, Icon(Icons.remove), dec),
+      _counterButtonWidget(Colors.red, const Icon(Icons.remove), dec),
       CounterWidget(
         counter: counter,
         fontSize: 20,
       ),
       // Text('$counter', style: TextStyle(fontSize: 30)),
-      _counterButtonWidget(Colors.green, Icon(Icons.add), inc),
+      _counterButtonWidget(Colors.green, const Icon(Icons.add), inc),
     ],
   );
 }
 
 Widget _counterButtonWidget(Color color, Icon icon, void Function() func) {
   return Padding(
-    padding: EdgeInsets.all(10),
+    padding: const EdgeInsets.all(10),
     child: DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -206,7 +206,7 @@ Widget _counterButtonWidget(Color color, Icon icon, void Function() func) {
       ),
       child: IconButton(
         splashRadius: 25,
-        constraints: BoxConstraints.tightFor(height: 35, width: 35),
+        constraints: const BoxConstraints.tightFor(height: 35, width: 35),
         padding: EdgeInsets.zero,
         onPressed: func,
         icon: icon,

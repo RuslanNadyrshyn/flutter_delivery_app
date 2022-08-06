@@ -33,7 +33,7 @@ class _BasketViewState extends State<BasketView> {
               ElevatedButton(
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(EdgeInsets.all(10))),
-                onPressed: Provider.of<LocaleProvider>(context).basket.isEmpty
+                onPressed: Provider.of<GlobalProvider>(context).basket.isEmpty
                       ? null
                       : _goToOrderView,
                 child: Text(

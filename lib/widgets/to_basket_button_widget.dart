@@ -22,10 +22,10 @@ class ToBasketButtonWidget extends StatefulWidget {
 class _ToBasketButtonWidgetState extends State<ToBasketButtonWidget> {
 
   void _addToBasket() {
-    if (!Provider.of<LocaleProvider>(context, listen: false)
+    if (!Provider.of<GlobalProvider>(context, listen: false)
         .basket.any((element) => element.id == widget.product.id)) {
       widget.product.counter = 1;
-      Provider.of<LocaleProvider>(context, listen: false)
+      Provider.of<GlobalProvider>(context, listen: false)
           .addToBasket(widget.product);
     }
   }
@@ -36,7 +36,7 @@ class _ToBasketButtonWidgetState extends State<ToBasketButtonWidget> {
       style: ButtonStyle(
         padding: MaterialStateProperty.all<EdgeInsets>(widget.padding),
       ),
-      onPressed: Provider.of<LocaleProvider>(context).basket.
+      onPressed: Provider.of<GlobalProvider>(context).basket.
       any((element) => element.id == widget.product.id) ? null : _addToBasket,
       child: Icon(Icons.shopping_basket, size: widget.iconSize),
     );

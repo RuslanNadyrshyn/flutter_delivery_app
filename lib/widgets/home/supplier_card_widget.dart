@@ -19,12 +19,12 @@ class SupplierCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var supType = Provider.of<LocaleProvider>(context).selectedSupplierType;
+    var supType = Provider.of<GlobalProvider>(context).selectedSupplierType;
 
     return EffectedCardWidget(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       widget: _SupplierCardInfoWidget(supplier: supplier),
-      action: () => Provider.of<LocaleProvider>(context, listen: false)
+      action: () => Provider.of<GlobalProvider>(context, listen: false)
           .getProductsWithParams(
               context,
               Params(
@@ -44,7 +44,7 @@ class _SupplierCardInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var supId = Provider.of<LocaleProvider>(context).selectedSupplierId;
+    var supId = Provider.of<GlobalProvider>(context).selectedSupplierId;
 
     return Container(
       width: double.infinity,

@@ -12,14 +12,14 @@ class BasketListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Provider.of<LocaleProvider>(context).basket.isEmpty
+      child: Provider.of<GlobalProvider>(context).basket.isEmpty
           ? Center(child: Text(S.of(context).basket_is_empty))
           : ListView.builder(
-              itemCount: Provider.of<LocaleProvider>(context).basket.length,
+              itemCount: Provider.of<GlobalProvider>(context).basket.length,
               itemExtent: 120,
               itemBuilder: (BuildContext context, int index) {
                 final product =
-                    Provider.of<LocaleProvider>(context).basket[index];
+                    Provider.of<GlobalProvider>(context).basket[index];
                 return BasketCardWidget(product: product, index: index);
               },
             ),

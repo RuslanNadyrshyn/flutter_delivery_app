@@ -7,7 +7,7 @@ import 'models/provider.dart';
 void main() {
   const app = App();
   runApp(ChangeNotifierProvider(
-      create: (_) => LocaleProvider(),
+      create: (_) => GlobalProvider(),
       child: app)
   );
 }

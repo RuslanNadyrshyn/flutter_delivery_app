@@ -42,21 +42,21 @@ class _TypeButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String selectedSupplierType =
-        Provider.of<LocaleProvider>(context).selectedSupplierType;
+        Provider.of<GlobalProvider>(context).selectedSupplierType;
     String selectedProductType =
-        Provider.of<LocaleProvider>(context).selectedProductType;
+        Provider.of<GlobalProvider>(context).selectedProductType;
     int selectedSupplierId =
-        Provider.of<LocaleProvider>(context).selectedSupplierId;
+        Provider.of<GlobalProvider>(context).selectedSupplierId;
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 2),
       child: ElevatedButton(
         onPressed: () {
           if (parent == 'supplier' && type != selectedSupplierType) {
-            Provider.of<LocaleProvider>(context, listen: false)
+            Provider.of<GlobalProvider>(context, listen: false)
                 .getSuppliersByType(type, context);
           } else if (parent == 'product' && type != selectedProductType) {
-            Provider.of<LocaleProvider>(context, listen: false)
+            Provider.of<GlobalProvider>(context, listen: false)
                 .getProductsWithParams(context,
                     Params(
                       supplierId: selectedSupplierId,
@@ -75,9 +75,9 @@ class _TypeButtonWidget extends StatelessWidget {
 ButtonStyle _getTypeButtonStyle(
     BuildContext context, String type, String parent) {
   String selectedSupplierType =
-      Provider.of<LocaleProvider>(context).selectedSupplierType;
+      Provider.of<GlobalProvider>(context).selectedSupplierType;
   String selectedProductType =
-      Provider.of<LocaleProvider>(context).selectedProductType;
+      Provider.of<GlobalProvider>(context).selectedProductType;
 
   final selectedColor = MaterialStateProperty.all<Color>(Colors.green);
 

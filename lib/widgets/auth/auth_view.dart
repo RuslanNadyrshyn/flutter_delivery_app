@@ -82,14 +82,17 @@ class _AuthViewState extends State<AuthView> {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: IndexedStack(
-            index: _selectedTab,
-            children: const [
-              LoginFormWidget(),
-              SignUpFormWidget(),
-            ],
+        SizedBox(
+          height: 500,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: IndexedStack(
+              index: _selectedTab,
+              children: const [
+                LoginFormWidget(),
+                SignUpFormWidget(),
+              ],
+            ),
           ),
         ),
         Column(

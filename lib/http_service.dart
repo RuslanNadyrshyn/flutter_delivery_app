@@ -107,6 +107,28 @@ Future<ProductInfo> getProductById(BuildContext context, int id) async {
   return resp;
 }
 
+Future<ProductInfo> getProductPageInfo(BuildContext context, int id) async {
+  ProductInfo resp = ProductInfo(product: null, supplier: null);
+  final str = '$getProductByIdUrl?id=$id';
+  print(str);
+  try {
+    Response res = await get(Uri.parse(str));
+
+    if (res.statusCode == 200) {
+      final result = jsonDecode(res.body);
+      resp = ProductInfo.fromJson(result);
+    } else {
+      throw "Can't get products by id response!";
+    }
+
+  } catch (e) {
+    print(e);
+  }
+
+
+  return resp;
+}
+
 Future<ProductsResponse> getProductsByParams(
     BuildContext context, Params params) async {
   if (params.supplierType == S.of(context).all) {

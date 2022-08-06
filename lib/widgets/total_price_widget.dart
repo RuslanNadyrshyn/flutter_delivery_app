@@ -12,7 +12,7 @@ class TotalPriceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${S.of(context).total}: ${countTotal(Provider.of<LocaleProvider>(context).basket).toStringAsFixed(2)} \$',
+      '${S.of(context).total}: ${countTotal(Provider.of<GlobalProvider>(context).basket).toStringAsFixed(2)} \$',
       style: TextStyle(fontSize: 24),
       overflow: TextOverflow.ellipsis,
       textAlign: textAlign,

@@ -74,24 +74,13 @@ class ProductInfo {
   }
 }
 
-class ProductPageInfo {
-  Product? product;
-  Supplier? supplier;
-  bool isLoaded = false;
-
-  ProductPageInfo({
-    this.product,
-    this.supplier,
-  });
-}
-
 void goToProductView(BuildContext context, int id) {
-    if (Provider.of<LocaleProvider>(context, listen: false).productInfo?.product!.id !=
-        id) {
-      Provider.of<LocaleProvider>(context, listen: false)
+    if (Provider.of<GlobalProvider>(context, listen: false)
+        .productInfo?.product!.id != id) {
+      Provider.of<GlobalProvider>(context, listen: false)
           .getProductPageInfo(context, id);
     }
-
-    Navigator.pushNamed(context, '/product', arguments: id);
-
+    if(Navigator.canPop(context) == false) {
+      Navigator.pushNamed(context, '/product', arguments: id);
+    }
 }

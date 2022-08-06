@@ -21,7 +21,7 @@ List<WidgetOptions> getWidgetOptions (BuildContext context) {
     WidgetOptions(AppBar(title: Text(S.of(context).delivery),), HomeView()),
     WidgetOptions(AppBar(title: Text(S.of(context).basket),), BasketView()),
     WidgetOptions(AppBar(title: Text(S.of(context).settings),), SettingsView()),
-    Provider.of<LocaleProvider>(context, listen: false).isAuthorized ?
+    Provider.of<GlobalProvider>(context, listen: false).isAuthorized ?
     WidgetOptions(AppBar(title: Text(S.of(context).profile), actions: [
       PopupMenuButton(
           itemBuilder: (context){
@@ -34,7 +34,7 @@ List<WidgetOptions> getWidgetOptions (BuildContext context) {
           },
           onSelected:(value){
             if (value == 0){
-              Provider.of<LocaleProvider>(context, listen: false).authorize();
+              Provider.of<GlobalProvider>(context, listen: false).authorize();
             }
           }
       ),
@@ -54,7 +54,7 @@ List<BottomNavigationBarItem> getBottomNavigationItems(BuildContext context) {
     BottomNavigationBarItem(
         icon: Icon(Icons.settings),
         label: S.of(context).settings),
-    Provider.of<LocaleProvider>(context).isAuthorized ?
+    Provider.of<GlobalProvider>(context).isAuthorized ?
     BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: S.of(context).profile)
         : BottomNavigationBarItem(icon: Icon(Icons.login), label: S.of(context).login),
   ];

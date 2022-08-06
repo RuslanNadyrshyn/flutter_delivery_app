@@ -21,9 +21,8 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   void initState() {
-    Provider.of<LocaleProvider>(context, listen: false).getSuppliers();
-    Provider.of<LocaleProvider>(context, listen: false).getProducts();
-    // Provider.of<LocaleProvider>(context, listen: false).getProductPageInfo(context, 1);
+    Provider.of<GlobalProvider>(context, listen: false).getSuppliers();
+    Provider.of<GlobalProvider>(context, listen: false).getProducts();
     super.initState();
   }
 
@@ -41,7 +40,7 @@ class _AppState extends State<App> {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: Provider.of<LocaleProvider>(context).currentLocale,
+        locale: Provider.of<GlobalProvider>(context).currentLocale,
         title: 'Delivery',
         theme: light,
         routes: <String, WidgetBuilder>{

@@ -12,14 +12,14 @@ class ProductInfoWidget extends StatelessWidget {
     return Column(
       children: [
         FadeInImage.assetNetwork(
-          image: Provider.of<LocaleProvider>(context).productInfo!.product!.image,
+          image: Provider.of<GlobalProvider>(context).productInfo!.product!.image,
           placeholder: 'assets/place_holder.png',
         ),
         const SizedBox(height: 15),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            Provider.of<LocaleProvider>(context).productInfo!.product!.name,
+            Provider.of<GlobalProvider>(context).productInfo!.product!.name,
             style: TextStyle(fontSize: 30),
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
@@ -31,13 +31,13 @@ class ProductInfoWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: PriceTextWidget(
-                  price: Provider.of<LocaleProvider>(context).productInfo!.product!.price,
+                  price: Provider.of<GlobalProvider>(context).productInfo!.product!.price,
                   fontSize: 30,
                   textAlign: TextAlign.start,
                 ),
               ),
               ToBasketButtonWidget(
-                product: Provider.of<LocaleProvider>(context).productInfo!.product!,
+                product: Provider.of<GlobalProvider>(context).productInfo!.product!,
                 iconSize: 40,
                 padding: EdgeInsets.symmetric(horizontal: 0),
               ),
@@ -50,7 +50,7 @@ class ProductInfoWidget extends StatelessWidget {
           padding: EdgeInsets.all(10),
           width: double.infinity,
           child: Column(
-            children: Provider.of<LocaleProvider>(context).productInfo!.product!.ingredients
+            children: Provider.of<GlobalProvider>(context).productInfo!.product!.ingredients
                 .map((e) => Text(e, style: TextStyle(fontSize: 25)))
                 .toList(),
           ),

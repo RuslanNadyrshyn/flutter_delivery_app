@@ -18,7 +18,7 @@ class CurrentOrderView extends StatelessWidget {
         padding: EdgeInsets.all(10),
         children: [
           OrderListWidget(
-            products: Provider.of<LocaleProvider>(context).basket,
+            products: Provider.of<GlobalProvider>(context).basket,
           ),
           SizedBox(height: 15),
           TotalPriceWidget(textAlign: TextAlign.end),

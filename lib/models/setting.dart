@@ -74,7 +74,7 @@ class _SelectLanguageWidgetState extends State<SelectLanguageWidget> {
       onChanged: (String? newValue) {
         setState(() {
           dropdownValue = newValue!;
-          Provider.of<LocaleProvider>(context, listen: false).setLocale(Locale(newValue));
+          Provider.of<GlobalProvider>(context, listen: false).setLocale(Locale(newValue));
         });
       },
     );
