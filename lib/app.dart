@@ -50,13 +50,35 @@ class _AppState extends State<App> {
             if (id is int) {
               return ProductView(productId: id);
             } else {
-              return const Text('Error!!!');
+              return const _ErrorMessageView(errorMessage: 'Error!!!');
             }
           },
           '/current_order': (BuildContext context) => const CurrentOrderView(),
-          '/loaded_order': (BuildContext context) => LoadedOrderView(),
+          '/loaded_order': (BuildContext context) {
+            final id = ModalRoute.of(context)?.settings.arguments;
+            if (id is int) {
+              return LoadedOrderView(id: id);
+            } else {
+              return const _ErrorMessageView(errorMessage: 'Error!!!');
+            }
+          },
         },
       ),
     );
   }
 }
+
+class _ErrorMessageView extends StatelessWidget {
+  final String errorMessage;
+  const _ErrorMessageView({Key? key, required this.errorMessage}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text(errorMessage),
+      ),
+    );
+  }
+}
+

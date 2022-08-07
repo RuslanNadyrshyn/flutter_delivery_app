@@ -74,6 +74,28 @@ class ProductInfo {
   }
 }
 
+class ProductPageInfo {
+  Product? product;
+  Supplier? supplier;
+  List<Product>? supList;
+
+  ProductPageInfo({
+    this.product,
+    this.supplier,
+    this.supList,
+  });
+}
+class Params {
+  int supplierId;
+  String supplierType;
+  String prodType;
+
+  Params(
+      {required this.supplierId,
+      required this.supplierType,
+      required this.prodType});
+}
+
 void goToProductView(BuildContext context, int id) {
   if (Navigator.canPop(context) == false) {
     Navigator.pushNamed(context, '/product', arguments: id);

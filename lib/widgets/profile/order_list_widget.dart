@@ -1,100 +1,86 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/order.dart';
-import 'package:food_delivery/models/product.dart';
+import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/widgets/effected_card_widget.dart';
+import 'package:provider/provider.dart';
 
 class OrdersListWidget extends StatelessWidget {
   const OrdersListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Order> orders = [
-      Order(
-        id: 312,
-        products: [
-          Product(
-            id: 1,
-            name: 'pizza pepperoni',
-            menuId: 2,
-            image: 'image',
-            price: 21.0,
-            type: 'pizza',
-            ingredients: ['Cheese', 'Onion'],
-            counter: 3,
+    List<OrderResponse> orders =
+        Provider.of<GlobalProvider>(context).userOrders;
+
+    return ListView(
+      children: [
+        const _OrdersTitleWidget(),
+        const Divider(
+          thickness: 1,
+          height: 3,
+        ),
+        ...orders.map((e) => _OrderItemWidget(order: e)).toList(),
+      ],
+    );
+  }
+}
+
+class _OrdersTitleWidget extends StatelessWidget {
+  const _OrdersTitleWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        children: const [
+          Text(
+            'Id',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+              child: Text(
+            'Address',
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 16),
+          )),
+          SizedBox(width: 10),
+          SizedBox(
+            width: 150,
+            child: Text(
+              'Date',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
           ),
         ],
-        address: 'Kharkiv, prospect Nauki, 33',
-        userId: 1,
-        date: '12.02.2022, 22:43',
-        price: 42,
-      ),
-      Order(
-          id: 312,
-          products: [
-            Product(
-              id: 1,
-              name: 'pizza pepperoni',
-              menuId: 2,
-              image: 'image',
-              price: 21.0,
-              type: 'pizza',
-              ingredients: ['Cheese', 'Onion'],
-              counter: 3,
-            ),
-          ],
-          address: 'Kharkiv, prospect Nauki, 33',
-          userId: 1,
-          date: '12.02.2022, 22:43',
-          price: 63),
-      Order(
-          id: 312,
-          products: [
-            Product(
-              id: 1,
-              name: 'pizza pepperoni',
-              menuId: 2,
-              image: 'image',
-              price: 21.0,
-              type: 'pizza',
-              ingredients: ['Cheese', 'Onion'],
-              counter: 3,
-            ),
-          ],
-          address: 'Kharkiv, prospect Nauki, 33',
-          userId: 1,
-          date: '12.02.2022, 22:43',
-          price: 21),
-    ];
-
-    return Expanded(
-      child: ListView(
-        children: orders.map((e) => _OrderRowWidget(order: e)).toList(),
       ),
     );
   }
 }
 
-class _OrderRowWidget extends StatelessWidget {
-  final Order order;
+class _OrderItemWidget extends StatelessWidget {
+  final OrderResponse order;
 
-  const _OrderRowWidget({Key? key, required this.order}) : super(key: key);
+  const _OrderItemWidget({Key? key, required this.order}) : super(key: key);
 
-  _goToOrder(BuildContext context){
-    Navigator.of(context).pushNamed('/loaded_order');
+  _goToOrder(BuildContext context) {
+    Navigator.of(context).pushNamed('/loaded_order', arguments: order.id);
   }
 
   @override
   Widget build(BuildContext context) {
     TextStyle style = const TextStyle(fontSize: 16);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-      child: InkWell(
-        onTap: () => _goToOrder(context),
-        child: Ink(
-          color: Theme.of(context).cardColor,
-          height: 50,
+    return SizedBox(
+      height: 50,
+      child: EffectedCardWidget(
+        padding: const EdgeInsets.all(0),
+        action: () => _goToOrder(context),
+        widget: Container(
+          alignment: Alignment.center,
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
@@ -105,10 +91,10 @@ class _OrderRowWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                   child: Text(
-                    order.address,
-                    overflow: TextOverflow.ellipsis,
-                    style: style,
-                  )),
+                order.address,
+                overflow: TextOverflow.ellipsis,
+                style: style,
+              )),
               const SizedBox(width: 10),
               Text(
                 order.date,

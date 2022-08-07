@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_delivery/constants.dart';
-import 'package:food_delivery/http_service.dart';
+import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/models/provider.dart';
 import 'package:food_delivery/widgets/effected_card_widget.dart';
 import 'package:food_delivery/widgets/product_title_widget.dart';

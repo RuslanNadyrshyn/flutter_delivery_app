@@ -46,8 +46,10 @@ class Order {
       userId: json['userId'] as int,
       address: json['address'] as String,
       price: json['price'] as double,
-      products: json['products'] as List<Product>,
-      date: json['date'] as String,
+      products: (json['products'] as List<dynamic>)
+          .map((dynamic e) => Product.fromJson(e as Map<String,dynamic>))
+          .toList(),
+      date: json['created_at'] as String,
     );
   }
 }
@@ -57,7 +59,6 @@ class OrderResponse {
   final int userId;
   final String address;
   final double price;
-  final List<Product> products;
   final String date;
 
   const OrderResponse({
@@ -65,9 +66,19 @@ class OrderResponse {
     required this.userId,
     required this.address,
     required this.price,
-    required this.products,
     required this.date,
   });
+
+  factory OrderResponse.fromJson(Map<String, dynamic> json) {
+    print('order fromJson $json');
+    return OrderResponse(
+      id: json['id'] as int,
+      userId: json['userId'] as int,
+      address: json['address'] as String,
+      price: json['price'] as double,
+      date: json['created_at'] as String,
+    );
+  }
 }
 
 /*

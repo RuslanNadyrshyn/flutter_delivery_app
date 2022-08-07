@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/generated/l10n.dart';
-import 'package:food_delivery/http_service.dart';
+import 'package:food_delivery/models/product.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/provider.dart';

@@ -10,8 +10,7 @@ class ProfileView extends StatelessWidget {
     return Column(
       children: const [
         UserInfoWidget(),
-        SizedBox(height: 15),
-        OrdersListWidget(),
+        Expanded(child: OrdersListWidget()),
       ],
     );
   }
