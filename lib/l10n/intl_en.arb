@@ -25,5 +25,7 @@
   "profile": "Profile",
   "logout": "Logout",
   "make_order": "Make order",
-  "basket_is_empty": "Basket is empty"
+  "basket_is_empty": "Basket is empty",
+  "error400": "User with this email already exists.",
+  "error401": "Error. Try again."
 }

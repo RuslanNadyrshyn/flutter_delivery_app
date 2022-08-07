@@ -309,6 +309,26 @@ class S {
       args: [],
     );
   }
+
+  /// `User with this email already exists.`
+  String get error400 {
+    return Intl.message(
+      'User with this email already exists.',
+      name: 'error400',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error. Try again.`
+  String get error401 {
+    return Intl.message(
+      'Error. Try again.',
+      name: 'error401',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -27,7 +27,14 @@ class SuppliersListWidget extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 5),
               height: 145,
               width: double.infinity,
-              child: ListView.builder(
+              child:
+              Provider.of<HomeViewProvider>(context).suppliersLoading ?
+              const Align(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator()
+              )
+                  :
+              ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount:
                     Provider.of<HomeViewProvider>(context).suppliers.length,

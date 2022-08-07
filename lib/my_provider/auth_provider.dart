@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery/http_service/auth_http.dart';
 import 'package:food_delivery/http_service/order_http.dart';
@@ -10,7 +9,9 @@ class AuthProvider extends ChangeNotifier {
   bool isAuthorized = false;
   String accessToken = '';
   String refreshToken = '';
-  String? authErrorMessage;
+  String? loginErrorMessage;
+  String? signUpErrorMessage;
+  bool loading = false;
 
   User? user;
   List<OrderResponse> userOrders = [];
@@ -23,30 +24,62 @@ class AuthProvider extends ChangeNotifier {
   login(String email, String password) async {
     isAuthorized = false;
     notifyListeners();
-    print('$email $password');
 
     if (email.length < 4 || password.length < 4) {
-      authErrorMessage = 'Wrong input, try again';
+      loginErrorMessage = 'Wrong input, try again';
 
       notifyListeners();
       Future.delayed(const Duration(seconds: 5), () {
-        authErrorMessage = null;
+        loginErrorMessage = null;
         notifyListeners();
       });
       return;
     }
+
+    loading = true;
+    notifyListeners();
 
     final LoginResponse loginResponse = await loginAuth(email, password);
 
     accessToken = loginResponse.accessToken;
     refreshToken = loginResponse.refreshToken;
     if (loginResponse.accessToken == '401') {
-      authErrorMessage = 'Wrong email or password. Try again.';
+      loginErrorMessage = 'Wrong email or password. Try again.';
     } else if (loginResponse.accessToken.isNotEmpty) {
       isAuthorized = true;
       getUserProfile();
     }
+
+    loading = false;
+    notifyListeners();
   }
+
+  signUp(String name, String email, String password) async {
+    if (name.length < 4 || email.length < 4 || password.length < 4) {
+      signUpErrorMessage = 'Wrong input, try again';
+      notifyListeners();
+
+      Future.delayed(const Duration(seconds: 5), () {
+        loginErrorMessage = null;
+        notifyListeners();
+      });
+      return;
+    }
+    loading = true;
+    notifyListeners();
+
+    final SignUpResponse signUpResponse = await signUpAuth(name, email, password);
+
+    if (signUpResponse.errorMessage != null) {
+      signUpErrorMessage = signUpResponse.errorMessage;
+    } else {
+      login(email, password);
+    }
+
+    loading = false;
+    notifyListeners();
+  }
+
   getUserProfile() async {
     print('getting user profile');
     User userResp = await fetchProfile(accessToken);

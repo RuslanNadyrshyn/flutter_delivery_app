@@ -36,6 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delete profile"),
         "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "error400": MessageLookupByLibrary.simpleMessage(
+            "User with this email already exists."),
+        "error401": MessageLookupByLibrary.simpleMessage("Error. Try again."),
         "inputErrorText": MessageLookupByLibrary.simpleMessage(
             "Your input is wrong. Try again!"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),

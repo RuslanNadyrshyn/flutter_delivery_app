@@ -27,7 +27,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _AuthErrorMessageWidget(),
+        const _LoginErrorMessageWidget(),
         TextFieldWidget(title: S.of(context).email, controller: _emailTextController, ),
         const SizedBox(height: 15),
         TextFieldPasswordWidget(title: S.of(context).password, controller: _passwordTextController,),
@@ -49,12 +49,12 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   }
 }
 
-class _AuthErrorMessageWidget extends StatelessWidget {
-  const _AuthErrorMessageWidget({Key? key}) : super(key: key);
+class _LoginErrorMessageWidget extends StatelessWidget {
+  const _LoginErrorMessageWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final errorMessage = Provider.of<AuthProvider>(context).authErrorMessage;
+    final errorMessage = Provider.of<AuthProvider>(context).loginErrorMessage;
 
     if (errorMessage == null) return const SizedBox.shrink();
     return SizedBox(

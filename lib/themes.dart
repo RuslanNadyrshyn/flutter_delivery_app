@@ -15,6 +15,7 @@ final kLightTheme = ThemeData.light().copyWith(
     ),
   ),
   dividerColor: Colors.black,
+  // indicatorColor: Colors.black
 );
 
 final kDarkTheme = ThemeData.dark().copyWith(
@@ -35,4 +36,5 @@ final kDarkTheme = ThemeData.dark().copyWith(
     ),
   ),
   dividerColor: Colors.white,
+    // indicatorColor: Colors.white
 );

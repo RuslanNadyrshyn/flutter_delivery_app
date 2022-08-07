@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/my_provider/auth_provider.dart';
 import 'package:food_delivery/widgets/Auth/login_form_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
 import 'sign_up_form_widget.dart';
@@ -23,109 +25,137 @@ class _AuthViewState extends State<AuthView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: InkWell(
-                onTap: () {
-                  _changeSelectedTab(0);
-                },
-                child: Ink(
-                  color: _selectedTab == 0
-                      ? Theme.of(context).scaffoldBackgroundColor
-                      : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-                  height: 50,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      S.of(context).login,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Theme.of(context)
-                              .appBarTheme
-                              .titleTextStyle
-                              ?.color),
-                      textAlign: TextAlign.center,
+    if (Provider.of<AuthProvider>(context).loading == true) {
+      return const Center(child: CircularProgressIndicator());
+    } else {
+      return ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    _changeSelectedTab(0);
+                  },
+                  child: Ink(
+                    color: _selectedTab == 0
+                        ? Theme
+                        .of(context)
+                        .scaffoldBackgroundColor
+                        : Theme
+                        .of(context)
+                        .bottomNavigationBarTheme
+                        .backgroundColor,
+                    height: 50,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        S
+                            .of(context)
+                            .login,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Theme
+                                .of(context)
+                                .appBarTheme
+                                .titleTextStyle
+                                ?.color),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: InkWell(
-                onTap: () {
-                  _changeSelectedTab(1);
-                },
-                child: Ink(
-                  color: _selectedTab == 1
-                      ? Theme.of(context).scaffoldBackgroundColor
-                      : Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-                  height: 50,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      S.of(context).sign_up,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Theme.of(context)
-                              .appBarTheme
-                              .titleTextStyle
-                              ?.color),
-                      textAlign: TextAlign.center,
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    _changeSelectedTab(1);
+                  },
+                  child: Ink(
+                    color: _selectedTab == 1
+                        ? Theme
+                        .of(context)
+                        .scaffoldBackgroundColor
+                        : Theme
+                        .of(context)
+                        .bottomNavigationBarTheme
+                        .backgroundColor,
+                    height: 50,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        S
+                            .of(context)
+                            .sign_up,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Theme
+                                .of(context)
+                                .appBarTheme
+                                .titleTextStyle
+                                ?.color),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 500,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: IndexedStack(
-              index: _selectedTab,
-              children: const [
-                LoginFormWidget(),
-                SignUpFormWidget(),
-              ],
+            ],
+          ),
+          SizedBox(
+            height: 500,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: IndexedStack(
+                index: _selectedTab,
+                children: const [
+                  LoginFormWidget(),
+                  SignUpFormWidget(),
+                ],
+              ),
             ),
           ),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              _selectedTab == 0
-                  ? S.of(context).sign_up_text
-                  : S.of(context).login_text,
-              style: const TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 5),
-            ElevatedButton(
-              onPressed: () {
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
                 _selectedTab == 0
-                    ? _changeSelectedTab(1)
-                    : _changeSelectedTab(0);
-              },
-              style: ButtonStyle(
-                  padding: MaterialStateProperty.all(
-                const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-              )),
-              child: Text(
-                _selectedTab == 0
-                    ? S.of(context).sign_up
-                    : S.of(context).login,
+                    ? S
+                    .of(context)
+                    .sign_up_text
+                    : S
+                    .of(context)
+                    .login_text,
                 style: const TextStyle(fontSize: 16),
               ),
-            ),
-            const SizedBox(height: 15),
-          ],
-        ),
-      ],
-    );
+              const SizedBox(height: 5),
+              ElevatedButton(
+                onPressed: () {
+                  _selectedTab == 0
+                      ? _changeSelectedTab(1)
+                      : _changeSelectedTab(0);
+                },
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                    )),
+                child: Text(
+                  _selectedTab == 0
+                      ? S
+                      .of(context)
+                      .sign_up
+                      : S
+                      .of(context)
+                      .login,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              const SizedBox(height: 15),
+            ],
+          ),
+        ],
+      );
+    }
   }
 }

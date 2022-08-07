@@ -24,7 +24,7 @@ Future<List<OrderResponse>> fetchOrders(String accessToken) async {
     print('orders status: ${res.statusCode}');
     if (res.statusCode == 200) {
       final result = jsonDecode(res.body);
-      ordersResp = (result as List<dynamic>)
+      ordersResp = ((result?? []) as List<dynamic>)
           .map((dynamic e) => OrderResponse.fromJson(e as Map<String, dynamic>))
           .toList();
     } else {

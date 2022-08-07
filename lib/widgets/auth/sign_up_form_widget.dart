@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/my_provider/auth_provider.dart';
 import 'package:food_delivery/widgets/text_field_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
 
@@ -14,25 +16,12 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _nameTextController = TextEditingController();
-  String? errorText;
 
   void _signUp() {
     final email = _emailTextController.text;
     final password = _passwordTextController.text;
     final name = _nameTextController.text;
-
-    if (email.length >= 4 && password.length >= 4 && name.isNotEmpty) {
-      errorText = null;
-      // make query to backend with email and pass. If correct, get profile info
-    } else {
-      errorText = S.of(context).inputErrorText;
-      Future.delayed(const Duration(seconds: 5), () {
-        setState(() {
-          errorText = null;
-        });
-      });
-    }
-    setState(() {});
+    Provider.of<AuthProvider>(context, listen: false).signUp(name, email, password);
   }
 
   @override
@@ -40,9 +29,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20,
-          child: errorText != null ? Text(errorText!) : null,
-        ),
+        const _SignUpErrorMessageWidget(),
         TextFieldWidget(controller: _emailTextController, title: S.of(context).email,),
         const SizedBox(height: 15),
         TextFieldPasswordWidget(title: S.of(context).password, controller: _passwordTextController,),
@@ -61,3 +48,20 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     );
   }
 }
+
+
+class _SignUpErrorMessageWidget extends StatelessWidget {
+  const _SignUpErrorMessageWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final errorMessage = Provider.of<AuthProvider>(context).signUpErrorMessage;
+
+    if (errorMessage == null) return const SizedBox.shrink();
+    return SizedBox(
+      height: 20,
+      child: Text(errorMessage, style: const TextStyle(color: Colors.red)),
+    );
+  }
+}
+

@@ -15,6 +15,9 @@ class HomeViewProvider extends ChangeNotifier {
   List<Product> products = [];
   List<String> prodTypes = [];
 
+  bool suppliersLoading = false;
+  bool productsLoading = false;
+
   // Suppliers
   getSuppliers() async {
     final suppliersResponse = await fetchSuppliers();
@@ -24,24 +27,36 @@ class HomeViewProvider extends ChangeNotifier {
   }
 
   getSuppliersByType(String type, BuildContext context) async {
+    suppliersLoading = true;
+    notifyListeners();
+
     getProductsWithParams(context, Params(
         supplierId: 0,
         supplierType: type,
         prodType: ''));
 
     suppliers = await fetchSuppliersByType(type, context);
+
+    suppliersLoading = false;
     notifyListeners();
   }
 
   // Products
   getProducts() async {
+    // productsLoading = true;
+    // notifyListeners();
+
     var productsResponse = await fetchProducts();
     products = productsResponse.products;
     prodTypes = productsResponse.types;
+
+    // productsLoading = false;
     notifyListeners();
   }
 
   getProductsWithParams(BuildContext context, Params params) async {
+    productsLoading = true;
+
     selectedSupplierId = params.supplierId;
     selectedSupplierType = params.supplierType;
     selectedProductType = params.prodType;
@@ -51,7 +66,9 @@ class HomeViewProvider extends ChangeNotifier {
     if (productsResponse.products.isNotEmpty) {
       products = productsResponse.products;
       prodTypes = productsResponse.types;
-      notifyListeners();
     }
+
+    productsLoading = false;
+    notifyListeners();
   }
 }

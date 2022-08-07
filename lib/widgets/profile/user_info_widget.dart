@@ -9,7 +9,7 @@ class UserInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<AuthProvider>(context).user!;
+    User? user = Provider.of<AuthProvider>(context).user;
     return Container(
       padding: const EdgeInsets.all(15),
       width: double.infinity,
@@ -18,19 +18,27 @@ class UserInfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Id: ${user.id}',
+            'Id: ${user?.id?? 0}',
             style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(height: 5),
           Text(
-            'Name: ${user.name}',
+            'Name: ${user?.name?? ''}',
             style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(height: 5),
           Text(
-            'Email: ${user.email}',
+            'Email: ${user?.email?? ''}',
             style: const TextStyle(fontSize: 20),
           ),
+          if (Provider.of<AuthProvider>(context).userOrders.isNotEmpty)
+            ...[
+              const SizedBox(height: 5),
+              Text(
+                'Orders: ${Provider.of<AuthProvider>(context).userOrders.length}',
+                style: const TextStyle(fontSize: 20),
+              )
+            ]
         ],
       ),
     );

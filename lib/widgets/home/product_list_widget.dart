@@ -10,29 +10,39 @@ class ProductsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: ColoredBox(
-          color: Theme.of(context).backgroundColor,
-          child: Column(
-            children: [
+      child: ColoredBox(
+        color: Theme.of(context).backgroundColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (Provider.of<HomeViewProvider>(context).productsLoading)
+              const Align(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(color: Colors.cyanAccent))
+            else ...[
               TypesWidget(
-                  types: [''] + Provider.of<HomeViewProvider>(context).prodTypes,
-                  parent: 'product',
+                types: [''] + Provider.of<HomeViewProvider>(context).prodTypes,
+                parent: 'product',
               ),
               Expanded(
                 child: Scrollbar(
                   thumbVisibility: true,
                   child: ListView.builder(
-                    itemCount: Provider.of<HomeViewProvider>(context).products.length,
+                    itemCount:
+                        Provider.of<HomeViewProvider>(context).products.length,
                     itemExtent: 135,
                     itemBuilder: (BuildContext context, int index) {
-                      return ProductCardWidget(product: Provider.of<HomeViewProvider>(context).products[index]);
+                      return ProductCardWidget(
+                          product: Provider.of<HomeViewProvider>(context)
+                              .products[index]);
                     },
                   ),
                 ),
               ),
             ],
-          ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }
