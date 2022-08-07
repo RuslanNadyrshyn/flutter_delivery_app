@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/generated/l10n.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/home_view_provider.dart';
 import 'package:food_delivery/widgets/home/supplier_card_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,7 @@ class SuppliersListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> types = ['', S.of(context).open];
-    types.addAll(Provider.of<GlobalProvider>(context).supTypes);
+    types.addAll(Provider.of<HomeViewProvider>(context).supTypes);
 
     return SizedBox(
       height: 200,
@@ -30,11 +30,11 @@ class SuppliersListWidget extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount:
-                    Provider.of<GlobalProvider>(context).suppliers.length,
+                    Provider.of<HomeViewProvider>(context).suppliers.length,
                 itemExtent: 115,
                 itemBuilder: (BuildContext context, int index) {
                   return SupplierCardWidget(
-                      supplier: Provider.of<GlobalProvider>(context)
+                      supplier: Provider.of<HomeViewProvider>(context)
                           .suppliers[index]);
                 },
               ),

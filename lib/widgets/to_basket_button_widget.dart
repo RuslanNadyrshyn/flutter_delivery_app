@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/product.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/basket_provider.dart';
 import 'package:provider/provider.dart';
 
 class ToBasketButtonWidget extends StatefulWidget {
@@ -20,12 +20,11 @@ class ToBasketButtonWidget extends StatefulWidget {
 }
 
 class _ToBasketButtonWidgetState extends State<ToBasketButtonWidget> {
-
   void _addToBasket() {
-    if (!Provider.of<GlobalProvider>(context, listen: false)
+    if (!Provider.of<BasketProvider>(context, listen: false)
         .basket.any((element) => element.id == widget.product.id)) {
       widget.product.counter = 1;
-      Provider.of<GlobalProvider>(context, listen: false)
+      Provider.of<BasketProvider>(context, listen: false)
           .addToBasket(widget.product);
     }
   }
@@ -36,7 +35,7 @@ class _ToBasketButtonWidgetState extends State<ToBasketButtonWidget> {
       style: ButtonStyle(
         padding: MaterialStateProperty.all<EdgeInsets>(widget.padding),
       ),
-      onPressed: Provider.of<GlobalProvider>(context).basket.
+      onPressed: Provider.of<BasketProvider>(context).basket.
       any((element) => element.id == widget.product.id) ? null : _addToBasket,
       child: Icon(Icons.shopping_basket, size: widget.iconSize),
     );

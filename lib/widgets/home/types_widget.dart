@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/generated/l10n.dart';
 import 'package:food_delivery/models/product.dart';
+import 'package:food_delivery/my_provider/home_view_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/provider.dart';
 
 class TypesWidget extends StatelessWidget {
   final List<String> types;
@@ -42,21 +42,21 @@ class _TypeButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String selectedSupplierType =
-        Provider.of<GlobalProvider>(context).selectedSupplierType;
+        Provider.of<HomeViewProvider>(context).selectedSupplierType;
     String selectedProductType =
-        Provider.of<GlobalProvider>(context).selectedProductType;
+        Provider.of<HomeViewProvider>(context).selectedProductType;
     int selectedSupplierId =
-        Provider.of<GlobalProvider>(context).selectedSupplierId;
+        Provider.of<HomeViewProvider>(context).selectedSupplierId;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
       child: ElevatedButton(
         onPressed: () {
           if (parent == 'supplier' && type != selectedSupplierType) {
-            Provider.of<GlobalProvider>(context, listen: false)
+            Provider.of<HomeViewProvider>(context, listen: false)
                 .getSuppliersByType(type, context);
           } else if (parent == 'product' && type != selectedProductType) {
-            Provider.of<GlobalProvider>(context, listen: false)
+            Provider.of<HomeViewProvider>(context, listen: false)
                 .getProductsWithParams(context,
                     Params(
                       supplierId: selectedSupplierId,
@@ -75,9 +75,9 @@ class _TypeButtonWidget extends StatelessWidget {
 ButtonStyle _getTypeButtonStyle(
     BuildContext context, String type, String parent) {
   String selectedSupplierType =
-      Provider.of<GlobalProvider>(context).selectedSupplierType;
+      Provider.of<HomeViewProvider>(context).selectedSupplierType;
   String selectedProductType =
-      Provider.of<GlobalProvider>(context).selectedProductType;
+      Provider.of<HomeViewProvider>(context).selectedProductType;
 
   final selectedColor = MaterialStateProperty.all<Color>(Colors.green);
 

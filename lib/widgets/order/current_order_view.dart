@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/basket_provider.dart';
 import 'package:food_delivery/widgets/order/order_form_widget.dart';
 import 'package:food_delivery/widgets/order/order_list_widget.dart';
 import 'package:food_delivery/widgets/total_price_widget.dart';
@@ -18,7 +18,7 @@ class CurrentOrderView extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         children: [
           OrderListWidget(
-            products: Provider.of<GlobalProvider>(context).basket,
+            products: Provider.of<BasketProvider>(context).basket,
           ),
           const SizedBox(height: 15),
           const TotalPriceWidget(textAlign: TextAlign.end),

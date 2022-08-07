@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/product_page_provider.dart';
 import 'package:food_delivery/widgets/product/product_info_widget.dart';
 import 'package:food_delivery/widgets/product/supplier_info_widget.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +12,7 @@ class ProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Provider.of<GlobalProvider>(context).productPageInfo != null ?
+      body: Provider.of<ProductPageInfoProvider>(context).productPageInfo != null ?
       ListView(
         children: const [
           ProductInfoWidget(),

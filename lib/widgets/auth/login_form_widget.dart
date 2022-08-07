@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/generated/l10n.dart';
+import 'package:food_delivery/my_provider/auth_provider.dart';
 import 'package:food_delivery/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
-
-import '../../generated/l10n.dart';
-import '../../models/provider.dart';
 
 class LoginFormWidget extends StatefulWidget {
   const LoginFormWidget({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     final email = _emailTextController.text;
     final password = _passwordTextController.text;
 
-    Provider.of<GlobalProvider>(context, listen: false).login(email, password);
+    Provider.of<AuthProvider>(context, listen: false).login(email, password);
   }
 
   @override
@@ -55,7 +54,7 @@ class _AuthErrorMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final errorMessage = Provider.of<GlobalProvider>(context).authErrorMessage;
+    final errorMessage = Provider.of<AuthProvider>(context).authErrorMessage;
 
     if (errorMessage == null) return const SizedBox.shrink();
     return SizedBox(

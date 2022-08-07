@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants.dart';
 import 'package:food_delivery/models/product.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/basket_provider.dart';
 import 'package:food_delivery/widgets/counter_widget.dart';
 import 'package:food_delivery/widgets/effected_card_widget.dart';
 import 'package:food_delivery/widgets/image_widget.dart';
@@ -25,26 +25,26 @@ class BasketCardWidget extends StatefulWidget {
 
 class _BasketCardWidgetState extends State<BasketCardWidget> {
   int getCounter() {
-    return Provider.of<GlobalProvider>(context, listen: false)
+    return Provider.of<BasketProvider>(context, listen: false)
         .basket[widget.index]
         .counter!;
   }
 
   void _removeProduct() {
-    Provider.of<GlobalProvider>(context, listen: false)
+    Provider.of<BasketProvider>(context, listen: false)
         .removeFromBasket(widget.product.id);
   }
 
   void inc() {
     int counter = getCounter();
-    Provider.of<GlobalProvider>(context, listen: false)
+    Provider.of<BasketProvider>(context, listen: false)
         .changeCounter(widget.index, ++counter);
   }
 
   void dec() {
     int counter = getCounter();
     if (counter > 1) {
-      Provider.of<GlobalProvider>(context, listen: false)
+      Provider.of<BasketProvider>(context, listen: false)
           .changeCounter(widget.index, --counter);
     }
   }
@@ -95,7 +95,7 @@ class _BasketCardRowWidget extends StatefulWidget {
 class _BasketCardRowWidgetState extends State<_BasketCardRowWidget> {
   @override
   Widget build(BuildContext context) {
-    int counter = Provider.of<GlobalProvider>(context, listen: false)
+    int counter = Provider.of<BasketProvider>(context, listen: false)
         .basket[widget.index].counter!;
     return DecoratedBox(
       decoration: cardBoxDecoration(context),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/basket_provider.dart';
 import 'package:food_delivery/widgets/total_price_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,7 @@ class _BasketViewState extends State<BasketView> {
               ElevatedButton(
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(const EdgeInsets.all(10))),
-                onPressed: Provider.of<GlobalProvider>(context).basket.isEmpty
+                onPressed: Provider.of<BasketProvider>(context).basket.isEmpty
                       ? null
                       : _goToOrderView,
                 child: Text(

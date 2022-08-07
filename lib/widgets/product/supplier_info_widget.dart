@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_delivery/constants.dart';
 import 'package:food_delivery/models/product.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/product_page_provider.dart';
 import 'package:food_delivery/widgets/effected_card_widget.dart';
 import 'package:food_delivery/widgets/price_text_widget.dart';
 import 'package:food_delivery/widgets/product_title_widget.dart';
@@ -14,7 +14,7 @@ class SupplierInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final supplier =
-        Provider.of<GlobalProvider>(context).productPageInfo!.supplier!;
+        Provider.of<ProductPageInfoProvider>(context).productPageInfo!.supplier!;
     return Container(
       color: Theme.of(context).backgroundColor,
       padding: const EdgeInsets.symmetric(vertical: 15),
@@ -50,7 +50,7 @@ class _SupplierListWidget extends StatelessWidget {
         height: 170,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: Provider.of<GlobalProvider>(context)
+          itemCount: Provider.of<ProductPageInfoProvider>(context)
                   .productPageInfo
                   ?.supList
                   ?.length ??
@@ -58,7 +58,7 @@ class _SupplierListWidget extends StatelessWidget {
           itemExtent: 135,
           itemBuilder: (BuildContext context, int index) {
             return _ProductCardWidget(
-                product: Provider.of<GlobalProvider>(context)
+                product: Provider.of<ProductPageInfoProvider>(context)
                     .productPageInfo!
                     .supList![index]);
           },
@@ -79,7 +79,7 @@ class _ProductCardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(0),
       widget: Container(
         decoration:
-            Provider.of<GlobalProvider>(context).productPageInfo!.product!.id ==
+            Provider.of<ProductPageInfoProvider>(context).productPageInfo!.product!.id ==
                     product.id
                 ? cardBoxDecoration(context)
                     .copyWith(color: Theme.of(context).backgroundColor)

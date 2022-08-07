@@ -29,4 +29,3 @@ class SettingsItemWidget extends StatelessWidget {
 }
 
 
-

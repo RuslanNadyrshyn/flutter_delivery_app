@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_delivery/constants.dart';
 import 'package:food_delivery/models/product.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/home_view_provider.dart';
 import 'package:food_delivery/widgets/effected_card_widget.dart';
 import 'package:food_delivery/widgets/product_title_widget.dart';
 import 'package:provider/provider.dart';
@@ -19,12 +19,12 @@ class SupplierCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var supType = Provider.of<GlobalProvider>(context).selectedSupplierType;
+    var supType = Provider.of<HomeViewProvider>(context).selectedSupplierType;
 
     return EffectedCardWidget(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       widget: _SupplierCardInfoWidget(supplier: supplier),
-      action: () => Provider.of<GlobalProvider>(context, listen: false)
+      action: () => Provider.of<HomeViewProvider>(context, listen: false)
           .getProductsWithParams(
               context,
               Params(
@@ -44,7 +44,7 @@ class _SupplierCardInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var supId = Provider.of<GlobalProvider>(context).selectedSupplierId;
+    var supId = Provider.of<HomeViewProvider>(context).selectedSupplierId;
 
     return Container(
       width: double.infinity,

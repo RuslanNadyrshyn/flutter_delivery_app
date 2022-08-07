@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/order.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/auth_provider.dart';
 import 'package:food_delivery/widgets/effected_card_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +10,7 @@ class OrdersListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<OrderResponse> orders =
-        Provider.of<GlobalProvider>(context).userOrders;
+        Provider.of<AuthProvider>(context).userOrders;
 
     return ListView(
       children: [

@@ -50,7 +50,7 @@ to do:
     /product view:
     /get product info(product, supplier)
     
-    /by pressing on sup image pop back and sort by supplier
+    loaded_order: go to product view by pressing product page
 
 
     

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
@@ -21,7 +21,7 @@ List<WidgetOptions> getWidgetOptions (BuildContext context) {
     WidgetOptions(AppBar(title: Text(S.of(context).delivery),), const HomeView()),
     WidgetOptions(AppBar(title: Text(S.of(context).basket),), const BasketView()),
     WidgetOptions(AppBar(title: Text(S.of(context).settings),), const SettingsView()),
-    Provider.of<GlobalProvider>(context, listen: false).isAuthorized ?
+    Provider.of<AuthProvider>(context, listen: false).isAuthorized ?
     WidgetOptions(AppBar(title: Text(S.of(context).profile), actions: [
       PopupMenuButton(
           itemBuilder: (context){
@@ -34,7 +34,7 @@ List<WidgetOptions> getWidgetOptions (BuildContext context) {
           },
           onSelected:(value){
             if (value == 0){
-              Provider.of<GlobalProvider>(context, listen: false).authorize();
+              Provider.of<AuthProvider>(context, listen: false).authorize();
             }
           }
       ),
@@ -54,7 +54,7 @@ List<BottomNavigationBarItem> getBottomNavigationItems(BuildContext context) {
     BottomNavigationBarItem(
         icon: const Icon(Icons.settings),
         label: S.of(context).settings),
-    Provider.of<GlobalProvider>(context).isAuthorized ?
+    Provider.of<AuthProvider>(context).isAuthorized ?
     BottomNavigationBarItem(icon: const Icon(Icons.person_rounded), label: S.of(context).profile)
         : BottomNavigationBarItem(icon: const Icon(Icons.login), label: S.of(context).login),
   ];

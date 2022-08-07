@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/provider.dart';
+import 'package:food_delivery/my_provider/product_page_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'supplier.dart';
@@ -101,8 +101,8 @@ void goToProductView(BuildContext context, int id) {
     Navigator.pushNamed(context, '/product', arguments: id);
   }
 
-  if (Provider.of<GlobalProvider>(context, listen: false).productPageInfo?.product!.id != id) {
-      Provider.of<GlobalProvider>(context, listen: false)
+  if (Provider.of<ProductPageInfoProvider>(context, listen: false).productPageInfo?.product!.id != id) {
+      Provider.of<ProductPageInfoProvider>(context, listen: false)
           .getProductPageInfo(context, id);
   }
 }

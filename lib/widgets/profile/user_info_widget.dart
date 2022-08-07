@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/user.dart';
+import 'package:food_delivery/my_provider/auth_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/provider.dart';
 
 class UserInfoWidget extends StatelessWidget {
   const UserInfoWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<GlobalProvider>(context).user!;
+    User user = Provider.of<AuthProvider>(context).user!;
     return Container(
       padding: const EdgeInsets.all(15),
       width: double.infinity,

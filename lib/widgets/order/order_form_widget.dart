@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/order.dart';
-import 'package:food_delivery/models/provider.dart';
 import 'package:food_delivery/models/user.dart';
+import 'package:food_delivery/my_provider/auth_provider.dart';
+import 'package:food_delivery/my_provider/basket_provider.dart';
 import 'package:food_delivery/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -28,14 +29,14 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
         email: '',
       ),
       totalPrice: countTotal(
-          Provider.of<GlobalProvider>(context, listen: false).basket),
+          Provider.of<BasketProvider>(context, listen: false).basket),
       address: _addressTextController.text,
-      products: Provider.of<GlobalProvider>(context, listen: false).basket,
+      products: Provider.of<BasketProvider>(context, listen: false).basket,
     );
 
     if (order.address.isNotEmpty) {
-      if (Provider.of<GlobalProvider>(context, listen: false).isAuthorized ||
-          !Provider.of<GlobalProvider>(context, listen: false).isAuthorized &&
+      if (Provider.of<AuthProvider>(context, listen: false).isAuthorized ||
+          !Provider.of<AuthProvider>(context, listen: false).isAuthorized &&
               order.user.name.isNotEmpty) {
         errorText = null;
         setState(() {});
@@ -61,7 +62,7 @@ class _OrderFormWidgetState extends State<OrderFormWidget> {
         SizedBox(height: 26,
           child: errorText != null ? Text(errorText!) : null,
         ),
-        if (!Provider.of<GlobalProvider>(context).isAuthorized) ...[
+        if (!Provider.of<AuthProvider>(context).isAuthorized) ...[
           TextFieldWidget(title: S.of(context).name, controller: _nameTextController,),
           const SizedBox(height: 15),
         ],
