@@ -12,4 +12,13 @@ class User {
       email: json['email'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'email': email,
+    };
+  }
+
 }

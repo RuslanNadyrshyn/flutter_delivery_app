@@ -64,3 +64,43 @@ Future<Order> fetchOrder(int id) async {
 
   return orderResp;
 }
+
+/*
+type OrderRequest struct {
+	User       *models.User `json:"user"`
+	TotalPrice float64      `json:"totalPrice"`
+	Address    string       `json:"address"`
+	Products   []struct {
+		ProductId    int64   `json:"id"`
+		ProductPrice float64 `json:"price"`
+		Counter      int64   `json:"counter"`
+	} `json:"products"`
+}
+ */
+
+Future<int> postOrderRequest(OrderRequest orderRequest) async {
+  int result = 0;
+
+  Map<String, dynamic> body = orderRequest.toJson();
+
+  final uri = Uri(
+    scheme: scheme,
+    host: host,
+    port: port,
+    path: postOrder,
+  );
+  print(uri);
+
+  try {
+    Response res = await post(uri, body: jsonEncode(body));
+    if (res.statusCode == 200) {
+      result = jsonDecode(res.body);
+    } else {
+      throw "Can't post order up!";
+    }
+  } catch (e) {
+    print(e);
+  }
+
+  return result;
+}

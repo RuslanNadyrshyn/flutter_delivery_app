@@ -14,10 +14,16 @@ class BasketProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  clearBasket() {
+    basket = [];
+    notifyListeners();
+  }
+
   changeCounter(int index, int counter) {
     basket[index].counter = counter;
     notifyListeners();
   }
+
 }
 
 double countTotal(List<Product> products) {

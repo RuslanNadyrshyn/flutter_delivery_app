@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery/my_provider/product_page_provider.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +40,19 @@ class Product {
           .toList(),
       counter: json['counter'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'menuId': menuId,
+      'price': price,
+      'image': image,
+      'type': type,
+      'counter': counter,
+      'ingredients': jsonEncode(ingredients),
+    };
   }
 }
 

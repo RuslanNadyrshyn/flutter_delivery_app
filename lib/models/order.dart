@@ -1,19 +1,30 @@
 import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/models/user.dart';
 
-class CurrentOrder {
+
+class OrderRequest {
   User user;
   double totalPrice;
   String address;
   List<Product> products;
 
-  CurrentOrder({
+  OrderRequest({
     required this.user,
     required this.totalPrice,
     required this.address,
     required this.products,
   });
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'user': user.toJson(),
+      'totalPrice': totalPrice,
+      'address': address,
+      'products': products.map((e) => e.toJson()).toList(),
+    };
+  }
 }
+
 /*
 	resp := &responses.OrderResponse{
 		Id:        order.Id,

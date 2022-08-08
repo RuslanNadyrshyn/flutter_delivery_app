@@ -4,6 +4,7 @@ import 'package:food_delivery/my_provider/auth_provider.dart';
 import 'package:food_delivery/my_provider/basket_provider.dart';
 import 'package:food_delivery/my_provider/global_provider.dart';
 import 'package:food_delivery/my_provider/home_view_provider.dart';
+import 'package:food_delivery/my_provider/order_provider.dart';
 import 'package:food_delivery/my_provider/product_page_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ void main() {
         ChangeNotifierProvider<GlobalProvider>(create: (_) => GlobalProvider()),
         ChangeNotifierProvider<BasketProvider>(create: (_) => BasketProvider()),
         ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+        ChangeNotifierProvider<OrderProvider>(create: (_) => OrderProvider()),
         ChangeNotifierProvider<ProductPageInfoProvider>(
           create: (_) => ProductPageInfoProvider(),
         ),
